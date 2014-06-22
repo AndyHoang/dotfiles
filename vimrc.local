@@ -1,0 +1,41 @@
+"let g:neocomplcache_disable_auto_complete = 1
+"inoremap <expr><C-l> neocomplcache#complete_common_string()
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : "\<C-x>\<C-u>"
+"function! s:check_back_space()"{{{
+        "let col = col('.') - 1
+            "return !col || getline('.')[col - 1] =~ '\s'
+        "endfunction"}}
+""let g:UltiSnipsExpandTrigger = '<CR>'
+UnBundle 'bling/vim-bufferline'
+let g:pymode_rope_completion = 0
+nnoremap <leader>pep :PymodeLintAuto<CR>
+let g:pymode_virtualenv = 0
+""fix an autopairs/ycm conflict
+"let g:AutoPairsMapBS = 0
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set textwidth=0 wrapmargin=0
+set nofoldenable    " disable folding"
+
+let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
+
+""""""""""""""""""""""""""""""
+" airline
+""""""""""""""""""""""""""""""
+let g:airline_enable_branch     = 1
+let g:airline_enable_syntastic  = 1
+
+
