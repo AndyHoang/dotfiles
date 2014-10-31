@@ -5,7 +5,7 @@
         "let col = col('.') - 1
             "return !col || getline('.')[col - 1] =~ '\s'
         "endfunction"}}
-""let g:UltiSnipsExpandTrigger = '<CR>'
+let g:UltiSnipsExpandTrigger = '<CR>'
 UnBundle 'bling/vim-bufferline'
 let g:pymode_rope_completion = 0
 nnoremap <leader>pep :PymodeLintAuto<CR>
