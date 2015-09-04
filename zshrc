@@ -45,7 +45,11 @@ ZSH_THEME="avit"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# include Z, yo
+. ~/z.sh
+
+
+plugins=(git npm z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -54,6 +58,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export MANPATH="/usr/local/man:$MANPATH"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
 # You may need to manually set your language environment
  export LANG=en_US.UTF-8
 
@@ -78,5 +83,12 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias wget='wget --directory-prefix=/Users/andyhoang/Downloads/ --quiet'
 alias vi="vim"
 eval "`npm completion`"
+
+export RBENV_ROOT="$(brew --prefix rbenv)"
+export GEM_HOME="$(brew --prefix)/opt/gems"
+export GEM_PATH="$(brew --prefix)/opt/gems"
+eval "$(rbenv init -)"
+alias tma='tmux attach -d -t '

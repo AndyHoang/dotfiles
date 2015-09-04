@@ -7,10 +7,10 @@
         "endfunction"}}
 let g:UltiSnipsExpandTrigger = '<CR>'
 UnBundle 'bling/vim-bufferline'
-let g:pymode_rope_completion = 0
+"let g:pymode_rope_completion = 0
 nnoremap <leader>pep :PymodeLintAuto<CR>
-let g:pymode_virtualenv = 0
-""fix an autopairs/ycm conflict
+"let g:pymode_virtualenv = 0
+"fix an autopairs/ycm conflict
 "let g:AutoPairsMapBS = 0
 set shiftwidth=2
 set tabstop=2
@@ -34,8 +34,8 @@ let g:airline_mode_map = {
 """"""""""""""""""""""""""""""
 " airline
 """"""""""""""""""""""""""""""
-let g:airline_enable_branch     = 1
-let g:airline_enable_syntastic  = 1
+""let g:airline_enable_branch     = 1
+"let g:airline_enable_syntastic  = 1
 
 
 let g:jedi#auto_vim_configuration = 0
