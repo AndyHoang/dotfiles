@@ -16,7 +16,9 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set textwidth=0 wrapmargin=0
-
+let g:ctrlp_cmd = 'CtrlPMRU'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
 let g:airline_mode_map = {
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -30,7 +32,15 @@ let g:airline_mode_map = {
       \ 'S'  : 'S',
       \ '' : 'S',
       \ }
-
+" Vim-Session Settings
+let g:session_autosave = 'yes'
+let g:session_autoload = 'yes'
+let g:session_default_to_last = 1
+let g:nerdtree_tabs_open_on_gui_startup = 0
+set sessionoptions-=buffers
+set sessionoptions-=options
+let g:session_autosave ='prompt'
+let g:airline#extensions#hunks#enabled = 0
 """"""""""""""""""""""""""""""
 " airline
 """"""""""""""""""""""""""""""
@@ -38,13 +48,13 @@ let g:airline_mode_map = {
 "let g:airline_enable_syntastic  = 1
 
 
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_on_dot=0
+"let g:jedi#auto_vim_configuration = 0
+"let g:jedi#popup_on_dot=0
 
-let g:jedi#completions_enabled=1
-autocmd FileType python setlocal omnifunc=jedi#completions
-let g:neocomplete#enable_auto_select = 1
-if !exists('g:neocomplete#force_omni_input_patterns')
-        let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+"let g:jedi#completions_enabled=1
+"autocmd FileType python setlocal omnifunc=jedi#completions
+"let g:neocomplete#enable_auto_select = 1
+"if !exists('g:neocomplete#force_omni_input_patterns')
+"        let g:neocomplete#force_omni_input_patterns = {}
+"endif
+"let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'

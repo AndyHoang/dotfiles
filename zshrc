@@ -45,8 +45,6 @@ ZSH_THEME="avit"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# include Z, yo
-. ~/z.sh
 
 
 plugins=(git npm z)
@@ -90,5 +88,4 @@ eval "`npm completion`"
 export RBENV_ROOT="$(brew --prefix rbenv)"
 export GEM_HOME="$(brew --prefix)/opt/gems"
 export GEM_PATH="$(brew --prefix)/opt/gems"
-eval "$(rbenv init -)"
 alias tma='tmux attach -d -t '
