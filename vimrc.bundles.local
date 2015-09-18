@@ -3,3 +3,7 @@
 UnBundle 'tpop/vim-fugitive'
 UnBundle 'mattn/gist-vim'
 UnBundle 'godlygeek/tabular'
+"Bundle 'maksimr/vim-jsbeautify'
+"Plugin 'einars/js-beautify'
+Plugin 'Chiel92/vim-autoformat'
+

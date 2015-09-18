@@ -5,6 +5,7 @@
         "let col = col('.') - 1
             "return !col || getline('.')[col - 1] =~ '\s'
         "endfunction"}}
+"command Bd bp | sp | bn | bd
 let g:UltiSnipsExpandTrigger = '<CR>'
 UnBundle 'bling/vim-bufferline'
 "let g:pymode_rope_completion = 0
@@ -12,10 +13,24 @@ nnoremap <leader>pep :PymodeLintAuto<CR>
 "let g:pymode_virtualenv = 0
 "fix an autopairs/ycm conflict
 "let g:AutoPairsMapBS = 0
+"set wrap linebreak nolist
+"set tw=78
+"set formatoptions+=t
+set noswapfile
+set nobackup
+set nowb
+set autoread
+set wrap
+set linebreak
+set breakindent
+set showbreak=..
+
+set smartindent
+set smarttab
 set shiftwidth=2
-set tabstop=2
 set softtabstop=2
-set textwidth=0 wrapmargin=0
+set tabstop=2
+"set wrapmargin=0
 let g:ctrlp_cmd = 'CtrlPMRU'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
@@ -32,6 +47,7 @@ let g:airline_mode_map = {
       \ 'S'  : 'S',
       \ '' : 'S',
       \ }
+let g:jsbeautify_file = fnameescape(fnamemodify(expand("<sfile>"), ":h")."/bundle/js-beautify/beautify.js")
 " Vim-Session Settings
 let g:session_autosave = 'yes'
 let g:session_autoload = 'yes'
@@ -46,8 +62,13 @@ let g:airline#extensions#hunks#enabled = 0
 """"""""""""""""""""""""""""""
 ""let g:airline_enable_branch     = 1
 "let g:airline_enable_syntastic  = 1
+let g:spf13_no_autochdir = 1
 
 
+" syntastic
+let g:syntastic_quiet_messages = { "type": "style" }
+"let g:syntastic_check_on_open=1
+let g:syntastic_html_checkers=['']
 "let g:jedi#auto_vim_configuration = 0
 "let g:jedi#popup_on_dot=0
 
