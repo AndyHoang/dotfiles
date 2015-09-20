@@ -69,6 +69,13 @@ let g:spf13_no_autochdir = 1
 let g:syntastic_quiet_messages = { "type": "style" }
 "let g:syntastic_check_on_open=1
 let g:syntastic_html_checkers=['']
+let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
+
+" MatchTagAlways
+let g:mta_use_matchparen_group = 0
+
+
+
 "let g:jedi#auto_vim_configuration = 0
 "let g:jedi#popup_on_dot=0
 

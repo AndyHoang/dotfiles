@@ -1,9 +1,10 @@
 "Bundle 'jiangmiao/auto-pairs'
 "Bundle 'davidhalter/jedi-vim'
-UnBundle 'tpop/vim-fugitive'
+"UnBundle 'tpop/vim-fugitive'
 UnBundle 'mattn/gist-vim'
 UnBundle 'godlygeek/tabular'
 "Bundle 'maksimr/vim-jsbeautify'
 "Plugin 'einars/js-beautify'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'Valloric/MatchTagAlways'
 
