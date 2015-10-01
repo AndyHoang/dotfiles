@@ -7,4 +7,5 @@ UnBundle 'godlygeek/tabular'
 "Plugin 'einars/js-beautify'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'Valloric/MatchTagAlways'
-
+Plugin 'chriskempson/base16-vim'
+Plugin 'jimenezrick/vimerl'
