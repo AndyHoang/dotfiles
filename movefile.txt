@@ -9,8 +9,5 @@ rsync -avhP Documents /Volumes/Data/Old\ MBP/Documents
 rsync -avhP /opt /Volumes/Data/Old\ MBP/opt
 rsync -avhP Downloads /Volumes/Data/Old\ MBP/Downloads
 
-rsync -avhP Study Volumes/Data/Old\ MBP/Study
-rsync -avhP project Volumes/Data/Old\ MBP/project
-Study
-project
-.files 
+rsync -avhP /Study Volumes/Data/Old\ MBP/Study
+rsync -avhP /project Volumes/Data/Old\ MBP/project
