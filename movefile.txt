@@ -1,0 +1,13 @@
+
+rsync -avhP Music  /Volumes/Data/Old\ MBP/Music
+
+rsync -avhP Library /Volumes/Data/Old\ MBP/Library
+rsync -avhP Movies Pictures /Volumes/Data/Old\ MBP/
+rsync -avhP Dropbox /Volumes/Data/Old\ MBP/Dropbox
+
+rsync -avhP Documents /Volumes/Data/Old\ MBP/Documents
+rsync -avhP /opt /Volumes/Data/Old\ MBP/opt
+rsync -avhP Downloads /Volumes/Data/Old\ MBP/Downloads
+
+rsync -avhP /Study Volumes/Data/Old\ MBP/Study
+rsync -avhP /project Volumes/Data/Old\ MBP/project
