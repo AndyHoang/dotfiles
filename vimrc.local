@@ -24,13 +24,16 @@ set wrap
 set linebreak
 set breakindent
 set showbreak=..
-
+colorscheme base16-railscasts
+set foldmethod=indent
+set foldlevel=99
 set smartindent
 set smarttab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 "set wrapmargin=0
+set nospell
 let g:ctrlp_cmd = 'CtrlPMRU'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
