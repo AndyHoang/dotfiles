@@ -1,5 +1,7 @@
 {
   "asi": true,
-  "sub": true,
-  "laxbreak":true
+    "sub": true,
+    "laxbreak":true,
+    "esversion": 6,
+    "quotmark": false
 }

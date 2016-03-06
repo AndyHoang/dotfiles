@@ -60,6 +60,7 @@ set sessionoptions-=buffers
 set sessionoptions-=options
 let g:session_autosave ='prompt'
 let g:airline#extensions#hunks#enabled = 0
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 """"""""""""""""""""""""""""""
 " airline
 """"""""""""""""""""""""""""""
