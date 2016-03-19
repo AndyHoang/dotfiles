@@ -47,7 +47,7 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git npm z)
+plugins=(git npm z vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,3 +97,13 @@ export GHCMOD=~/.local
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GHCMOD/bin
+
+#bindkey -v
+
+#bindkey '^P' up-history
+#bindkey '^N' down-history
+#bindkey '^?' backward-delete-char
+#bindkey '^h' backward-delete-char
+#bindkey '^w' backward-kill-word
+#bindkey '^r' history-incremental-search-backward
+#export KEYTIMEOUT=1

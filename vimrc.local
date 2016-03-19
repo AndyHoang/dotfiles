@@ -33,7 +33,8 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 "set wrapmargin=0
-set nospell
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=set nospell
 let g:ctrlp_cmd = 'CtrlPMRU'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
@@ -78,8 +79,14 @@ let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
 " MatchTagAlways
 let g:mta_use_matchparen_group = 0
 
-
-
+let g:haskell_enable_quantification = 1
+let g:haskell_indent_guard = 2
+let g:haskell_indent_if = 3
+let g:haskell_indent_where = 6
+let g:haskell_enable_pattern_synonyms = 1
+let g:haskell_enable_typeroles = 1
+let g:haskell_enable_recursivedo = 1
+let g:haskell_enable_arrowsyntax = 1
 "let g:jedi#auto_vim_configuration = 0
 "let g:jedi#popup_on_dot=0
 
