@@ -83,9 +83,9 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 alias wget='wget --directory-prefix=/Users/andyhoang/Downloads/ --quiet'
 alias vi="vim"
 
-export RBENV_ROOT="$(brew --prefix rbenv)"
-export GEM_HOME="$(brew --prefix)/opt/gems"
-export GEM_PATH="$(brew --prefix)/opt/gems"
+#export RBENV_ROOT="$(brew --prefix rbenv)"
+#export GEM_HOME="$(brew --prefix)/opt/gems"
+#export GEM_PATH="$(brew --prefix)/opt/gems"
 #export GOPATH=/usr/local/opt/go/libexec/bin
 #export PATH=$PATH:/usr/local/opt/go/libexec/bin
 #export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
