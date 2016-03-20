@@ -47,7 +47,7 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git npm z)
+plugins=(git z vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -56,7 +56,6 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export MANPATH="/usr/local/man:$MANPATH"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
 # You may need to manually set your language environment
  export LANG=en_US.UTF-8
 
@@ -83,17 +82,29 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wget='wget --directory-prefix=/Users/andyhoang/Downloads/ --quiet'
 alias vi="vim"
-eval "`npm completion`"
 
 export RBENV_ROOT="$(brew --prefix rbenv)"
 export GEM_HOME="$(brew --prefix)/opt/gems"
 export GEM_PATH="$(brew --prefix)/opt/gems"
-export GOPATH=/usr/local/opt/go/libexec/bin
-
-GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
-export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
+#export GOPATH=/usr/local/opt/go/libexec/bin
+#export PATH=$PATH:/usr/local/opt/go/libexec/bin
+#export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
 #export GOROOT=/usr/local/Cellar/go/1.5.3/libexec
-export GHCMOD=~/.local
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-export PATH=$PATH:$GHCMOD/bin
+#GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
+#export PATH=$PATH:$GOPATH/bin
+#export PATH=$PATH:$GOROOT/bin
+
+
+
+#export GHCMOD=~/.local
+#export PATH=$PATH:$GHCMOD/bin
+
+#bindkey -v
+
+#bindkey '^P' up-history
+#bindkey '^N' down-history
+#bindkey '^?' backward-delete-char
+#bindkey '^h' backward-delete-char
+#bindkey '^w' backward-kill-word
+#bindkey '^r' history-incremental-search-backward
+#export KEYTIMEOUT=1
