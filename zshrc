@@ -101,6 +101,10 @@ alias vi="vim"
 
 #bindkey -v
 
+if [ -f $(brew --prefix)/etc/brew-wrap  ];then
+    source $(brew --prefix)/etc/brew-wrap
+fi
+
 #bindkey '^P' up-history
 #bindkey '^N' down-history
 #bindkey '^?' backward-delete-char
