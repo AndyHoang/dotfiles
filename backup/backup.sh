@@ -13,11 +13,11 @@ rsync -avhP ~/Downloads /Volumes/Data/Old\ MBP
 #rsync -avhP ~/project /Volumes/Data/Old\ MBP
 rsync -avhP ~/Study /Volumes/Data/Old\ MBP
 
-rsync -avhP /Users/andyhoang/Library/Application\ Support /Volumes/Data/Old\ MBP/Library/Application\ Support
+rsync -avhP /Users/andyhoang/Library/Application\ Support /Volumes/Data/Old\ MBP
 
-rsync -avhP Users/andyhoang/Library/Path\ Finder /Volumes/Data/Old\ MBP/Library/Path\ Finder
+rsync -avhP Users/andyhoang/Library/Path\ Finder /Volumes/Data/Old\ MBP
 
-rsync -avhP Users/andyhoang/Library/Safari /Volumes/Data/Old\ MBP/Library/Safari
+rsync -avhP Users/andyhoang/Library/Safari /Volumes/Data/Old\ MBP
 
 
 
