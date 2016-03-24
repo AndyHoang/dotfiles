@@ -2,6 +2,9 @@
 
 
 #rsync -avhP ~/Library /Volumes/Data/Old\ MBP
+#rsync -avhP ~/.dot* /Volumes/Data/Old\ MBP/dotFolder
+#rsync -avhP ~/.ssh /Volumes/Data/Old\ MBP/dotFolder
+#rsync -avhP ~/.* /Volumes/Data/Old\ MBP/dotFolder
 rsync -avhP ~/.* /Volumes/Data/Old\ MBP/dotFolder
 #rsync -avhP ~/Music /Volumes/Data/Old\ MBP
 #rsync -avhP ~/Pictures /Volumes/Data/Old\ MBP

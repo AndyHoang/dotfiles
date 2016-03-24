@@ -12,7 +12,7 @@ echo "Installing Xcode Command Line Tools."
 
 echo "------------------------------"
 echo "Updating OSX.  If this requires a restart, run the script again."
-sudo softwareupdate -ivr
+#sudo softwareupdate -ivr
 
 
 
@@ -21,9 +21,9 @@ if test ! $(which brew); then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-#brew update
-#brew install rcmdnk/file/brew-file
+brew update
+brew install rcmdnk/file/brew-file
 
-#brew file install
+brew file install
 
 
