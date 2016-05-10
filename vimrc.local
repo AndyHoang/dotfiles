@@ -70,6 +70,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:spf13_no_autochdir = 1
 
 
+"let NERDTreeQuitOnOpen=0
 " syntastic
 let g:syntastic_quiet_messages = { "type": "style" }
 "let g:syntastic_check_on_open=1
@@ -87,6 +88,10 @@ let g:haskell_enable_pattern_synonyms = 1
 let g:haskell_enable_typeroles = 1
 let g:haskell_enable_recursivedo = 1
 let g:haskell_enable_arrowsyntax = 1
+let g:haskell_indent_case = 2
+let g:haskell_indent_let = 4
+let g:haskell_indent_in = 1
+
 "let g:jedi#auto_vim_configuration = 0
 "let g:jedi#popup_on_dot=0
 

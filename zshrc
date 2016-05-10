@@ -47,7 +47,7 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git z vi-mode)
+plugins=(git z )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,8 +96,8 @@ alias vi="vim"
 
 
 
-#export GHCMOD=~/.local
-#export PATH=$PATH:$GHCMOD/bin
+export GHCMOD=~/.local
+export PATH=$PATH:$GHCMOD/bin
 
 #bindkey -v
 
