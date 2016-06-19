@@ -8,6 +8,7 @@ brew brew-rmtree
 brew aria2
 brew cabal-install
 brew ctags
+brew elm
 brew gettext
 brew ghc
 brew haskell-stack
@@ -15,12 +16,11 @@ brew libevent
 brew libgcrypt
 brew libssh
 brew lua
-#brew msgpack
+brew node
 brew openssl
 brew readline
 brew reattach-to-user-namespace
 brew sqlite
-#brew tmate
 brew tmux
 brew tree
 brew weechat --with-python --with-perl
