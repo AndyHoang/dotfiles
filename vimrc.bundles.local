@@ -32,3 +32,5 @@ Plugin 'jimenezrick/vimerl'
 "Plugin 'raichoo/haskell-vim'
 "
 Plugin 'lambdatoast/elm.vim'
+
+"Plugin 'ElmCast/elm-vim'

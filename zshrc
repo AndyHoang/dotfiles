@@ -57,8 +57,10 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export MANPATH="/usr/local/man:$MANPATH"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # You may need to manually set your language environment
- export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+#Although the other questions list bash methods, they alias cd. Bash provides an inherent method that chains off just the prompt.
 
+precmd () { print -Pn "\e]2;%n@%M | %~\a" } # title bar prompt
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
@@ -100,10 +102,6 @@ export GHCMOD=~/.local
 export PATH=$PATH:$GHCMOD/bin
 
 #bindkey -v
-
-if [ -f $(brew --prefix)/etc/brew-wrap  ];then
-    source $(brew --prefix)/etc/brew-wrap
-fi
 
 #bindkey '^P' up-history
 #bindkey '^N' down-history
