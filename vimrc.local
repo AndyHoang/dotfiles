@@ -64,6 +64,12 @@ let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_mode_map={'mode': 'active', 'passive_filetypes': ['haskell']}
 nmap <silent> <leader>hl :SyntasticCheck hlint<CR>:lopen<CR>
 
+"Python-mode
+let g:pymode_rope_completion = 1
+
+
+
+
 "Haskell
 map <silent> tw :GhcModTypeInsert<CR>
 map <silent> ts :GhcModSplitFunCase<CR>
