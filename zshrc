@@ -47,13 +47,13 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git z )
+plugins=(git z)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export MANPATH="/usr/local/man:$MANPATH"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # You may need to manually set your language environment

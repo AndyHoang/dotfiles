@@ -1,15 +1,17 @@
+
 "Bundle 'jiangmiao/auto-pairs'
-"Bundle 'davidhalter/jedi-vim'
+Bundle 'davidhalter/jedi-vim'
 "UnBundle 'tpop/vim-fugitive'
 UnBundle 'mattn/gist-vim'
 "UnBundle 'godlygeek/tabular'
 
+UnBundle 'klen/python-mode'
 UnBundle 'travitch/hasksyn'
 UnBundle 'dag/vim2hs'
 UnBundle 'Twinside/vim-haskellConceal'
 UnBundle 'Twinside/vim-haskellFold'
 UnBundle 'lukerandall/haskellmode-vim'
-Plugin 'pbrisbin/vim-syntax-shakespeare'
+"Plugin 'pbrisbin/vim-syntax-shakespeare'
 "Bundle 'eagletmt/neco-ghc'
 "UnBundle 'eagletmt/ghcmod-vim'
 "UnBundle 'Shougo/vimproc.vim'
@@ -28,9 +30,10 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'Valloric/MatchTagAlways'
 Plugin 'chriskempson/base16-vim'
 Plugin 'jimenezrick/vimerl'
+
 "Plugin 'fatih/vim-go'
 "Plugin 'raichoo/haskell-vim'
 "
-Plugin 'lambdatoast/elm.vim'
+"Plugin 'lambdatoast/elm.vim'
 
 "Plugin 'ElmCast/elm-vim'
