@@ -1,6 +1,5 @@
 UnBundle 'SirVer/ultisnips'
 UnBundle 'honza/vim-snippets'
-
 "Bundle 'jiangmiao/auto-pairs'
 Bundle 'davidhalter/jedi-vim'
 "UnBundle 'tpop/vim-fugitive'
@@ -30,3 +29,4 @@ Plugin 'Chiel92/vim-autoformat'
 "for html, xml, jinja
 "Plugin 'Valloric/MatchTagAlways'
 Plugin 'chriskempson/base16-vim'
+Plugin 'jeetsukumaran/vim-buffergator'
