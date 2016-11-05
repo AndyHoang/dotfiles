@@ -30,4 +30,3 @@ Plugin 'Chiel92/vim-autoformat'
 "for html, xml, jinja
 "Plugin 'Valloric/MatchTagAlways'
 Plugin 'chriskempson/base16-vim'
-
