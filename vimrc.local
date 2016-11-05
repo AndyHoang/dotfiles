@@ -52,7 +52,7 @@ let g:airline_enable_syntastic  = 1
 let g:spf13_no_autochdir = 1
 
 " syntastic
-let g:syntastic_disabled_filetypes=['elm']
+"let g:syntastic_disabled_filetypes=['elm']
 "let g:syntastic_quiet_messages = { "type": "style" }
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
@@ -61,36 +61,39 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers=['']
 let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
 let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_mode_map={'mode': 'active', 'passive_filetypes': ['haskell']}
+"let g:syntastic_mode_map={'mode': 'active', 'passive_filetypes': ['haskell']}
 let g:syntastic_python_checkers=['flake8']
 nmap <silent> <leader>hl :SyntasticCheck hlint<CR>:lopen<CR>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+"youcompleteme
+let g:ycm_auto_trigger = 0
+let g:ycm_python_binary_path = 'python'
 
 "Python-mode
 "let g:pymode_rope_completion = 1
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = 2
+"jedi vim
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#show_call_signatures = 2
 "let g:jedi#auto_initialization = 0
 "let g:jedi#auto_vim_configuration = 0
-
 "Haskell
-map <silent> tw :GhcModTypeInsert<CR>
-map <silent> ts :GhcModSplitFunCase<CR>
-map <silent> tq :GhcModType<CR>
-map <silent> te :GhcModTypeClear<CR>
-let g:necoghc_enable_detailed_browse = 1
-let g:haskellmode_completion_ghc = 0
+"map <silent> tw :GhcModTypeInsert<CR>
+"map <silent> ts :GhcModSplitFunCase<CR>
+"map <silent> tq :GhcModType<CR>
+"map <silent> te :GhcModTypeClear<CR>
+"let g:necoghc_enable_detailed_browse = 1
+"let g:haskellmode_completion_ghc = 0
 
 " MatchTagAlways
 let g:mta_use_matchparen_group = 0
 "let g:formatter_yapf_style = 'facebook'
 
 "Elm
-nnoremap <leader>el :ElmEvalLine<CR>
-vnoremap <leader>es :<C-u>ElmEvalSelection<CR>
+"nnoremap <leader>el :ElmEvalLine<CR>
+"vnoremap <leader>es :<C-u>ElmEvalSelection<CR>
 
 " This is a Haskell configuration for the Vim Tagbar plugin that uses
 " lushtags.
@@ -105,32 +108,32 @@ vnoremap <leader>es :<C-u>ElmEvalSelection<CR>
 "
 " source /path/to/tagbar-haskell.vim
 
-if executable('lushtags')
-    let g:tagbar_type_haskell = {
-        \ 'ctagsbin' : 'lushtags',
-        \ 'ctagsargs' : '--ignore-parse-error --',
-        \ 'kinds' : [
-            \ 'm:module:0',
-            \ 'e:exports:1',
-            \ 'i:imports:1',
-            \ 't:declarations:0',
-            \ 'd:declarations:1',
-            \ 'n:declarations:1',
-            \ 'f:functions:0',
-            \ 'c:constructors:0'
-        \ ],
-        \ 'sro' : '.',
-        \ 'kind2scope' : {
-            \ 'd' : 'data',
-            \ 'n' : 'newtype',
-            \ 'c' : 'constructor',
-            \ 't' : 'type'
-        \ },
-        \ 'scope2kind' : {
-            \ 'data' : 'd',
-            \ 'newtype' : 'n',
-            \ 'constructor' : 'c',
-            \ 'type' : 't'
-        \ }
-    \ }
-endif
+"if executable('lushtags')
+    "let g:tagbar_type_haskell = {
+        "\ 'ctagsbin' : 'lushtags',
+        "\ 'ctagsargs' : '--ignore-parse-error --',
+        "\ 'kinds' : [
+            "\ 'm:module:0',
+            "\ 'e:exports:1',
+            "\ 'i:imports:1',
+            "\ 't:declarations:0',
+            "\ 'd:declarations:1',
+            "\ 'n:declarations:1',
+            "\ 'f:functions:0',
+            "\ 'c:constructors:0'
+        "\ ],
+        "\ 'sro' : '.',
+        "\ 'kind2scope' : {
+            "\ 'd' : 'data',
+            "\ 'n' : 'newtype',
+            "\ 'c' : 'constructor',
+            "\ 't' : 'type'
+        "\ },
+        "\ 'scope2kind' : {
+            "\ 'data' : 'd',
+            "\ 'newtype' : 'n',
+            "\ 'constructor' : 'c',
+            "\ 'type' : 't'
+        "\ }
+    "\ }
+"endif
