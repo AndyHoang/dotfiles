@@ -4,7 +4,7 @@
 
 " Install vim-plug if we don't already have it
 "if empty(glob("~/.vim/autoload/plug.vim"))
-    " Ensure all needed directories exist  (Thanks @kapadiamush)
+" Ensure all needed directories exist  (Thanks @kapadiamush)
 "    execute 'mkdir -p ~/.vim/plugged'
 "    execute 'mkdir -p ~/.vim/autoload'
 "    " Download the actual plugin manager
@@ -23,32 +23,46 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'morhetz/gruvbox'
 Plug 'davidhalter/jedi-vim'
 Plug 'mhinz/vim-startify'
+Plug 'scrooloose/nerdcommenter'
+Plug 'mbbill/undotree'
+"Indent Guides is a plugin for visually displaying indent levels in Vim.
+Plug 'nathanaelkane/vim-indent-guides'
+"use sign column to indicate added, modified and removed lines
+Plug 'mhinz/vim-signify'
+" Bundle 'kana/vim-textobj-user'
+"Bundle 'kana/vim-textobj-indent'
+"use enter to select things
+Plug 'gcmt/wildfire.vim'
+"surroud word faster
+Plug 'tpope/vim-surround'
 
 " Syntax
 Plug 'tpope/vim-git', { 'for': 'git' }
 " Plug 'qrps/lilypond-vim', { 'for': 'lilypond' }
-" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Plug 'mxw/vim-jsx'
-
-" Completion
-
-
 
 " Syntastic: Code linting errors
 Plug 'scrooloose/syntastic'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
-Plug 'majutsushi/tagbar'
-
-" Fancy statusline
-" Plug 'bling/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 " Fuzzy file opener
 Plug 'ctrlpvim/ctrlp.vim'
 
+" Fugitive: Git from within Vim
+Plug 'tpope/vim-fugitive'
 
+
+" Navigate files in a sidebar
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+
+Plug 'rhysd/conflict-marker.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
 
 " Search files using Silver Searcher
 " Plug 'rking/ag.vim'
@@ -61,8 +75,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Make commenting easier
 " Plug 'tpope/vim-commentary'
 
-" Navigate files in a sidebar
-Plug 'scrooloose/nerdtree'
 
 
 " Split and join lines of code intelligently
@@ -82,10 +94,7 @@ Plug 'scrooloose/nerdtree'
 
 " Custom motions
 
-"
 
-" Fugitive: Git from within Vim
-Plug 'tpope/vim-fugitive'
 
 
 

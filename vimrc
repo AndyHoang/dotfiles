@@ -237,10 +237,9 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
         \ }
 endif
     " NerdTree {
-        if isdirectory(expand("~/.vim/bundle/nerdtree"))
-            map <C-e> <plug>NERDTreeTabsToggle<CR>
+        if isdirectory(expand("~/.vim/plugged/nerdtree"))
             map <leader>e :NERDTreeFind<CR>
-            nmap <leader>nt :NERDTreeFind<CR>
+            nmap <leader>nt :NERDTreeTabsToggle<CR>
 
             let NERDTreeShowBookmarks=1
             let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
