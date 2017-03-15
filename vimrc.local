@@ -7,7 +7,8 @@ set wrap
 set linebreak
 set breakindent
 set showbreak=..
-colorscheme base16-railscasts
+"colorscheme base16-railscasts
+colorscheme gruvbox
 set foldmethod=indent
 set foldlevel=99
 set smartindent
@@ -30,6 +31,7 @@ let g:session_default_to_last = 1
 let g:nerdtree_tabs_open_on_gui_startup = 0
 set sessionoptions-=buffers
 let g:session_autosave ='prompt'
+let g:gruvbox_contrast_dark='soft'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 """"""""""""""""""""""""""""""
 " airline
@@ -70,7 +72,7 @@ let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_python_checkers=['flake8']
 "nmap <silent> <leader>hl :SyntasticCheck hlint<CR>:lopen<CR>
 "set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
 
 "youcompleteme
@@ -144,11 +146,39 @@ let g:mta_use_matchparen_group = 0
     "\ }
 "endif
 "
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'] ]
+      \   'right': [ ['percent'] ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'LightlineFugitive',
@@ -158,12 +188,6 @@ let g:lightline = {
       \   'fileencoding': 'LightlineFileencoding',
       \   'mode': 'LightlineMode',
       \   'ctrlpmark': 'CtrlPMark',
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error',
       \ },
       \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
@@ -260,15 +284,15 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
   return lightline#statusline(0)
 endfunction
 
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost *.py,*.js call s:syntastic()
-augroup END
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
-endfunction
+"augroup AutoSyntastic
+  "autocmd!
+  "autocmd BufWritePost *.py,*.js call s:syntastic()
+"augroup END
+"function! s:syntastic()
+  "SyntasticCheck
+  "call lightline#update()
+"endfunction
 
-"let g:unite_force_overwrite_statusline = 0
+let g:unite_force_overwrite_statusline = 0
 "let g:vimfiler_force_overwrite_statusline = 0
 "let g:vimshell_force_overwrite_statusline = 0

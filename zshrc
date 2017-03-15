@@ -47,7 +47,7 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git z)
+plugins=(git z docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -90,16 +90,16 @@ alias vi="vim"
 #export GEM_PATH="$(brew --prefix)/opt/gems"
 #export GOPATH=/usr/local/opt/go/libexec/bin
 #export PATH=$PATH:/usr/local/opt/go/libexec/bin
+#GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
 #export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
 #export GOROOT=/usr/local/Cellar/go/1.5.3/libexec
-#GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
 #export PATH=$PATH:$GOPATH/bin
 #export PATH=$PATH:$GOROOT/bin
 
 
 
-export GHCMOD=~/.local
-export PATH=$PATH:$GHCMOD/bin
+#export GHCMOD=~/.local
+#export PATH=$PATH:$GHCMOD/bin
 
 #bindkey -v
 
