@@ -23,7 +23,8 @@ set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 let mapleader = ','
 set noswapfile
-set nobackup
+set backup
+set undofile
 set nowb
 set autoread
 set wrap
@@ -41,10 +42,10 @@ set autoindent              " Put my cursor in the right place when I start a ne
 set laststatus=2            " The last window will have a status line always
 set noshowmode              " Don't show the mode in the last line of the screen, vim-airline takes care of it
 set ruler                   " Show the line and column number of the cursor position, separated by a comma.
-set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+"set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 set showcmd                 " Show partial commands in status line and
 set scrolloff=7             " Minimal number of screen lines to keep above and below the cursor.
-set visualbell              " Use a visual bell, don't beep!
+"set visualbell              " Use a visual bell, don't beep!
 set number                  " Show line numbers
 set linebreak               " Break the line on words
 
@@ -120,11 +121,10 @@ if &term =~ '^screen'
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
 endif
-set formatoptions=cqrn1
 
 " Colors
 syntax enable               " This has to come after colorcolumn in order to draw it.
-set t_Co=256                " enable 256 colors
+"set t_Co=256                " enable 256 colors
 
 
 " When completing, fill with the longest common string
@@ -136,10 +136,6 @@ set printoptions=header:0,duplex:long,paper:letter,syntax:n
 " header:0                  Do not print a header
 " duplex:long (default)     Print on both sides (when possible), bind on long
 " syntax:n                  Do not use syntax highlighting.
-" -------------------------------------------------------------------------
-"   Tabs                                                                  
-" ----------------------------------------------------------------------------
-
 
 " -------------------------------------------------------------------------
 "   Custom commands                                                       
@@ -177,23 +173,21 @@ nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<C
 " Installing the Plug plugin manager, and all the plugins are included in this
 " other file.
 source $HOME/.dotfiles/vim/plug.vim
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='soft'
-let g:ctrlp_cmd = 'CtrlPMRU'
-let g:jsbeautify_file = fnameescape(fnamemodify(expand("<sfile>"), ":h")."/bundle/js-beautify/beautify.js")
+
+"let g:jsbeautify_file = fnameescape(fnamemodify(expand("<sfile>"), ":h")."/bundle/js-beautify/beautify.js")
 
 " -------------------------------------------------------------------------
 "   Base Options                                                          
 " ----------------------------------------------------------------------------
 
-" Set the leader key to <space> instead of \ because it's easier to reach
-"set notimeout                  " Turn off the timeout for the leader key
-                                " Seems to break `n` in normal mode, so
-                                " I turned it off
 set secure                      " disable unsafe commands in local .vimrc files
+
+colorscheme gruvbox
+let g:gruvbox_contrast_dark='soft'
 
 " ctrlp {
 if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
+    let g:ctrlp_cmd = 'CtrlPMRU'
     let g:ctrlp_working_path_mode = 'ra'
     nnoremap <silent> <D-t> :CtrlP<CR>
     nnoremap <silent> <D-r> :CtrlPMRU<CR>
@@ -221,8 +215,25 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
         \ },
         \ 'fallback': s:ctrlp_fallback
     \ }
+    let g:ctrlp_working_path_mode = 'rw'
+    let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\v[\/]\.(git|hg|svn|sass-cache|pip_download_cache|wheel_cache)$',
+        \ 'file': '\v\.(png|jpg|jpeg|gif|DS_Store|pyc)$',
+        \ 'link': '',
+        \ }
+    let g:ctrlp_show_hidden = 1
+    let g:ctrlp_clear_cache_on_exit = 0
+    " Wait to update results (This should fix the fact that backspace is so slow)
+    let g:ctrlp_lazy_update = 1
+    " Show as many results as our screen will allow
+    let g:ctrlp_match_window = 'max:10'
 
-    if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
+    " CtrlP like mapings for opening quick fixes in new splits
+    let g:qfenter_vopen_map = ['<C-v>']
+    let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
+    let g:qfenter_topen_map = ['<C-t>']
+
+    if isdirectory(expand("~/.vim/plugged/ctrlp-funky/"))
         " CtrlP extensions
         let g:ctrlp_extensions = ['funky']
 
@@ -240,7 +251,6 @@ endif
         if isdirectory(expand("~/.vim/plugged/nerdtree"))
             map <leader>e :NERDTreeFind<CR>
             nmap <leader>nt :NERDTreeTabsToggle<CR>
-
             let NERDTreeShowBookmarks=1
             let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
             let NERDTreeChDirMode=0
@@ -254,40 +264,16 @@ endif
     "}
 
     " Rainbow {
-        if isdirectory(expand("~/.vim/bundle/rainbow/"))
-            let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
-        endif
-    "}
-    " Normal Vim omni-completion {
-    " To disable omni complete, add the following to your .vimrc.before.local file:
-    "   let g:spf13_no_omni_complete = 1
-            " Enable omni-completion.
-            autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-            autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-            autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-            autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-            autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-            autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-            autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+if isdirectory(expand("~/.vim/plugged/rainbow/"))
+    let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+endif
 
-    " }
-
-" -------------------------------------------------------------------------
-"   Visual                                                                
-" ----------------------------------------------------------------------------
-
-" Control Area (May be superseded by vim-airline)
-
-" My command line autocomplete is case insensitive. Keep vim consistent with
-" that. It's a recent feature to vim, test to make sure it's supported first.
 if exists("&wildignorecase")
     set wildignorecase
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 endif
 
-" MatchTagAlways
 let g:mta_use_matchparen_group = 0
-" Buffer Area Visuals
 
 "Elm
 "nnoremap <leader>el :ElmEvalLine<CR>
@@ -310,13 +296,14 @@ endfun
 " n Recognize numbered lists
 " 1 Don't break line after one-letter words
 " a Automatically format paragraphs
+set formatoptions=cqrn1
 
-" -------------------------------------------------------------------------
-"   Style for terminal vim
-" ----------------------------------------------------------------------------
-
+"jedi-vim
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first=0
+" Jedi Python Autocomplete
+"let g:jedi#use_tabs_not_buffers = 0 " Jedi needs you to unset this default to get to splits
+"let g:jedi#use_splits_not_buffers = "bottom"
 
 " syntastic
 "let g:syntastic_disabled_filetypes=['elm']
@@ -333,30 +320,13 @@ let g:syntastic_python_checkers=['flake8']
 "
 
 " Gist Vim
-let g:gist_clip_command = 'pbcopy'
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
+"let g:gist_clip_command = 'pbcopy'
+"let g:gist_detect_filetype = 1
+"let g:gist_open_browser_after_post = 1
 
 " Ctrl-P
-let g:ctrlp_working_path_mode = 'rw'
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|sass-cache|pip_download_cache|wheel_cache)$',
-    \ 'file': '\v\.(png|jpg|jpeg|gif|DS_Store|pyc)$',
-    \ 'link': '',
-    \ }
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_clear_cache_on_exit = 0
-" Wait to update results (This should fix the fact that backspace is so slow)
-let g:ctrlp_lazy_update = 1
-" Show as many results as our screen will allow
-let g:ctrlp_match_window = 'max:10'
 
-" CtrlP like mapings for opening quick fixes in new splits
-let g:qfenter_vopen_map = ['<C-v>']
-let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
-let g:qfenter_topen_map = ['<C-t>']
-
-" tagbark:
+" tagbar:
 if isdirectory(expand("~/.vim/plugged/tagbar/"))
   nnoremap <silent> <leader>tt :TagbarToggle<CR>
   autocmd FileType tagbar setlocal nocursorline nocursorcolumn
@@ -376,9 +346,6 @@ endif
 " Undotree plugin.
 nnoremap <F5> :UndotreeToggle<CR>
 
-" Jedi Python Autocomplete
-let g:jedi#use_tabs_not_buffers = 0 " Jedi needs you to unset this default to get to splits
-let g:jedi#use_splits_not_buffers = "bottom"
 
 " -------------------------------------------------------------------------
 "   Custom filetypes                                                      
@@ -386,6 +353,8 @@ let g:jedi#use_splits_not_buffers = "bottom"
 
 " Auto detect filetype
 autocmd BufRead,BufNewFile *.md,*.markdown set filetype=markdown
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd FileType latex,tex,md,markdown setlocal spell
 autocmd BufRead,BufNewFile *.lytex set filetype=tex
 autocmd BufRead,BufNewFile ~/dotfiles/ssh/config set filetype=sshconfig
 autocmd BufRead,BufNewFile *.git/config,.gitconfig,.gitmodules,gitconfig set ft=gitconfig
@@ -393,16 +362,21 @@ autocmd BufNewFile,BufRead *.html set filetype=htmldjango
 autocmd BufNewFile,BufRead .eslintrc set filetype=javascript
 autocmd BufRead,BufNewFile *.py setlocal foldmethod=indent
 
-" Override what is done in /vim/bundle/scss-syntax.vim/ftdetect/scss.vim
-" This should prevent duplicate snippets
 autocmd BufRead,BufNewFile *.scss set filetype=scss
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " -------------------------------------------------------------------------
 "   Custom mappings                                                       
 " ----------------------------------------------------------------------------
 
 " When pasting, refill the default register with what you just pasted
-xnoremap p pgvy
+"xnoremap p pgvy
 
 " Repurpose arrow keys to navigating windows
 nnoremap <left> <C-w>h
@@ -436,34 +410,40 @@ vnoremap = =gv
 " Nobody ever uses "Ex" mode, and it's annoying to leave
 noremap Q <nop>
 
-" -------------------------------------------------------------------------
-"   Undo, Backup and Swap file locations                                  
-" ----------------------------------------------------------------------------
-
-" Don't leave .swp files everywhere. Put them in a central place
-set directory=$HOME/.vim/swapdir//
-set backupdir=$HOME/.vim/backupdir//
-if exists('+undodir')
-    set undodir=$HOME/.vim/undodir
-    set undofile
-endif
-
-" -------------------------------------------------------------------------
-"   If there is a per-machine local .vimrc, source it here at the end     
-" ----------------------------------------------------------------------------
-
-"if filereadable(glob("$HOME/.vimrc.local"))
-"    source $HOME/.vimrc.local
-"endif
-
-" -------------------------------------------------------------------------
-"                                                                         
-" ----------------------------------------------------------------------------
 
 
-" -------------------------------------------------------------------------
-"   Configure My Plugins                                                  
-" ----------------------------------------------------------------------------
+function! InitializeDirectories()
+    let parent = $HOME
+    let prefix = 'vim'
+    let dir_list = {
+                \ 'backup': 'backupdir',
+                \ 'views': 'viewdir',
+                \ 'swap': 'directory' }
+
+    if has('persistent_undo')
+        let dir_list['undo'] = 'undodir'
+    endif
+
+    let common_dir = parent . '/.' . prefix
+
+    for [dirname, settingname] in items(dir_list)
+        let directory = common_dir . dirname . '/'
+        if exists("*mkdir")
+            if !isdirectory(directory)
+                call mkdir(directory)
+            endif
+        endif
+        if !isdirectory(directory)
+            echo "Warning: Unable to create backup directory: " . directory
+            echo "Try: mkdir -p " . directory
+        else
+            let directory = substitute(directory, " ", "\\\\ ", "g")
+            exec "set " . settingname . "=" . directory
+        endif
+    endfor
+endfunction
+call InitializeDirectories()
+
 
 
 
@@ -476,16 +456,16 @@ autocmd BufReadPost *
     nnoremap Y y$
 
     " Code folding options
-    nmap <leader>f0 :set foldlevel=0<CR>
-    nmap <leader>f1 :set foldlevel=1<CR>
-    nmap <leader>f2 :set foldlevel=2<CR>
-    nmap <leader>f3 :set foldlevel=3<CR>
-    nmap <leader>f4 :set foldlevel=4<CR>
-    nmap <leader>f5 :set foldlevel=5<CR>
-    nmap <leader>f6 :set foldlevel=6<CR>
-    nmap <leader>f7 :set foldlevel=7<CR>
-    nmap <leader>f8 :set foldlevel=8<CR>
-    nmap <leader>f9 :set foldlevel=9<CR>
+nmap <leader>f0 :set foldlevel=0<CR>
+nmap <leader>f1 :set foldlevel=1<CR>
+nmap <leader>f2 :set foldlevel=2<CR>
+nmap <leader>f3 :set foldlevel=3<CR>
+nmap <leader>f4 :set foldlevel=4<CR>
+nmap <leader>f5 :set foldlevel=5<CR>
+nmap <leader>f6 :set foldlevel=6<CR>
+nmap <leader>f7 :set foldlevel=7<CR>
+nmap <leader>f8 :set foldlevel=8<CR>
+nmap <leader>f9 :set foldlevel=9<CR>
 
 
 " Use S_ to wrap a selection in gettext (Underscore tempalate style)

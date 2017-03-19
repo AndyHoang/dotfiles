@@ -17,16 +17,17 @@ call plug#begin('~/.vim/plugged')
 " Plug 'captbaritone/molokai'
 
 " Plug 'chriskempson/base16-vim'
-Plug 'jeetsukumaran/vim-buffergator'
+"Plug 'jeetsukumaran/vim-buffergator'
 Plug 'itchyny/lightline.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'morhetz/gruvbox'
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
+Plug 'parkr/vim-jekyll'
 "Indent Guides is a plugin for visually displaying indent levels in Vim.
-Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
 Plug 'mhinz/vim-signify'
 " Bundle 'kana/vim-textobj-user'
@@ -47,7 +48,7 @@ Plug 'scrooloose/syntastic'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
 
 " Fuzzy file opener
 Plug 'ctrlpvim/ctrlp.vim'
@@ -57,7 +58,7 @@ Plug 'tpope/vim-fugitive'
 
 
 " Navigate files in a sidebar
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
 Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
