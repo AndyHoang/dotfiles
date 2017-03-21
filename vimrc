@@ -301,6 +301,8 @@ set formatoptions=cqrn1
 "jedi-vim
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first=0
+let g:jedi#completions_enabled = 0
+let g:jedi#show_call_signatures = "0"
 " Jedi Python Autocomplete
 "let g:jedi#use_tabs_not_buffers = 0 " Jedi needs you to unset this default to get to splits
 "let g:jedi#use_splits_not_buffers = "bottom"
@@ -367,6 +369,7 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal completeopt-=preview
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
