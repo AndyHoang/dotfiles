@@ -12,12 +12,13 @@
 "endif
 
 call plug#begin('~/.vim/plugged')
-
+" Plug 'metakirby5/codi.vim' " nice to have when learning new lang
 " Colorschemes
 " Plug 'captbaritone/molokai'
 
 " Plug 'chriskempson/base16-vim'
 "Plug 'jeetsukumaran/vim-buffergator'
+Plug 'w0rp/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'morhetz/gruvbox'
@@ -44,7 +45,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Plug 'mxw/vim-jsx'
 
 " Syntastic: Code linting errors
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'

@@ -48,6 +48,8 @@ set scrolloff=7             " Minimal number of screen lines to keep above and b
 "set visualbell              " Use a visual bell, don't beep!
 set number                  " Show line numbers
 set linebreak               " Break the line on words
+" this make syntastic extreme slow but now i'm using ale
+set cursorline                  " Highlight current line
 
 " show fold column, fold by markers
 set foldcolumn=0            " Don't show the folding gutter/column
@@ -99,8 +101,6 @@ augroup resCur
     autocmd BufWinEnter * call ResCur()
 augroup END
 set showmode                    " Display the current mode
-" this make syntastic extreme slow
-"set cursorline                  " Highlight current line
 
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
@@ -182,8 +182,6 @@ source $HOME/.dotfiles/vim/plug.vim
 
 set secure                      " disable unsafe commands in local .vimrc files
 
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='soft'
 
 " ctrlp {
 if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
@@ -310,17 +308,25 @@ let g:jedi#show_call_signatures = "0"
 " syntastic
 "let g:syntastic_disabled_filetypes=['elm']
 "let g:syntastic_quiet_messages = { "type": "style" }
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-let g:syntastic_html_checkers=['']
-let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
-let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 1
+"let g:syntastic_html_checkers=['']
+"let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
+"let g:syntastic_javascript_checkers = ['jshint']
 "let g:syntastic_mode_map={'mode': 'active', 'passive_filetypes': ['haskell']}
-let g:syntastic_python_checkers=['flake8']
-"
+"let g:syntastic_python_checkers=['flake8']
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+let g:ale_linters = {
+\   'python': ['flake8'],
+\}
 
+let g:ale_statusline_format = ['errs %d', 'warnings %d', '']
 " Gist Vim
 "let g:gist_clip_command = 'pbcopy'
 "let g:gist_detect_filetype = 1
@@ -512,7 +518,7 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-      \   'right': [ ['percent'] ]
+      \   'right': [ ['percent', 'ALEGetStatusLine'] ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'LightlineFugitive',
@@ -522,10 +528,10 @@ let g:lightline = {
       \   'fileencoding': 'LightlineFileencoding',
       \   'mode': 'LightlineMode',
       \   'ctrlpmark': 'CtrlPMark',
+      \   'ALEGetStatusLine': 'ALEGetStatusLine'
       \ },
       \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
-
 function! LightlineModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
@@ -618,3 +624,13 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
   return lightline#statusline(0)
 endfunction
 let g:unite_force_overwrite_statusline = 0
+
+
+
+
+
+
+
+
+colorscheme gruvbox
+let g:gruvbox_contrast_dark='soft'
