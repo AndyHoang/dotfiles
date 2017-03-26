@@ -159,7 +159,7 @@ map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
- map <Leader>= <C-w>=
+map <Leader>= <C-w>=
 
 " Clear search highlights
 nnoremap <leader>/ :set invhlsearch<cr>
@@ -180,9 +180,17 @@ source $HOME/.dotfiles/vim/plug.vim
 "   Base Options                                                          
 " ----------------------------------------------------------------------------
 
-set secure                      " disable unsafe commands in local .vimrc files
+"set secure                      " disable unsafe commands in local .vimrc files
 
-
+" Wildfire {
+let g:wildfire_objects = {
+            \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
+            \ "html,xml" : ["at"],
+            \ }
+" }
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
 " ctrlp {
 if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
     let g:ctrlp_cmd = 'CtrlPMRU'

@@ -28,7 +28,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
 Plug 'parkr/vim-jekyll'
 "Indent Guides is a plugin for visually displaying indent levels in Vim.
-"Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
 Plug 'mhinz/vim-signify'
 " Bundle 'kana/vim-textobj-user'
