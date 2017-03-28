@@ -23,14 +23,17 @@ Plug 'itchyny/lightline.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'morhetz/gruvbox'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'luochen1990/rainbow'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
 Plug 'parkr/vim-jekyll'
+"Plug 'Shougo/denite.nvim'
 "Indent Guides is a plugin for visually displaying indent levels in Vim.
 Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
 Plug 'mhinz/vim-signify'
+Plug 'heavenshell/vim-pydocstring', {'for': 'python'}
 " Bundle 'kana/vim-textobj-user'
 "Bundle 'kana/vim-textobj-indent'
 "use enter to select things
@@ -53,6 +56,7 @@ Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
 
 " Fuzzy file opener
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
 
 " Fugitive: Git from within Vim
 Plug 'tpope/vim-fugitive'
@@ -63,8 +67,9 @@ Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
 Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky'
+
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
 
 " Search files using Silver Searcher
 " Plug 'rking/ag.vim'

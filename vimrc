@@ -188,13 +188,16 @@ let g:wildfire_objects = {
             \ "html,xml" : ["at"],
             \ }
 " }
+
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
+let g:rainbow_active = 1
 " ctrlp {
 if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
     let g:ctrlp_cmd = 'CtrlPMRU'
     let g:ctrlp_working_path_mode = 'ra'
+    let g:ctrlp_regexp = 1
     nnoremap <silent> <D-t> :CtrlP<CR>
     nnoremap <silent> <D-r> :CtrlPMRU<CR>
     let g:ctrlp_custom_ignore = {
@@ -641,4 +644,4 @@ let g:unite_force_overwrite_statusline = 0
 
 
 colorscheme gruvbox
-let g:gruvbox_contrast_dark='soft'
+"let g:gruvbox_contrast_dark='soft'

@@ -47,7 +47,7 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git z docker)
+plugins=(git z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,3 +110,5 @@ alias vi="vim"
 #bindkey '^w' backward-kill-word
 #bindkey '^r' history-incremental-search-backward
 #export KEYTIMEOUT=1
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
