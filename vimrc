@@ -24,7 +24,6 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic white
 let mapleader = ','
 set noswapfile
 set backup
-set undofile
 set nowb
 set autoread
 set wrap
@@ -50,6 +49,7 @@ set number                  " Show line numbers
 set linebreak               " Break the line on words
 " this make syntastic extreme slow but now i'm using ale
 set cursorline                  " Highlight current line
+set background=dark
 
 " show fold column, fold by markers
 set foldcolumn=0            " Don't show the folding gutter/column
@@ -116,6 +116,28 @@ nnoremap / /\v
 vnoremap / /\v
 nnoremap ? ?\v
 vnoremap ? ?\v
+" have x (removes single character) not go into the default registry
+nnoremap x "_x
+noremap j gj
+noremap k gk
+nnoremap <Leader>. :cd %:p:h<CR>:pwd<CR>
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+map <C-L> <C-W>l<C-W>_
+map <C-H> <C-W>h<C-W>_
+map <Leader>= <C-w>=
+noremap <silent> <c-e> :call smooth_scroll#up(&scroll, 30, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 30, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 30, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 30, 4)<CR>
+" Clear search highlights
+nnoremap <leader>/ :set invhlsearch<cr>
+
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
@@ -154,15 +176,6 @@ nmap <silent> <Leader>sp :source $HOME/.dotfiles/vim/plug.vim<CR>
 nmap <silent> <Leader>t :call StripTrailingWhitespaces()<CR>
 
 " Cd to the current file's directory
-nnoremap <Leader>. :cd %:p:h<CR>:pwd<CR>
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-map <C-L> <C-W>l<C-W>_
-map <C-H> <C-W>h<C-W>_
-map <Leader>= <C-w>=
-
-" Clear search highlights
-nnoremap <leader>/ :set invhlsearch<cr>
 
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
@@ -277,10 +290,12 @@ if isdirectory(expand("~/.vim/plugged/rainbow/"))
     let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 endif
 
-if exists("&wildignorecase")
-    set wildignorecase
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-endif
+set wildignorecase
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+" Don't offer to open certain files/directories
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
+set wildignore+=*.pdf,*.psd
+set wildignore+=node_modules/*,bower_components/*
 
 let g:mta_use_matchparen_group = 0
 
@@ -442,6 +457,9 @@ function! InitializeDirectories()
 
     if has('persistent_undo')
         let dir_list['undo'] = 'undodir'
+        set undofile
+        set undolevels=1000
+        set undoreload=10000
     endif
 
     let common_dir = parent . '/.' . prefix

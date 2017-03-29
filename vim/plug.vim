@@ -26,14 +26,15 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdcommenter'
-Plug 'mbbill/undotree'
+Plug 'mbbill/undotree' 
 Plug 'parkr/vim-jekyll'
 "Plug 'Shougo/denite.nvim'
 "Indent Guides is a plugin for visually displaying indent levels in Vim.
 Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
 Plug 'mhinz/vim-signify'
-Plug 'heavenshell/vim-pydocstring', {'for': 'python'}
+" when used only for python the mapping is not loaded
+Plug 'heavenshell/vim-pydocstring'
 " Bundle 'kana/vim-textobj-user'
 "Bundle 'kana/vim-textobj-indent'
 "use enter to select things
@@ -53,10 +54,10 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
+Plug 'terryma/vim-smooth-scroll'
 
 " Fuzzy file opener
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky'
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 
 " Fugitive: Git from within Vim
 Plug 'tpope/vim-fugitive'
@@ -67,9 +68,8 @@ Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
 Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
-
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf.vim'
+"install by brew fzf
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 " Search files using Silver Searcher
 " Plug 'rking/ag.vim'
@@ -93,16 +93,8 @@ Plug 'jiangmiao/auto-pairs'
 " Split navigation that works with tmux
 "Plug 'christoomey/vim-tmux-navigator'
 
-" Change brackets and quotes
-"Plug 'tpope/vim-surround'
-
 " Make vim-surround repeatable with .
 "Plug 'tpope/vim-repeat'
-
-" Custom motions
-
-
-
 
 
 

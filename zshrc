@@ -110,5 +110,4 @@ alias vi="vim"
 #bindkey '^w' backward-kill-word
 #bindkey '^r' history-incremental-search-backward
 #export KEYTIMEOUT=1
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
