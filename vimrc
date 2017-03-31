@@ -126,10 +126,11 @@ map <C-K> <C-W>k<C-W>_
 map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
 map <Leader>= <C-w>=
-noremap <silent> <c-e> :call smooth_scroll#up(&scroll, 30, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 30, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 30, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 30, 4)<CR>
+"fast use cause noise
+"noremap <silent> <c-e> :call smooth_scroll#up(&scroll, 30, 2)<CR>
+"noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 30, 2)<CR>
+"noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 30, 4)<CR>
+"noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 30, 4)<CR>
 " Clear search highlights
 nnoremap <leader>/ :set invhlsearch<cr>
 
@@ -380,7 +381,12 @@ endif
 " Undotree plugin.
 nnoremap <F5> :UndotreeToggle<CR>
 
-
+nmap <silent> <C-_> <Plug>(pydocstring)
+let g:netrw_liststyle=0         " thin (change to 3 for tree)
+let g:netrw_altv=1              " open files on right
+let g:netrw_preview=0           " open previews vertically
+let g:netrw_winsize = 25
+let g:netrw_browse_split = 4
 " -------------------------------------------------------------------------
 "   Custom filetypes                                                      
 " ----------------------------------------------------------------------------

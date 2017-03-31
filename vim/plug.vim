@@ -26,14 +26,13 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdcommenter'
-Plug 'mbbill/undotree' 
+Plug 'mbbill/undotree'
 Plug 'parkr/vim-jekyll'
 "Plug 'Shougo/denite.nvim'
 "Indent Guides is a plugin for visually displaying indent levels in Vim.
 Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
 Plug 'mhinz/vim-signify'
-" when used only for python the mapping is not loaded
 Plug 'heavenshell/vim-pydocstring'
 " Bundle 'kana/vim-textobj-user'
 "Bundle 'kana/vim-textobj-indent'
@@ -54,7 +53,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
-Plug 'terryma/vim-smooth-scroll'
+"Plug 'terryma/vim-smooth-scroll'
 
 " Fuzzy file opener
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
@@ -64,7 +63,8 @@ Plug 'tpope/vim-fugitive'
 
 
 " Navigate files in a sidebar
-Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+"Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'tpope/vim-vinegar'
 
 Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -74,24 +74,9 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 " Search files using Silver Searcher
 " Plug 'rking/ag.vim'
 
-" Make Ag searches of selected text
-
-" Rename/remove files from within vim
-" Plug 'tpope/vim-eunuch'
-
-" Make commenting easier
-" Plug 'tpope/vim-commentary'
-
-
 
 " Split and join lines of code intelligently
-"Plug 'AndrewRadev/splitjoin.vim'
-
-" Only show cursorline in the current window
-"Plug 'vim-scripts/CursorLineCurrentWindow'
-
-" Split navigation that works with tmux
-"Plug 'christoomey/vim-tmux-navigator'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Make vim-surround repeatable with .
 "Plug 'tpope/vim-repeat'
