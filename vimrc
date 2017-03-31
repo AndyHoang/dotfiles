@@ -207,16 +207,23 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
     let g:ctrlp_regexp = 1
     nnoremap <silent> <D-t> :CtrlP<CR>
     nnoremap <silent> <D-r> :CtrlPMRU<CR>
+
     let g:ctrlp_custom_ignore = {
         \ 'dir':  '\v[\/]\.(git|hg|svn|sass-cache|pip_download_cache|wheel_cache)$',
         \ 'file': '\v\.(png|jpg|jpeg|gif|DS_Store|pyc)$',
         \ 'link': '',
         \ }
 
+
     if executable('ag')
-      let s:ctrlp_fallback = 'ag %s --nocolor --files-with-matches -g "" --hidden --ignore "\.git$\|\.hg$\|\.svn|\.pyc$"'    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+        let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+    elseif executable('ack-grep')
+        let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
+    elseif executable('ack')
+        let s:ctrlp_fallback = 'ack %s --nocolor -f'
+    " On Windows use "dir" as fallback command.
     else
-      let s:ctrlp_fallback = 'find %s -type f'
+        let s:ctrlp_fallback = 'find %s -type f'
     endif
     if exists("g:ctrlp_user_command")
         unlet g:ctrlp_user_command
@@ -228,9 +235,12 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
         \ },
         \ 'fallback': s:ctrlp_fallback
     \ }
-      "" ag is fast enough that CtrlP doesn't need to cache
-    "let g:ctrlp_use_caching = 0
     let g:ctrlp_working_path_mode = 'rw'
+    let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\v[\/]\.(git|hg|svn|sass-cache|pip_download_cache|wheel_cache)$',
+        \ 'file': '\v\.(png|jpg|jpeg|gif|DS_Store|pyc)$',
+        \ 'link': '',
+        \ }
     let g:ctrlp_show_hidden = 1
     let g:ctrlp_clear_cache_on_exit = 0
     " Wait to update results (This should fix the fact that backspace is so slow)
