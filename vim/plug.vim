@@ -56,7 +56,7 @@ Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
 "Plug 'terryma/vim-smooth-scroll'
 
 " Fuzzy file opener
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
+Plug 'ctrlpvim/ctrlp.vim' "| Plug 'tacahiroy/ctrlp-funky'
 
 " Fugitive: Git from within Vim
 Plug 'tpope/vim-fugitive'

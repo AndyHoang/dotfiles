@@ -76,7 +76,7 @@ syntax on                   " Syntax highlighting
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 scriptencoding utf-8
-" switch to current directory 
+" switch to current directory
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
@@ -107,7 +107,7 @@ highlight clear LineNr          " Current line number row will have same backgro
 " Selected characters/lines in visual mode
 " ----------------------------------------------------------------------------
 "
-"   Search                                                                
+"   Search
 " ----------------------------------------------------------------------------
 
 
@@ -126,11 +126,6 @@ map <C-K> <C-W>k<C-W>_
 map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
 map <Leader>= <C-w>=
-"fast use cause noise
-"noremap <silent> <c-e> :call smooth_scroll#up(&scroll, 30, 2)<CR>
-"noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 30, 2)<CR>
-"noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 30, 4)<CR>
-"noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 30, 4)<CR>
 " Clear search highlights
 nnoremap <leader>/ :set invhlsearch<cr>
 
@@ -161,7 +156,7 @@ set printoptions=header:0,duplex:long,paper:letter,syntax:n
 " syntax:n                  Do not use syntax highlighting.
 
 " -------------------------------------------------------------------------
-"   Custom commands                                                       
+"   Custom commands
 " ----------------------------------------------------------------------------
 
 " Edit the vimrc file
@@ -175,26 +170,24 @@ nmap <silent> <Leader>sp :source $HOME/.dotfiles/vim/plug.vim<CR>
 
 " Trim trailing white space
 nmap <silent> <Leader>t :call StripTrailingWhitespaces()<CR>
-
-" Cd to the current file's directory
-
-nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+function! StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
 
 
 " -------------------------------------------------------------------------}}}
-"   Plugin                                                                
+"   Plugin
 " ----------------------------------------------------------------------------
 " Installing the Plug plugin manager, and all the plugins are included in this
 " other file.
 source $HOME/.dotfiles/vim/plug.vim
 
-"let g:jsbeautify_file = fnameescape(fnamemodify(expand("<sfile>"), ":h")."/bundle/js-beautify/beautify.js")
-
-" -------------------------------------------------------------------------
-"   Base Options                                                          
 " ----------------------------------------------------------------------------
 
-"set secure                      " disable unsafe commands in local .vimrc files
+set secure                      " disable unsafe commands in local .vimrc files
 
 " Wildfire {
 let g:wildfire_objects = {
@@ -215,18 +208,15 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
     nnoremap <silent> <D-t> :CtrlP<CR>
     nnoremap <silent> <D-r> :CtrlPMRU<CR>
     let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-        \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+        \ 'dir':  '\v[\/]\.(git|hg|svn|sass-cache|pip_download_cache|wheel_cache)$',
+        \ 'file': '\v\.(png|jpg|jpeg|gif|DS_Store|pyc)$',
+        \ 'link': '',
+        \ }
 
     if executable('ag')
-        let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
-    elseif executable('ack-grep')
-        let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
-    elseif executable('ack')
-        let s:ctrlp_fallback = 'ack %s --nocolor -f'
-    " On Windows use "dir" as fallback command.
+      let s:ctrlp_fallback = 'ag %s --nocolor --files-with-matches -g "" --hidden --ignore "\.git$\|\.hg$\|\.svn|\.pyc$"'    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
     else
-        let s:ctrlp_fallback = 'find %s -type f'
+      let s:ctrlp_fallback = 'find %s -type f'
     endif
     if exists("g:ctrlp_user_command")
         unlet g:ctrlp_user_command
@@ -238,12 +228,9 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
         \ },
         \ 'fallback': s:ctrlp_fallback
     \ }
+      "" ag is fast enough that CtrlP doesn't need to cache
+    "let g:ctrlp_use_caching = 0
     let g:ctrlp_working_path_mode = 'rw'
-    let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/]\.(git|hg|svn|sass-cache|pip_download_cache|wheel_cache)$',
-        \ 'file': '\v\.(png|jpg|jpeg|gif|DS_Store|pyc)$',
-        \ 'link': '',
-        \ }
     let g:ctrlp_show_hidden = 1
     let g:ctrlp_clear_cache_on_exit = 0
     " Wait to update results (This should fix the fact that backspace is so slow)
@@ -256,39 +243,6 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
     let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
     let g:qfenter_topen_map = ['<C-t>']
 
-    if isdirectory(expand("~/.vim/plugged/ctrlp-funky/"))
-        " CtrlP extensions
-        let g:ctrlp_extensions = ['funky']
-
-        "funky
-        nnoremap <Leader>fu :CtrlPFunky<Cr>
-    endif
-    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-    let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-        \ 'file': '\v\.(exe|so|dll)$',
-        \ 'link': 'some_bad_symbolic_links',
-        \ }
-endif
-    " NerdTree {
-        if isdirectory(expand("~/.vim/plugged/nerdtree"))
-            map <leader>e :NERDTreeFind<CR>
-            nmap <leader>nt :NERDTreeTabsToggle<CR>
-            let NERDTreeShowBookmarks=1
-            let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-            let NERDTreeChDirMode=0
-            let NERDTreeQuitOnOpen=1
-            let NERDTreeMouseMode=2
-            let NERDTreeShowHidden=1
-            let NERDTreeKeepTreeInNewTab=1
-            let g:nerdtree_tabs_open_on_gui_startup=0
-        endif
-    " }
-    "}
-
-    " Rainbow {
-if isdirectory(expand("~/.vim/plugged/rainbow/"))
-    let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 endif
 
 set wildignorecase
@@ -300,17 +254,6 @@ set wildignore+=node_modules/*,bower_components/*
 
 let g:mta_use_matchparen_group = 0
 
-"Elm
-"nnoremap <leader>el :ElmEvalLine<CR>
-"vnoremap <leader>es :<C-u>ElmEvalSelection<CR>
-" Function to trim trailing white space
-" Make your own mappings
-function! StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
 
 " Character meaning when present in 'formatoptions'
 " ------ ---------------------------------------
@@ -328,22 +271,7 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first=0
 let g:jedi#completions_enabled = 0
 let g:jedi#show_call_signatures = "0"
-" Jedi Python Autocomplete
-"let g:jedi#use_tabs_not_buffers = 0 " Jedi needs you to unset this default to get to splits
-"let g:jedi#use_splits_not_buffers = "bottom"
 
-" syntastic
-"let g:syntastic_disabled_filetypes=['elm']
-"let g:syntastic_quiet_messages = { "type": "style" }
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 1
-"let g:syntastic_html_checkers=['']
-"let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
-"let g:syntastic_javascript_checkers = ['jshint']
-"let g:syntastic_mode_map={'mode': 'active', 'passive_filetypes': ['haskell']}
-"let g:syntastic_python_checkers=['flake8']
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 " You can disable this option too
@@ -353,15 +281,8 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \}
 
-let g:ale_statusline_format = ['errs %d', 'warnings %d', '']
-" Gist Vim
-"let g:gist_clip_command = 'pbcopy'
-"let g:gist_detect_filetype = 1
-"let g:gist_open_browser_after_post = 1
+let g:ale_statusline_format = ['err %d', 'warn %d', '']
 
-" Ctrl-P
-
-" tagbar:
 if isdirectory(expand("~/.vim/plugged/tagbar/"))
   nnoremap <silent> <leader>tt :TagbarToggle<CR>
   autocmd FileType tagbar setlocal nocursorline nocursorcolumn
@@ -371,11 +292,6 @@ if executable('ag')
     " Use ag over grep
     set grepprg=ag\ --nogroup\ --nocolor
 
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s --files-with-matches -g "" --hidden --ignore "\.git$\|\.hg$\|\.svn|\.pyc$"'
-
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
 endif
 
 " Undotree plugin.
@@ -388,7 +304,7 @@ let g:netrw_preview=0           " open previews vertically
 let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 " -------------------------------------------------------------------------
-"   Custom filetypes                                                      
+"   Custom filetypes
 " ----------------------------------------------------------------------------
 
 " Auto detect filetype
@@ -413,7 +329,7 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " -------------------------------------------------------------------------
-"   Custom mappings                                                       
+"   Custom mappings
 " ----------------------------------------------------------------------------
 
 " When pasting, refill the default register with what you just pasted
