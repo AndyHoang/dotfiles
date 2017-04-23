@@ -84,11 +84,12 @@ precmd () { print -Pn "\e]2;%n@%M | %~\a" } # title bar prompt
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wget='wget --directory-prefix=/Users/andyhoang/Downloads/ --quiet'
 alias vi="vim"
+alias tmux="env TERM=xterm-256color tmux"
 
 #export RBENV_ROOT="$(brew --prefix rbenv)"
 #export GEM_HOME="$(brew --prefix)/opt/gems"
 #export GEM_PATH="$(brew --prefix)/opt/gems"
-#export GOPATH=/usr/local/opt/go/libexec/bin
+export GOPATH=/usr/local/opt/go/libexec/bin
 #export PATH=$PATH:/usr/local/opt/go/libexec/bin
 #GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
 #export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec

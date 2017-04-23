@@ -13,15 +13,12 @@
 
 call plug#begin('~/.vim/plugged')
 " Plug 'metakirby5/codi.vim' " nice to have when learning new lang
-" Colorschemes
-" Plug 'captbaritone/molokai'
-
-" Plug 'chriskempson/base16-vim'
-"Plug 'jeetsukumaran/vim-buffergator'
 Plug 'w0rp/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'morhetz/gruvbox'
+"Plug 'ayu-theme/ayu-vim'
+"Plug 'tomasiser/vim-code-dark'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
 Plug 'mhinz/vim-startify'
@@ -63,8 +60,8 @@ Plug 'tpope/vim-fugitive'
 
 
 " Navigate files in a sidebar
-"Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'tpope/vim-vinegar'
+Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+"Plug 'tpope/vim-vinegar'
 
 Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'

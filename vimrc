@@ -48,7 +48,7 @@ set scrolloff=7             " Minimal number of screen lines to keep above and b
 set number                  " Show line numbers
 set linebreak               " Break the line on words
 " this make syntastic extreme slow but now i'm using ale
-set cursorline                  " Highlight current line
+"set cursorline                  " Highlight current line
 set background=dark
 
 " show fold column, fold by markers
@@ -143,6 +143,7 @@ endif
 " Colors
 syntax enable               " This has to come after colorcolumn in order to draw it.
 "set t_Co=256                " enable 256 colors
+set termguicolors     " enable true colors support
 
 
 " When completing, fill with the longest common string
@@ -162,7 +163,7 @@ set printoptions=header:0,duplex:long,paper:letter,syntax:n
 " Edit the vimrc file
 nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
 nmap <silent> <Leader>ez :vsplit $HOME/.zshrc<CR>
-nmap <silent> <Leader>ep :vsplit $HOME/.vim/plug.vim<CR>
+map <silent> <Leader>ep :vsplit $HOME/.vim/plug.vim<CR>
 nmap <silent> <Leader>es :vsplit $HOME/.ssh/config<CR>
 nmap <silent> <Leader>et :vsplit $HOME/.tmux.conf<CR>
 nmap <silent> <Leader>sv :source $MYVIMRC<CR>
@@ -195,7 +196,19 @@ let g:wildfire_objects = {
             \ "html,xml" : ["at"],
             \ }
 " }
+"map <C-e> <plug>NERDTreeTabsToggle<CR>
+map <leader>e :NERDTreeFind<CR>
+"nmap <leader>nt :NERDTreeFind<CR>
 
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=1
+let NERDTreeMouseMode=2
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
+
+let g:nerdtree_tabs_open_on_gui_startup=0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
@@ -213,7 +226,7 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
         \ 'file': '\v\.(png|jpg|jpeg|gif|DS_Store|pyc)$',
         \ 'link': '',
         \ }
-
+  let g:ctrlp_root_markers = ['.ctrlp']
 
     if executable('ag')
         let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
@@ -242,7 +255,7 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
         \ 'link': '',
         \ }
     let g:ctrlp_show_hidden = 1
-    let g:ctrlp_clear_cache_on_exit = 0
+    "let g:ctrlp_clear_cache_on_exit = 0
     " Wait to update results (This should fix the fact that backspace is so slow)
     let g:ctrlp_lazy_update = 1
     " Show as many results as our screen will allow
@@ -261,6 +274,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
 set wildignore+=*.pdf,*.psd
 set wildignore+=node_modules/*,bower_components/*
+set wildignore+=*/*.app/*
 
 let g:mta_use_matchparen_group = 0
 
@@ -282,6 +296,8 @@ let g:jedi#popup_select_first=0
 let g:jedi#completions_enabled = 0
 let g:jedi#show_call_signatures = "0"
 
+"let g:ale_python_flake8_executable = 'python3'   " or 'python' for Python 2
+"let g:ale_python_flake8_args = '-m flake8'
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 " You can disable this option too
@@ -291,6 +307,20 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \}
 
+function! Flake8(exe, args, recheck_now)
+  let g:ale_python_flake8_executable = a:exe
+  let g:ale_python_flake8_args = a:args
+  let g:syntastic_python_flake8_exe = a:exe . ' ' . a:args
+  ALEToggle
+endf
+function! Python2(recheck_now)
+  call Flake8('python2', '-m flake8', a:recheck_now)
+endf
+function! Python3(recheck_now)
+  call Flake8('python3', '-m flake8', a:recheck_now)
+endf
+command! -bar Python2 call Python2(1)
+command! -bar Python3 call Python3(1)
 let g:ale_statusline_format = ['err %d', 'warn %d', '']
 
 if isdirectory(expand("~/.vim/plugged/tagbar/"))
@@ -593,5 +623,8 @@ let g:unite_force_overwrite_statusline = 0
 
 
 
+"let ayucolor="mirage"   " for dark version of theme
+"colorscheme ayu
+"colorscheme codedark
 colorscheme gruvbox
 "let g:gruvbox_contrast_dark='soft'
