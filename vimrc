@@ -163,7 +163,7 @@ set printoptions=header:0,duplex:long,paper:letter,syntax:n
 " Edit the vimrc file
 nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
 nmap <silent> <Leader>ez :vsplit $HOME/.zshrc<CR>
-map <silent> <Leader>ep :vsplit $HOME/.vim/plug.vim<CR>
+map <silent> <Leader>ep :vsplit $HOME/.dotfiles/vim/plug.vim<CR>
 nmap <silent> <Leader>es :vsplit $HOME/.ssh/config<CR>
 nmap <silent> <Leader>et :vsplit $HOME/.tmux.conf<CR>
 nmap <silent> <Leader>sv :source $MYVIMRC<CR>
@@ -227,6 +227,7 @@ if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
         \ 'link': '',
         \ }
   let g:ctrlp_root_markers = ['.ctrlp']
+  "let g:ctrlp_prompt_mappings = { 'PrtInsert("c")': ['<D-v>'] }
 
     if executable('ag')
         let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
@@ -343,6 +344,12 @@ let g:netrw_altv=1              " open files on right
 let g:netrw_preview=0           " open previews vertically
 let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
+
+
+let vim_markdown_preview_github=1
+let vim_markdown_preview_browser='Google Chrome'
+
+
 " -------------------------------------------------------------------------
 "   Custom filetypes
 " ----------------------------------------------------------------------------

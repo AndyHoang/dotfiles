@@ -42,6 +42,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-git', { 'for': 'git' }
 " Plug 'qrps/lilypond-vim', { 'for': 'lilypond' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'JamshedVesuna/vim-markdown-preview' ", { 'for': 'markdown' }
 " Plug 'mxw/vim-jsx'
 
 " Syntastic: Code linting errors
@@ -69,7 +70,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 " Search files using Silver Searcher
-" Plug 'rking/ag.vim'
+Plug 'rking/ag.vim'
 
 
 " Split and join lines of code intelligently
