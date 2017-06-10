@@ -112,4 +112,4 @@ export GOPATH=/usr/local/opt/go/libexec/bin
 #bindkey '^r' history-incremental-search-backward
 #export KEYTIMEOUT=1
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-#export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'

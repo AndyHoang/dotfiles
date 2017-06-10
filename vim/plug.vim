@@ -17,15 +17,12 @@ Plug 'w0rp/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'morhetz/gruvbox'
-"Plug 'ayu-theme/ayu-vim'
-"Plug 'tomasiser/vim-code-dark'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
 Plug 'parkr/vim-jekyll'
-"Plug 'Shougo/denite.nvim'
 "Indent Guides is a plugin for visually displaying indent levels in Vim.
 Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
@@ -40,34 +37,30 @@ Plug 'tpope/vim-surround'
 
 " Syntax
 Plug 'tpope/vim-git', { 'for': 'git' }
-" Plug 'qrps/lilypond-vim', { 'for': 'lilypond' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'JamshedVesuna/vim-markdown-preview' ", { 'for': 'markdown' }
-" Plug 'mxw/vim-jsx'
+Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
 
-" Syntastic: Code linting errors
-"Plug 'scrooloose/syntastic'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
-"Plug 'terryma/vim-smooth-scroll'
 
 " Fuzzy file opener
-Plug 'ctrlpvim/ctrlp.vim' "| Plug 'tacahiroy/ctrlp-funky'
+"Plug 'ctrlpvim/ctrlp.vim' "| Plug 'tacahiroy/ctrlp-funky'
 
 " Fugitive: Git from within Vim
 Plug 'tpope/vim-fugitive'
 
 
 " Navigate files in a sidebar
-Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+"Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 "Plug 'tpope/vim-vinegar'
 
 Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
 "install by brew fzf
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+"Plug 'pbogut/fzf-mru.vim'
 
 " Search files using Silver Searcher
 Plug 'rking/ag.vim'
@@ -78,8 +71,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 
 " Make vim-surround repeatable with .
 "Plug 'tpope/vim-repeat'
-
-
 
 filetype plugin indent on                   " required!
 call plug#end()

@@ -2,15 +2,6 @@
 "   .vimrc
 " ----------------------------------------------------------------------------
 
-" Edit the vimrc file
-nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
-nmap <silent> <Leader>ez :vsplit $HOME/.zshrc<CR>
-map <silent> <Leader>ep :vsplit $HOME/.dotfiles/vim/plug.vim<CR>
-nmap <silent> <Leader>es :vsplit $HOME/.ssh/config<CR>
-nmap <silent> <Leader>et :vsplit $HOME/.tmux.conf<CR>
-nmap <silent> <Leader>sv :source $MYVIMRC<CR>
-nmap <silent> <Leader>sp :source $HOME/.dotfiles/vim/plug.vim<CR>
-" Allow vim to break compatibility with vi
 set nocompatible " This must be first, because it changes other options
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
@@ -136,7 +127,15 @@ map <C-H> <C-W>h<C-W>_
 map <Leader>= <C-w>=
 " Clear search highlights
 nnoremap <leader>/ :set invhlsearch<cr>
-
+map <leader>b :Buffers<cr>
+map <leader>p :GFiles<cr>
+map <C-p> :History<cr>
+"command! -bang -nargs=* Rg
+  "\ call fzf#vim#grep(
+  "\   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  "\   <bang>0 ? fzf#vim#with_preview('up:60%')
+  "\           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  "\   <bang>0)
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -197,18 +196,27 @@ let g:wildfire_objects = {
             \ }
 " }
 "map <C-e> <plug>NERDTreeTabsToggle<CR>
-map <leader>e :NERDTreeFind<CR>
 "nmap <leader>nt :NERDTreeFind<CR>
+" Edit the vimrc file
+"map <leader>e :NERDTreeFind<CR>
+"let NERDTreeShowBookmarks=1
+"let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+"let NERDTreeChDirMode=0
+"let NERDTreeQuitOnOpen=1
+"let NERDTreeMouseMode=2
+"let NERDTreeShowHidden=1
+"let NERDTreeKeepTreeInNewTab=1
+"let g:nerdtree_tabs_open_on_gui_startup=0
 
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeMouseMode=2
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
 
-let g:nerdtree_tabs_open_on_gui_startup=0
+nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
+nmap <silent> <Leader>ez :vsplit $HOME/.zshrc<CR>
+map <silent> <Leader>ep :vsplit $HOME/.dotfiles/vim/plug.vim<CR>
+nmap <silent> <Leader>es :vsplit $HOME/.ssh/config<CR>
+nmap <silent> <Leader>et :vsplit $HOME/.tmux.conf<CR>
+nmap <silent> <Leader>sv :source $MYVIMRC<CR>
+nmap <silent> <Leader>sp :source $HOME/.dotfiles/vim/plug.vim<CR>
+
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
@@ -218,14 +226,14 @@ let g:rainbow_active = 1
   "let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   ""let g:ctrlp_use_caching = 0
 "endif
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  " ag is fast enough that CtrlP doesn't need to cache
-  "let g:ctrlp_use_caching = 0
-endif
+"if executable('ag')
+  "" Use ag over grep
+  "set grepprg=ag\ --nogroup\ --nocolor
+  "" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  "" ag is fast enough that CtrlP doesn't need to cache
+  ""let g:ctrlp_use_caching = 0
+"endif
 " --column: Show column number
 " --line-number: Show line number
 " --no-heading: Do not show file headings in results
