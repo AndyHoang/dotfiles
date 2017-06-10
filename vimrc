@@ -2,6 +2,14 @@
 "   .vimrc
 " ----------------------------------------------------------------------------
 
+" Edit the vimrc file
+nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
+nmap <silent> <Leader>ez :vsplit $HOME/.zshrc<CR>
+map <silent> <Leader>ep :vsplit $HOME/.dotfiles/vim/plug.vim<CR>
+nmap <silent> <Leader>es :vsplit $HOME/.ssh/config<CR>
+nmap <silent> <Leader>et :vsplit $HOME/.tmux.conf<CR>
+nmap <silent> <Leader>sv :source $MYVIMRC<CR>
+nmap <silent> <Leader>sp :source $HOME/.dotfiles/vim/plug.vim<CR>
 " Allow vim to break compatibility with vi
 set nocompatible " This must be first, because it changes other options
 set backspace=indent,eol,start  " Backspace for dummies
@@ -160,14 +168,6 @@ set printoptions=header:0,duplex:long,paper:letter,syntax:n
 "   Custom commands
 " ----------------------------------------------------------------------------
 
-" Edit the vimrc file
-nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
-nmap <silent> <Leader>ez :vsplit $HOME/.zshrc<CR>
-map <silent> <Leader>ep :vsplit $HOME/.dotfiles/vim/plug.vim<CR>
-nmap <silent> <Leader>es :vsplit $HOME/.ssh/config<CR>
-nmap <silent> <Leader>et :vsplit $HOME/.tmux.conf<CR>
-nmap <silent> <Leader>sv :source $MYVIMRC<CR>
-nmap <silent> <Leader>sp :source $HOME/.dotfiles/vim/plug.vim<CR>
 
 " Trim trailing white space
 nmap <silent> <Leader>t :call StripTrailingWhitespaces()<CR>
@@ -213,64 +213,33 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:rainbow_active = 1
-" ctrlp {
-if isdirectory(expand("~/.vim/plugged/ctrlp.vim/"))
-    let g:ctrlp_cmd = 'CtrlPMRU'
-    let g:ctrlp_working_path_mode = 'ra'
-    let g:ctrlp_regexp = 1
-    nnoremap <silent> <D-t> :CtrlP<CR>
-    nnoremap <silent> <D-r> :CtrlPMRU<CR>
-
-    let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/]\.(git|hg|svn|sass-cache|pip_download_cache|wheel_cache)$',
-        \ 'file': '\v\.(png|jpg|jpeg|gif|DS_Store|pyc)$',
-        \ 'link': '',
-        \ }
-  let g:ctrlp_root_markers = ['.ctrlp']
-  "let g:ctrlp_prompt_mappings = { 'PrtInsert("c")': ['<D-v>'] }
-
-    if executable('ag')
-        let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
-    elseif executable('ack-grep')
-        let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
-    elseif executable('ack')
-        let s:ctrlp_fallback = 'ack %s --nocolor -f'
-    " On Windows use "dir" as fallback command.
-    else
-        let s:ctrlp_fallback = 'find %s -type f'
-    endif
-    if exists("g:ctrlp_user_command")
-        unlet g:ctrlp_user_command
-    endif
-    let g:ctrlp_user_command = {
-        \ 'types': {
-            \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-            \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-        \ },
-        \ 'fallback': s:ctrlp_fallback
-    \ }
-    let g:ctrlp_working_path_mode = 'rw'
-    let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/]\.(git|hg|svn|sass-cache|pip_download_cache|wheel_cache)$',
-        \ 'file': '\v\.(png|jpg|jpeg|gif|DS_Store|pyc)$',
-        \ 'link': '',
-        \ }
-    let g:ctrlp_show_hidden = 1
-    "let g:ctrlp_clear_cache_on_exit = 0
-    " Wait to update results (This should fix the fact that backspace is so slow)
-    let g:ctrlp_lazy_update = 1
-    " Show as many results as our screen will allow
-    let g:ctrlp_match_window = 'max:10'
-
-    " CtrlP like mapings for opening quick fixes in new splits
-    let g:qfenter_vopen_map = ['<C-v>']
-    let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
-    let g:qfenter_topen_map = ['<C-t>']
-
+"if executable('rg')
+  "set grepprg=rg\ --color=never
+  "let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  ""let g:ctrlp_use_caching = 0
+"endif
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " ag is fast enough that CtrlP doesn't need to cache
+  "let g:ctrlp_use_caching = 0
 endif
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
 set wildignorecase
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*/.git,*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 " Don't offer to open certain files/directories
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
 set wildignore+=*.pdf,*.psd
