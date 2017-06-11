@@ -127,15 +127,14 @@ map <C-H> <C-W>h<C-W>_
 map <Leader>= <C-w>=
 " Clear search highlights
 nnoremap <leader>/ :set invhlsearch<cr>
-map <leader>b :Buffers<cr>
-map <leader>p :GFiles<cr>
+map <leader>b :GFiles<cr>
 map <C-p> :History<cr>
-"command! -bang -nargs=* Rg
-  "\ call fzf#vim#grep(
-  "\   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  "\   <bang>0 ? fzf#vim#with_preview('up:60%')
-  "\           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  "\   <bang>0)
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --smart-case --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
