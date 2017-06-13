@@ -86,7 +86,7 @@ set history=1000                    " Store a ton of history (default is 20)
 set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
-set iskeyword-=-                    " '-' is an end of word designator
+"set iskeyword-=-                    " '-' is an end of word designator
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 function! ResCur()
     if line("'\"") <= line("$")
@@ -148,7 +148,6 @@ endif
 
 " Colors
 syntax enable               " This has to come after colorcolumn in order to draw it.
-"set t_Co=256                " enable 256 colors
 set termguicolors     " enable true colors support
 
 
@@ -359,19 +358,19 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 "xnoremap p pgvy
 
 " Repurpose arrow keys to navigating windows
-nnoremap <left> <C-w>h
-nnoremap <right> <C-w>l
-nnoremap <up> <C-w>k
-nnoremap <down> <C-w>j
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+"nnoremap <left> <C-w>h
+"nnoremap <right> <C-w>l
+"nnoremap <up> <C-w>k
+"nnoremap <down> <C-w>j
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
 
 " To encourage the use of <C-[np]> instead of the arrow keys in ex mode, remap
 " them to use <Up/Down> instead so that they will filter completions
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
+"cnoremap <C-p> <Up>
+"cnoremap <C-n> <Down>
 
 " Navigate using displayed lines not actual lines
 "nnoremap j gj
@@ -488,10 +487,11 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 \ }
 
+
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
       \   'right': [ ['percent', 'ALEGetStatusLine'] ]
       \ },
       \ 'component_function': {
@@ -501,7 +501,6 @@ let g:lightline = {
       \   'filetype': 'LightlineFiletype',
       \   'fileencoding': 'LightlineFileencoding',
       \   'mode': 'LightlineMode',
-      \   'ctrlpmark': 'CtrlPMark',
       \   'ALEGetStatusLine': 'ALEGetStatusLine'
       \ },
       \ 'subseparator': { 'left': '|', 'right': '|' }
@@ -516,11 +515,9 @@ endfunction
 
 function! LightlineFilename()
   let fname = expand('%:t')
-  return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
-        \ fname == '__Tagbar__' ? g:lightline.fname :
+  return fname == '__Tagbar__' ? g:lightline.fname :
         \ fname =~ '__Gundo\|NERD_tree' ? '' :
         \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \ &ft == 'unite' ? unite#get_status_string() :
         \ &ft == 'vimshell' ? vimshell#get_status_string() :
         \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
         \ ('' != fname ? fname : '[No Name]') .
@@ -554,42 +551,13 @@ endfunction
 function! LightlineMode()
   let fname = expand('%:t')
   return fname == '__Tagbar__' ? 'Tagbar' :
-        \ fname == 'ControlP' ? 'CtrlP' :
         \ fname == '__Gundo__' ? 'Gundo' :
         \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ fname =~ 'NERD_tree' ? 'NERDTree' :
-        \ &ft == 'unite' ? 'Unite' :
         \ &ft == 'vimfiler' ? 'VimFiler' :
         \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
-function! CtrlPMark()
-  if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
-    call lightline#link('iR'[g:lightline.ctrlp_regex])
-    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-          \ , g:lightline.ctrlp_next], 0)
-  else
-    return ''
-  endif
-endfunction
-
-let g:ctrlp_status_func = {
-  \ 'main': 'CtrlPStatusFunc_1',
-  \ 'prog': 'CtrlPStatusFunc_2',
-  \ }
-
-function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
-  let g:lightline.ctrlp_regex = a:regex
-  let g:lightline.ctrlp_prev = a:prev
-  let g:lightline.ctrlp_item = a:item
-  let g:lightline.ctrlp_next = a:next
-  return lightline#statusline(0)
-endfunction
-
-function! CtrlPStatusFunc_2(str)
-  return lightline#statusline(0)
-endfunction
 
 let g:tagbar_status_func = 'TagbarStatusFunc'
 
@@ -597,17 +565,8 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
     let g:lightline.fname = a:fname
   return lightline#statusline(0)
 endfunction
-let g:unite_force_overwrite_statusline = 0
 
 
-
-
-
-
-
-
-"let ayucolor="mirage"   " for dark version of theme
-"colorscheme ayu
-"colorscheme codedark
 colorscheme gruvbox
+"colorscheme neodark
 "let g:gruvbox_contrast_dark='soft'

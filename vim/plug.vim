@@ -17,9 +17,10 @@ Plug 'w0rp/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'morhetz/gruvbox'
+Plug 'KeitaNakamura/neodark.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
-Plug 'mhinz/vim-startify'
+"Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
 Plug 'parkr/vim-jekyll'
@@ -60,14 +61,11 @@ Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
 "install by brew fzf
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-"Plug 'pbogut/fzf-mru.vim'
-
-" Search files using Silver Searcher
 Plug 'rking/ag.vim'
 
 
 " Split and join lines of code intelligently
-Plug 'AndrewRadev/splitjoin.vim'
+"Plug 'AndrewRadev/splitjoin.vim'
 
 " Make vim-surround repeatable with .
 "Plug 'tpope/vim-repeat'
