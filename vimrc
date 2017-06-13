@@ -48,7 +48,6 @@ set number                  " Show line numbers
 set linebreak               " Break the line on words
 " this make syntastic extreme slow but now i'm using ale
 "set cursorline                  " Highlight current line
-set background=dark
 
 " show fold column, fold by markers
 set foldcolumn=0            " Don't show the folding gutter/column
@@ -489,7 +488,7 @@ let g:tagbar_type_go = {
 
 
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
       \   'right': [ ['percent', 'ALEGetStatusLine'] ]
@@ -567,6 +566,8 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
 endfunction
 
 
-colorscheme gruvbox
+colorscheme seoul256
+let g:seoul256_background = 234
+set background=dark
 "colorscheme neodark
 "let g:gruvbox_contrast_dark='soft'
