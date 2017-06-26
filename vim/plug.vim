@@ -42,7 +42,6 @@ Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
 
-
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
@@ -63,6 +62,7 @@ Plug 'jiangmiao/auto-pairs'
 "install by brew fzf
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'rking/ag.vim'
+Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 
 " Split and join lines of code intelligently
