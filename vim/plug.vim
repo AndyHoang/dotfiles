@@ -16,8 +16,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'w0rp/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'Chiel92/vim-autoformat'
-Plug 'morhetz/gruvbox'
-Plug 'KeitaNakamura/neodark.vim'
+"Plug 'morhetz/gruvbox'
+"Plug 'KeitaNakamura/neodark.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
