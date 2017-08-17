@@ -251,6 +251,7 @@ set wildignore+=*.pdf,*.psd
 set wildignore+=node_modules/*,bower_components/*
 set wildignore+=*/*.app/*
 
+nnoremap <silent>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 let g:mta_use_matchparen_group = 0
 
 

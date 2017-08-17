@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="avit"
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+ CASE_SENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
  DISABLE_AUTO_UPDATE="true"
@@ -52,8 +52,7 @@ plugins=(git z)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/opt/python/libexec/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export MANPATH="/usr/local/man:$MANPATH"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # You may need to manually set your language environment
@@ -113,3 +112,5 @@ export GOPATH=/usr/local/opt/go/libexec/bin
 #export KEYTIMEOUT=1
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
