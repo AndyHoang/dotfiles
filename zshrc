@@ -52,7 +52,12 @@ plugins=(git z)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export PATH="/usr/local/opt/python/libexec/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export CONFLUENT_HOME="/Users/andyhoang/confluent-3.3.0"
+export PATH="/Users/andyhoang/.cargo/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/opt/ncurses/bin:$PATH"
+export PATH="/usr/local/opt/ncurses/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$PATH:$CONFLUENT_HOME/bin"
 export MANPATH="/usr/local/man:$MANPATH"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # You may need to manually set your language environment
@@ -113,4 +118,4 @@ export GOPATH=/usr/local/opt/go/libexec/bin
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

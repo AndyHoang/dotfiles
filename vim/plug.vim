@@ -16,12 +16,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'w0rp/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'Chiel92/vim-autoformat'
-"Plug 'morhetz/gruvbox'
-"Plug 'KeitaNakamura/neodark.vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+"Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
-"Plug 'mhinz/vim-startify'
+"Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
 Plug 'parkr/vim-jekyll'
@@ -30,32 +27,26 @@ Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
 Plug 'mhinz/vim-signify'
 Plug 'heavenshell/vim-pydocstring'
-" Bundle 'kana/vim-textobj-user'
-"Bundle 'kana/vim-textobj-indent'
 "use enter to select things
 Plug 'gcmt/wildfire.vim'
-"surroud word faster
-Plug 'tpope/vim-surround'
 
 " Syntax
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-git', { 'for': 'git' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+"Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
+
 Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
 
-" Fuzzy file opener
-"Plug 'ctrlpvim/ctrlp.vim' "| Plug 'tacahiroy/ctrlp-funky'
-
 " Fugitive: Git from within Vim
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' "| Plug 'shumphrey/fugitive-gitlab.vim'
 
-
-" Navigate files in a sidebar
-"Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-"Plug 'tpope/vim-vinegar'
+" Themes
+"Plug 'junegunn/seoul256.vim'
+Plug 'jdkanani/vim-material-theme'
 
 Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -64,12 +55,6 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'rking/ag.vim'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
-
-" Split and join lines of code intelligently
-"Plug 'AndrewRadev/splitjoin.vim'
-
-" Make vim-surround repeatable with .
-"Plug 'tpope/vim-repeat'
 
 filetype plugin indent on                   " required!
 call plug#end()

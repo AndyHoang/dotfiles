@@ -128,12 +128,12 @@ map <Leader>= <C-w>=
 nnoremap <leader>/ :set invhlsearch<cr>
 map <leader>b :GFiles<cr>
 map <C-p> :History<cr>
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --smart-case --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+"command! -bang -nargs=* Rg
+  "\ call fzf#vim#grep(
+  "\   'rg --column --smart-case --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  "\   <bang>0 ? fzf#vim#with_preview('up:60%')
+  "\           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  "\   <bang>0)
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -204,6 +204,7 @@ let g:wildfire_objects = {
 "let NERDTreeShowHidden=1
 "let NERDTreeKeepTreeInNewTab=1
 "let g:nerdtree_tabs_open_on_gui_startup=0
+let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
 
 
 nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
@@ -274,6 +275,10 @@ let g:jedi#show_call_signatures = "0"
 
 "let g:ale_python_flake8_executable = 'python3'   " or 'python' for Python 2
 "let g:ale_python_flake8_args = '-m flake8'
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 " You can disable this option too
@@ -567,8 +572,10 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
 endfunction
 
 
-colorscheme seoul256
-let g:seoul256_background = 234
+"colorscheme seoul256
+colorscheme material-theme
+"let g:seoul256_background = 234
+"colorscheme vrunchbang-dark
 set background=dark
 "colorscheme neodark
 "let g:gruvbox_contrast_dark='soft'
