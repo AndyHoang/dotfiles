@@ -16,7 +16,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'w0rp/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'Chiel92/vim-autoformat'
-"Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
 "Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'
@@ -35,6 +35,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-git', { 'for': 'git' }
 "Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
+Plug 'jremmen/vim-ripgrep'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'

@@ -109,11 +109,12 @@ highlight clear LineNr          " Current line number row will have same backgro
 " ----------------------------------------------------------------------------
 
 
+
 " Use regex for searches
-nnoremap / /\v
-vnoremap / /\v
-nnoremap ? ?\v
-vnoremap ? ?\v
+"nnoremap / /\v
+"vnoremap / /\v
+"nnoremap ? ?\v
+"vnoremap ? ?\v
 " have x (removes single character) not go into the default registry
 nnoremap x "_x
 noremap j gj
@@ -134,6 +135,7 @@ map <C-p> :History<cr>
   "\   <bang>0 ? fzf#vim#with_preview('up:60%')
   "\           : fzf#vim#with_preview('right:50%:hidden', '?'),
   "\   <bang>0)
+  "
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -308,10 +310,10 @@ if isdirectory(expand("~/.vim/plugged/tagbar/"))
   nnoremap <silent> <leader>tt :TagbarToggle<CR>
   autocmd FileType tagbar setlocal nocursorline nocursorcolumn
 endif
-" If we have The Silver Searcher
-if executable('ag')
+" If we have ripgrep
+if executable('rg')
     " Use ag over grep
-    set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=rg\ --vimgrep
 
 endif
 
@@ -572,10 +574,7 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
 endfunction
 
 
-"colorscheme seoul256
 colorscheme material-theme
-"let g:seoul256_background = 234
-"colorscheme vrunchbang-dark
+"colorscheme nord
 set background=dark
-"colorscheme neodark
-"let g:gruvbox_contrast_dark='soft'
+"set t_Co=256
