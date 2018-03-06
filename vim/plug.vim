@@ -18,7 +18,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
-"Plug 'racer-rust/vim-racer'
+Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
 Plug 'parkr/vim-jekyll'
@@ -53,8 +53,8 @@ Plug 'rhysd/conflict-marker.vim'
 Plug 'jiangmiao/auto-pairs'
 "install by brew fzf
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'rking/ag.vim'
-Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
+"Plug 'rking/ag.vim'
+"Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 
 filetype plugin indent on                   " required!

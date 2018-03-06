@@ -275,7 +275,7 @@ let g:jedi#popup_select_first=0
 let g:jedi#completions_enabled = 0
 let g:jedi#show_call_signatures = "0"
 
-"let g:ale_python_flake8_executable = 'python3'   " or 'python' for Python 2
+"let g:ale_python_flake8_executable = 'python'   " or 'python' for Python 2
 "let g:ale_python_flake8_args = '-m flake8'
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
@@ -330,6 +330,12 @@ let g:netrw_browse_split = 4
 
 let vim_markdown_preview_github=1
 let vim_markdown_preview_browser='Google Chrome'
+let g:racer_cmd="/Users/andyhoang/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 
 " -------------------------------------------------------------------------
