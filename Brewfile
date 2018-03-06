@@ -8,7 +8,6 @@ tap beeftornado/rmtree
 brew brew-rmtree
 
 tap caskroom/cask
-cask calibre
 cask dropbox
 cask firefox
 cask flux
@@ -23,12 +22,8 @@ cask transmission
 
 tap homebrew/core
 brew aria2
-brew gdbm
-brew gettext
 brew git
-brew node
 brew openssl
-brew python3
 brew tmux
 brew tree
 brew vim
@@ -42,5 +37,3 @@ tap passy/givegif
 tap rcmdnk/file
 brew brew-file
 
-# App Store applications
-appstore No installed apps found
