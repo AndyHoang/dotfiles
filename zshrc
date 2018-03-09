@@ -88,7 +88,7 @@ precmd () { print -Pn "\e]2;%n@%M | %~\a" } # title bar prompt
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wget='wget --directory-prefix=/Users/andyhoang/Downloads/ --quiet'
 alias vi="vim"
-alias tmux="env TERM=xterm-256color tmux"
+#alias tmux="env TERM=xterm-256color tmux"
 
 #export RBENV_ROOT="$(brew --prefix rbenv)"
 #export GEM_HOME="$(brew --prefix)/opt/gems"

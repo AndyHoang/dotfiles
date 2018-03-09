@@ -583,4 +583,5 @@ endfunction
 colorscheme material-theme
 "colorscheme nord
 set background=dark
-"set t_Co=256
+set t_Co=256
+

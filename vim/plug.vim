@@ -31,7 +31,7 @@ Plug 'heavenshell/vim-pydocstring'
 Plug 'gcmt/wildfire.vim'
 
 " Syntax
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-git', { 'for': 'git' }
 "Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
@@ -46,7 +46,7 @@ Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
 Plug 'tpope/vim-fugitive' "| Plug 'shumphrey/fugitive-gitlab.vim'
 
 " Themes
-"Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/seoul256.vim'
 Plug 'jdkanani/vim-material-theme'
 
 Plug 'rhysd/conflict-marker.vim'
