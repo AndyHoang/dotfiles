@@ -290,20 +290,24 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \}
 
-function! Flake8(exe, args, recheck_now)
-  let g:ale_python_flake8_executable = a:exe
-  let g:ale_python_flake8_args = a:args
-  let g:syntastic_python_flake8_exe = a:exe . ' ' . a:args
-  ALEToggle
+let g:ale_fixers = {
+\   'python': ['autopep8'],
+\}
+
+let g:ale_python_flake8_options = '-m flake8'
+
+function! Flake8(data)
+  let g:ale_python_flake8_executable = a:data
+  ALELint
 endf
-function! Python2(recheck_now)
-  call Flake8('python2', '-m flake8', a:recheck_now)
+function! Python2()
+  call Flake8('python')
 endf
-function! Python3(recheck_now)
-  call Flake8('python3', '-m flake8', a:recheck_now)
+function! Python3()
+  call Flake8('python3')
 endf
-command! -bar Python2 call Python2(1)
-command! -bar Python3 call Python3(1)
+command! -bar Python2 call Python2()
+command! -bar Python3 call Python3()
 let g:ale_statusline_format = ['err %d', 'warn %d', '']
 
 if isdirectory(expand("~/.vim/plugged/tagbar/"))

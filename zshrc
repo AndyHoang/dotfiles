@@ -47,7 +47,7 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git z)
+plugins=(git z spotify osx)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,11 +88,11 @@ precmd () { print -Pn "\e]2;%n@%M | %~\a" } # title bar prompt
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wget='wget --directory-prefix=/Users/andyhoang/Downloads/ --quiet'
 alias vi="vim"
-#alias tmux="env TERM=xterm-256color tmux"
+alias tvs="/Users/andyhoang/study/NodeJS/torrentflix/bin/torrentflix"
+alias diablo="wine /Users/andyhoang/.wine/drive_c/Program\ Files/Diablo\ II/D2SE.exe"
+alias pod="cd /Users/andyhoang/.wine/drive_c/Program\ Files/Diablo\ II/Path\ of\ Diablo/ && wine /Users/andyhoang/.wine/drive_c/Program\ Files/Diablo\ II/Path\ of\ Diablo/Path\ of\ Diablo\ Launcher.exe"
 
-#export RBENV_ROOT="$(brew --prefix rbenv)"
-#export GEM_HOME="$(brew --prefix)/opt/gems"
-#export GEM_PATH="$(brew --prefix)/opt/gems"
+alias flexget="/Users/andyhoang/.local/share/virtualenvs/flexget-wGcb0nNx/bin/flexget"
 export GOPATH=/usr/local/opt/go/libexec/bin
 #export PATH=$PATH:/usr/local/opt/go/libexec/bin
 #GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
@@ -105,19 +105,9 @@ export GOPATH=/usr/local/opt/go/libexec/bin
 
 #export GHCMOD=~/.local
 #export PATH=$PATH:$GHCMOD/bin
-
-#bindkey -v
-
-#bindkey '^P' up-history
-#bindkey '^N' down-history
-#bindkey '^?' backward-delete-char
-#bindkey '^h' backward-delete-char
-#bindkey '^w' backward-kill-word
-#bindkey '^r' history-incremental-search-backward
-#export KEYTIMEOUT=1
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
-#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH="/usr/local/opt/python@2/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
