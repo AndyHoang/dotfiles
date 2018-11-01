@@ -24,6 +24,7 @@ let mapleader = ','
 set noswapfile
 set backup
 set nowb
+set smc=10000
 set autoread
 set wrap
 "set breakindent
@@ -509,7 +510,7 @@ let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-      \   'right': [ ['percent', 'ALEGetStatusLine'] ]
+      \   'right': [ ['percent', 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'] ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'LightlineFugitive',
@@ -518,9 +519,14 @@ let g:lightline = {
       \   'filetype': 'LightlineFiletype',
       \   'fileencoding': 'LightlineFileencoding',
       \   'mode': 'LightlineMode',
-      \   'ALEGetStatusLine': 'ALEGetStatusLine'
       \ },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ 'subseparator': { 'left': '|', 'right': '|' },
+      \ 'component_expand':{
+        \  'linter_checking': 'lightline#ale#checking',
+        \  'linter_warnings': 'lightline#ale#warnings',
+        \  'linter_errors': 'lightline#ale#errors',
+        \  'linter_ok': 'lightline#ale#ok',
+      \}
       \ }
 function! LightlineModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
