@@ -47,19 +47,11 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git z spotify osx)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export CONFLUENT_HOME="/Users/andyhoang/confluent-3.3.0"
-export PATH="/Users/andyhoang/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="/usr/local/opt/ncurses/bin:$PATH"
-export PATH="/usr/local/opt/ncurses/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="$PATH:$CONFLUENT_HOME/bin"
-export MANPATH="/usr/local/man:$MANPATH"
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 #Although the other questions list bash methods, they alias cd. Bash provides an inherent method that chains off just the prompt.
@@ -86,28 +78,22 @@ precmd () { print -Pn "\e]2;%n@%M | %~\a" } # title bar prompt
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias wget='wget --directory-prefix=/Users/andyhoang/Downloads/ --quiet'
+#alias wget='wget --directory-prefix=/Users/andyhoang/Downloads/ --quiet'
 alias vi="vim"
-alias tvs="/Users/andyhoang/study/NodeJS/torrentflix/bin/torrentflix"
-alias diablo="wine /Users/andyhoang/.wine/drive_c/Program\ Files/Diablo\ II/D2SE.exe"
-alias pod="cd /Users/andyhoang/.wine/drive_c/Program\ Files/Diablo\ II/Path\ of\ Diablo/ && wine /Users/andyhoang/.wine/drive_c/Program\ Files/Diablo\ II/Path\ of\ Diablo/Path\ of\ Diablo\ Launcher.exe"
 
-alias flexget="/Users/andyhoang/.local/share/virtualenvs/flexget-wGcb0nNx/bin/flexget"
-export GOPATH=/usr/local/opt/go/libexec/bin
 #export PATH=$PATH:/usr/local/opt/go/libexec/bin
 #GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
 #export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
 #export GOROOT=/usr/local/Cellar/go/1.5.3/libexec
 #export PATH=$PATH:$GOPATH/bin
 #export PATH=$PATH:$GOROOT/bin
-
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 
 #export GHCMOD=~/.local
 #export PATH=$PATH:$GHCMOD/bin
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-
-export PATH="/usr/local/opt/python@2/bin:$PATH"
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+#export PATH="/usr/local/opt/python@2/bin:$PATH"
