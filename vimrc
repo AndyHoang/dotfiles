@@ -186,6 +186,7 @@ endfun
 " ----------------------------------------------------------------------------
 " Installing the Plug plugin manager, and all the plugins are included in this
 " other file.
+"
 source $HOME/dotfiles/vim/plug.vim
 
 " ----------------------------------------------------------------------------
@@ -247,6 +248,8 @@ let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
+
+"let g:ale_completion_enabled = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 " You can disable this option too
@@ -254,10 +257,12 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
 let g:ale_linters = {
 \   'python': ['flake8'],
+"\   'rust': ['rls'],
 \}
 
 let g:ale_fixers = {
 \   'python': ['autopep8'],
+\   'rust': ['rustfmt'],
 \}
 
 let g:ale_python_flake8_options = '-m flake8'

@@ -14,6 +14,7 @@
 call plug#begin('~/.vim/plugged')
 " Plug 'metakirby5/codi.vim' " nice to have when learning new lang
 Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'w0rp/ale'
+Plug 'tpope/vim-obsession'
 "Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
@@ -33,7 +34,7 @@ Plug 'gcmt/wildfire.vim'
 "Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-git', { 'for': 'git' }
 "Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
+"Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
 Plug 'jremmen/vim-ripgrep'
 
 " Pairs of handy bracket mappings
