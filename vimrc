@@ -61,7 +61,7 @@ set foldopen=block,hor,mark,percent,quickfix,search,tag,undo,jump
 " Splits
 set splitbelow              " Open new splits below
 set splitright              " Open new vertical splits to the right
-set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+"set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
 
 
@@ -187,7 +187,7 @@ endfun
 " Installing the Plug plugin manager, and all the plugins are included in this
 " other file.
 "
-source $HOME/dotfiles/vim/plug.vim
+source $HOME/.dotfiles/vim/plug.vim
 
 " ----------------------------------------------------------------------------
 

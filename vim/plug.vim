@@ -40,7 +40,7 @@ Plug 'jremmen/vim-ripgrep'
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 
-Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
+"Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
 
 " Fugitive: Git from within Vim
 Plug 'tpope/vim-fugitive' "| Plug 'shumphrey/fugitive-gitlab.vim'
