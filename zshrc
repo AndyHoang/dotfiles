@@ -47,7 +47,7 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git)
+plugins=(git fzf z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -92,7 +92,7 @@ alias vi="vim"
 
 #export GHCMOD=~/.local
 #export PATH=$PATH:$GHCMOD/bin
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
