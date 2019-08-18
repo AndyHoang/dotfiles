@@ -88,7 +88,7 @@ alias vi="vim"
 #export GOROOT=/usr/local/Cellar/go/1.5.3/libexec
 #export PATH=$PATH:$GOPATH/bin
 #export PATH=$PATH:$GOROOT/bin
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+#[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 
 #export GHCMOD=~/.local
