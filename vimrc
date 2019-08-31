@@ -209,6 +209,8 @@ nmap <silent> <Leader>es :vsplit $HOME/.ssh/config<CR>
 nmap <silent> <Leader>et :vsplit $HOME/.tmux.conf<CR>
 nmap <silent> <Leader>sv :source $MYVIMRC<CR>
 nmap <silent> <Leader>sp :source $HOME/dotfiles/vim/plug.vim<CR>
+"nmap <Nop> <Plug>(FerretAcks)
+"nmap <leader>z <Plug>(FerretAckWord)
 
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
@@ -241,6 +243,8 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first=0
 let g:jedi#completions_enabled = 0
 let g:jedi#show_call_signatures = "0"
+let g:jedi#rename_command = ""
+let g:jedi#goto_stubs_command = ""
 
 "let g:ale_python_flake8_executable = 'python'   " or 'python' for Python 2
 "let g:ale_python_flake8_args = '-m flake8'

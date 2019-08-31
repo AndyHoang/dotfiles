@@ -35,7 +35,8 @@ Plug 'gcmt/wildfire.vim'
 Plug 'tpope/vim-git', { 'for': 'git' }
 "Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
-Plug 'jremmen/vim-ripgrep'
+"Plug 'jremmen/vim-ripgrep'
+Plug 'wincent/ferret'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
