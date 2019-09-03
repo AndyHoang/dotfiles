@@ -275,6 +275,8 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first=0
 let g:jedi#completions_enabled = 0
 let g:jedi#show_call_signatures = "0"
+let g:jedi#rename_command = ""
+let g:jedi#goto_stubs_command = ""
 
 "let g:ale_python_flake8_executable = 'python'   " or 'python' for Python 2
 "let g:ale_python_flake8_args = '-m flake8'
