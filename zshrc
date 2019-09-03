@@ -111,3 +111,4 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 export PATH="/usr/local/opt/python@2/bin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/opt/scala@2.11/bin:$PATH"
