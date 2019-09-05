@@ -512,7 +512,7 @@ let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-      \   'right': [ ['percent', 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'] ]
+      \   'right': [ ['percent', 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ] ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'LightlineFugitive',
