@@ -52,9 +52,7 @@ plugins=(git z spotify osx)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export CONFLUENT_HOME="/Users/andyhoang/confluent-3.3.0"
 export PATH="/Users/andyhoang/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="/usr/local/opt/ncurses/bin:$PATH"
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$CONFLUENT_HOME/bin"
