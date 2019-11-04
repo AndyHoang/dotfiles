@@ -336,7 +336,7 @@ let g:netrw_browse_split = 4
 
 
 let vim_markdown_preview_github=1
-let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_browser='Firefox'
 let g:racer_cmd="/Users/andyhoang/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 au FileType rust nmap gd <Plug>(rust-def)
