@@ -3,6 +3,7 @@
 " ----------------------------------------------------------------------------
 
 set nocompatible " This must be first, because it changes other options
+set redrawtime=5000
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
@@ -290,14 +291,17 @@ let g:ale_lint_on_text_changed = 0
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
 let g:ale_linters = {
-\   'python': ['flake8'],
+\   'python': ['flake8']
 \}
 
 let g:ale_fixers = {
 \   'python': ['autopep8'],
+\   'json': ['jq'],
 \}
-
+let g:ale_json_jsonlint_executable='jq'
 let g:ale_python_flake8_options = '-m flake8'
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 function! Flake8(data)
   let g:ale_python_flake8_executable = a:data
@@ -309,8 +313,8 @@ endf
 function! Python3()
   call Flake8('python3')
 endf
-command! -bar Python2 call Python2()
-command! -bar Python3 call Python3()
+"command! -bar Python2 call Python2()
+command! -bar Python call Python3()
 let g:ale_statusline_format = ['err %d', 'warn %d', '']
 
 if isdirectory(expand("~/.vim/plugged/tagbar/"))

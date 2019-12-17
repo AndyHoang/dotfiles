@@ -13,7 +13,8 @@
 
 call plug#begin('~/.vim/plugged')
 " Plug 'metakirby5/codi.vim' " nice to have when learning new lang
-Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'w0rp/ale'
+Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analysis/ale'
+Plug 'easymotion/vim-easymotion'
 "Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
