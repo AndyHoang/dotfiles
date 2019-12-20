@@ -47,7 +47,7 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git fzf z ssh-agent)
+plugins=(git fzf z ssh-agent autojump)
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_parcelperform
 
 source $ZSH/oh-my-zsh.sh
@@ -98,3 +98,4 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 #export PATH="/usr/local/opt/python@2/bin:$PATH"
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
