@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analysis/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-obsession'
+
 "Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
@@ -36,8 +37,8 @@ Plug 'gcmt/wildfire.vim'
 Plug 'tpope/vim-git', { 'for': 'git' }
 "Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
-"Plug 'jremmen/vim-ripgrep'
-Plug 'wincent/ferret'
+Plug 'jremmen/vim-ripgrep'
+"Plug 'wincent/ferret'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
@@ -53,7 +54,8 @@ Plug 'jdkanani/vim-material-theme'
 Plug 'kristijanhusak/vim-hybrid-material'
 
 Plug 'rhysd/conflict-marker.vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'tmsvg/pear-tree'
+Plug 'machakann/vim-sandwich'
 "install by brew fzf
 
 "Plug '/home/linuxbrew/.linuxbrew/bin/fzf'

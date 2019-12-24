@@ -202,19 +202,19 @@ let g:wildfire_objects = {
 let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
 
 " <Leader>f{char} to move to {char}
-map  <Leader><Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader><Leader>f <Plug>(easymotion-overwin-f)
+"map  <Leader><Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-bd-f)
 
 " s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
+nmap <Leader>s <Plug>(easymotion-bd-f2)
 
 " Move to line
-map <Leader><Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)
+"map <Leader><Leader>L <Plug>(easymotion-bd-jk)
+"nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)
 
-" Move to word
-map  <Leader><Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
+"" Move to word
+"map  <Leader><Leader>w <Plug>(easymotion-bd-w)
+"nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
 
 
 nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
@@ -224,8 +224,6 @@ nmap <silent> <Leader>es :vsplit $HOME/.ssh/config<CR>
 nmap <silent> <Leader>et :vsplit $HOME/.tmux.conf<CR>
 nmap <silent> <Leader>sv :source $MYVIMRC<CR>
 nmap <silent> <Leader>sp :source $HOME/dotfiles/vim/plug.vim<CR>
-"nmap <Nop> <Plug>(FerretAcks)
-"nmap <leader>z <Plug>(FerretAckWord)
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
