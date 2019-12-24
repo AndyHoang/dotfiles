@@ -47,7 +47,7 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git z spotify osx)
+plugins=(git z osx fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -74,7 +74,7 @@ precmd () { print -Pn "\e]2;%n@%M | %~\a" } # title bar prompt
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
- export SSH_KEY_PATH="~/.ssh/dsa_id"
+ export SSH_KEY_PATH="~/.ssh/id_rsa"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh

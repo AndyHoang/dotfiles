@@ -17,6 +17,8 @@ Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analy
 Plug 'easymotion/vim-easymotion'
 "Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'luochen1990/rainbow'
 Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'

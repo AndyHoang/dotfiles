@@ -4,6 +4,7 @@
 
 set nocompatible " This must be first, because it changes other options
 set redrawtime=5000
+set lazyredraw
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
