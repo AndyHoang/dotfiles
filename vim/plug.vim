@@ -4,21 +4,21 @@
 
 " Install vim-plug if we don't already have it
 "if empty(glob("~/.vim/autoload/plug.vim"))
-" Ensure all needed directories exist  (Thanks @kapadiamush)
-"    execute 'mkdir -p ~/.vim/plugged'
-"    execute 'mkdir -p ~/.vim/autoload'
-"    " Download the actual plugin manager
-"    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+""Ensure all needed directories exist  (Thanks @kapadiamush)
+    "execute 'mkdir -p ~/.vim/plugged'
+    "execute 'mkdir -p ~/.vim/autoload'
+    "" Download the actual plugin manager
+    "execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 "endif
 
 call plug#begin('~/.vim/plugged')
 " Plug 'metakirby5/codi.vim' " nice to have when learning new lang
 Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analysis/ale'
 Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-obsession'
+
 "Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
 Plug 'luochen1990/rainbow'
 Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'
@@ -36,9 +36,9 @@ Plug 'gcmt/wildfire.vim'
 "Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-git', { 'for': 'git' }
 "Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
-"Plug 'jremmen/vim-ripgrep'
-Plug 'wincent/ferret'
+"Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
+Plug 'jremmen/vim-ripgrep'
+"Plug 'wincent/ferret'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
@@ -51,10 +51,11 @@ Plug 'tpope/vim-fugitive' "| Plug 'shumphrey/fugitive-gitlab.vim'
 " Themes
 Plug 'junegunn/seoul256.vim'
 Plug 'jdkanani/vim-material-theme'
+Plug 'kristijanhusak/vim-hybrid-material'
 
 Plug 'rhysd/conflict-marker.vim'
-Plug 'jiangmiao/auto-pairs'
-"install by brew fzf
+Plug 'tmsvg/pear-tree'
+Plug 'machakann/vim-sandwich'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 "Plug 'rking/ag.vim'
 "Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
