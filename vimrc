@@ -63,6 +63,9 @@ set foldopen=block,hor,mark,percent,quickfix,search,tag,undo,jump
 " Splits
 set splitbelow              " Open new splits below
 set splitright              " Open new vertical splits to the right
+"set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+
+
 
 filetype plugin indent on   " Rely on file plugins to handle indenting
 if has('clipboard')
@@ -185,6 +188,7 @@ endfun
 " ----------------------------------------------------------------------------
 " Installing the Plug plugin manager, and all the plugins are included in this
 " other file.
+"
 source $HOME/.dotfiles/vim/plug.vim
 
 " ----------------------------------------------------------------------------
@@ -197,24 +201,27 @@ let g:wildfire_objects = {
             \ "html,xml" : ["at"],
             \ }
 " }
-"map <C-e> <plug>NERDTreeTabsToggle<CR>
-"nmap <leader>nt :NERDTreeFind<CR>
-" Edit the vimrc file
-"map <leader>e :NERDTreeFind<CR>
-"let NERDTreeShowBookmarks=1
-"let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-"let NERDTreeChDirMode=0
-"let NERDTreeQuitOnOpen=1
-"let NERDTreeMouseMode=2
-"let NERDTreeShowHidden=1
-"let NERDTreeKeepTreeInNewTab=1
-"let g:nerdtree_tabs_open_on_gui_startup=0
 let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
+
+" <Leader>f{char} to move to {char}
+"map  <Leader><Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-bd-f)
+
+" s{char}{char} to move to {char}{char}
+nmap <Leader>s <Plug>(easymotion-bd-f2)
+
+" Move to line
+"map <Leader><Leader>L <Plug>(easymotion-bd-jk)
+"nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)
+
+"" Move to word
+"map  <Leader><Leader>w <Plug>(easymotion-bd-w)
+"nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
 
 
 nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
 nmap <silent> <Leader>ez :vsplit $HOME/.zshrc<CR>
-map <silent> <Leader>ep :vsplit $HOME/.dotfiles/vim/plug.vim<CR>
+map <silent> <Leader>ep :vsplit $HOME/dotfiles/vim/plug.vim<CR>
 nmap <silent> <Leader>es :vsplit $HOME/.ssh/config<CR>
 nmap <silent> <Leader>et :vsplit $HOME/.tmux.conf<CR>
 nmap <silent> <Leader>sv :source $MYVIMRC<CR>
@@ -231,31 +238,6 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:rainbow_active = 1
-"if executable('rg')
-  "set grepprg=rg\ --color=never
-  "let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  ""let g:ctrlp_use_caching = 0
-"endif
-"if executable('ag')
-  "" Use ag over grep
-  "set grepprg=ag\ --nogroup\ --nocolor
-  "" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  "" ag is fast enough that CtrlP doesn't need to cache
-  ""let g:ctrlp_use_caching = 0
-"endif
-" --column: Show column number
-" --line-number: Show line number
-" --no-heading: Do not show file headings in results
-" --fixed-strings: Search term as a literal string
-" --ignore-case: Case insensitive search
-" --no-ignore: Do not respect .gitignore, etc...
-" --hidden: Search hidden files and folders
-" --follow: Follow symlinks
-" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-" --color: Search color options
-"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-
 set wildignorecase
 set wildignore+=*/.git,*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 " Don't offer to open certain files/directories
@@ -265,7 +247,6 @@ set wildignore+=node_modules/*,bower_components/*
 set wildignore+=*/*.app/*
 
 nnoremap <silent>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-let g:mta_use_matchparen_group = 0
 
 
 " Character meaning when present in 'formatoptions'
@@ -293,18 +274,22 @@ let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
+
+"let g:ale_completion_enabled = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 " You can disable this option too
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
 let g:ale_linters = {
-\   'python': ['flake8']
+\   'python': ['flake8'],
+"\   'rust': ['rls'],
 \}
 
 let g:ale_fixers = {
 \   'python': ['autopep8'],
 \   'json': ['jq'],
+\   'rust': ['rustfmt'],
 \}
 let g:ale_json_jsonlint_executable='jq'
 let g:ale_python_flake8_options = '-m flake8'
@@ -325,10 +310,10 @@ endf
 command! -bar Python call Python3()
 let g:ale_statusline_format = ['err %d', 'warn %d', '']
 
-if isdirectory(expand("~/.vim/plugged/tagbar/"))
-  nnoremap <silent> <leader>tt :TagbarToggle<CR>
-  autocmd FileType tagbar setlocal nocursorline nocursorcolumn
-endif
+"if isdirectory(expand("~/.vim/plugged/tagbar/"))
+  "nnoremap <silent> <leader>tt :TagbarToggle<CR>
+  "autocmd FileType tagbar setlocal nocursorline nocursorcolumn
+"endif
 " If we have ripgrep
 if executable('rg')
     " Use ag over grep
@@ -350,6 +335,8 @@ let g:netrw_browse_split = 4
 let vim_markdown_preview_github=1
 let vim_markdown_preview_browser='Firefox'
 let g:racer_cmd="/Users/andyhoang/.cargo/bin/racer"
+"let vim_markdown_preview_browser='Google Chrome'
+"let g:racer_cmd="/Users/andyhoang/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
@@ -488,36 +475,34 @@ let b:surround_{char2nr('_')} = "<%- gettext(\"\r\") %>"
 
 let g:jekyll_post_extension = '.md'
 
-
-
 set exrc
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
+"let g:tagbar_type_go = {
+    "\ 'ctagstype' : 'go',
+    "\ 'kinds'     : [
+        "\ 'p:package',
+        "\ 'i:imports:1',
+        "\ 'c:constants',
+        "\ 'v:variables',
+        "\ 't:types',
+        "\ 'n:interfaces',
+        "\ 'w:fields',
+        "\ 'e:embedded',
+        "\ 'm:methods',
+        "\ 'r:constructor',
+        "\ 'f:functions'
+    "\ ],
+    "\ 'sro' : '.',
+    "\ 'kind2scope' : {
+        "\ 't' : 'ctype',
+        "\ 'n' : 'ntype'
+    "\ },
+    "\ 'scope2kind' : {
+        "\ 'ctype' : 't',
+        "\ 'ntype' : 'n'
+    "\ },
+    "\ 'ctagsbin'  : 'gotags',
+    "\ 'ctagsargs' : '-sort -silent'
+"\ }
 
 
 let g:lightline = {
@@ -604,8 +589,9 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
 endfunction
 
 
-colorscheme material-theme
-"colorscheme nord
 set background=dark
-set t_Co=256
+colorscheme material-theme
+"colorscheme hybrid_material
+"colorscheme nord
+"set t_Co=256
 

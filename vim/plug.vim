@@ -56,7 +56,9 @@ Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tmsvg/pear-tree'
 Plug 'machakann/vim-sandwich'
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+" TODO
+"Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 "Plug 'rking/ag.vim'
 "Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
