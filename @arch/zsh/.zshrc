@@ -99,3 +99,6 @@ export PATH=$PATH:$HOME/.cargo/bin
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 #export PATH="/usr/local/opt/python@2/bin:$PATH"
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+
+# Created by `userpath` on 2020-01-01 04:48:19
+export PATH="$PATH:/home/andyhoang/.local/bin"
