@@ -47,12 +47,11 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git z osx fzf)
+plugins=(git z fzf)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export PATH="/Users/andyhoang/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$CONFLUENT_HOME/bin"
@@ -90,23 +89,23 @@ alias tvs="/Users/andyhoang/study/NodeJS/torrentflix/bin/torrentflix"
 alias diablo="wine /Users/andyhoang/.wine/drive_c/Program\ Files/Diablo\ II/D2SE.exe"
 alias pod="cd /Users/andyhoang/.wine/drive_c/Program\ Files/Diablo\ II/Path\ of\ Diablo/ && wine /Users/andyhoang/.wine/drive_c/Program\ Files/Diablo\ II/Path\ of\ Diablo/Path\ of\ Diablo\ Launcher.exe"
 
-alias flexget="/Users/andyhoang/.local/share/virtualenvs/flexget-wGcb0nNx/bin/flexget"
-export GOPATH=/usr/local/opt/go/libexec/bin
-#export PATH=$PATH:/usr/local/opt/go/libexec/bin
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+#export PATH="/Users/andyhoang/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+#export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+#export PATH="/usr/local/opt/python@2/bin:$PATH"
+#export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
 #GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
 #export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
 #export GOROOT=/usr/local/Cellar/go/1.5.3/libexec
+#export GOPATH=/usr/local/opt/go/libexec/bin
+#export PATH=$PATH:/usr/local/opt/go/libexec/bin
 #export PATH=$PATH:$GOPATH/bin
 #export PATH=$PATH:$GOROOT/bin
-
-
-
 #export GHCMOD=~/.local
 #export PATH=$PATH:$GHCMOD/bin
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-
-export PATH="/usr/local/opt/python@2/bin:$PATH"
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
+#
 export PATH="/usr/local/opt/scala@2.11/bin:$PATH"
