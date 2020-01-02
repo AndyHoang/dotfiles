@@ -41,7 +41,7 @@ Plug 'jremmen/vim-ripgrep'
 "Plug 'wincent/ferret'
 
 " Pairs of handy bracket mappings
-Plug 'tpope/vim-unimpaired'
+"Plug 'tpope/vim-unimpaired'
 
 "Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
 
@@ -56,8 +56,7 @@ Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tmsvg/pear-tree'
 Plug 'machakann/vim-sandwich'
-" TODO
-"Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "Plug 'rking/ag.vim'
 "Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
