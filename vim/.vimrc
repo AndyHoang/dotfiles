@@ -114,13 +114,6 @@ highlight clear LineNr          " Current line number row will have same backgro
 "   Search
 " ----------------------------------------------------------------------------
 
-
-
-" Use regex for searches
-"nnoremap / /\v
-"vnoremap / /\v
-"nnoremap ? ?\v
-"vnoremap ? ?\v
 " have x (removes single character) not go into the default registry
 nnoremap x "_x
 noremap j gj
@@ -135,13 +128,6 @@ map <Leader>= <C-w>=
 nnoremap <leader>/ :set invhlsearch<cr>
 map <leader>b :GFiles<cr>
 map <C-p> :History<cr>
-"command! -bang -nargs=* Rg
-  "\ call fzf#vim#grep(
-  "\   'rg --column --smart-case --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  "\   <bang>0 ? fzf#vim#with_preview('up:60%')
-  "\           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  "\   <bang>0)
-  "
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -306,15 +292,12 @@ endf
 function! Python3()
   call Flake8('python3')
 endf
-"command! -bar Python2 call Python2()
+
+" call ale check only when be called
 command! -bar Python call Python3()
+
 let g:ale_statusline_format = ['err %d', 'warn %d', '']
 
-"if isdirectory(expand("~/.vim/plugged/tagbar/"))
-  "nnoremap <silent> <leader>tt :TagbarToggle<CR>
-  "autocmd FileType tagbar setlocal nocursorline nocursorcolumn
-"endif
-" If we have ripgrep
 if executable('rg')
     " Use ag over grep
   set grepprg=rg\ --vimgrep
@@ -325,6 +308,7 @@ endif
 nnoremap <F5> :UndotreeToggle<CR>
 
 nmap <silent> <C-_> <Plug>(pydocstring)
+
 let g:netrw_liststyle=0         " thin (change to 3 for tree)
 let g:netrw_altv=1              " open files on right
 let g:netrw_preview=0           " open previews vertically
@@ -334,9 +318,8 @@ let g:netrw_browse_split = 4
 
 let vim_markdown_preview_github=1
 let vim_markdown_preview_browser='Firefox'
+
 let g:racer_cmd="/Users/andyhoang/.cargo/bin/racer"
-"let vim_markdown_preview_browser='Google Chrome'
-"let g:racer_cmd="/Users/andyhoang/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
@@ -372,28 +355,6 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " -------------------------------------------------------------------------
 "   Custom mappings
 " ----------------------------------------------------------------------------
-
-" When pasting, refill the default register with what you just pasted
-"xnoremap p pgvy
-
-" Repurpose arrow keys to navigating windows
-"nnoremap <left> <C-w>h
-"nnoremap <right> <C-w>l
-"nnoremap <up> <C-w>k
-"nnoremap <down> <C-w>j
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
-
-" To encourage the use of <C-[np]> instead of the arrow keys in ex mode, remap
-" them to use <Up/Down> instead so that they will filter completions
-"cnoremap <C-p> <Up>
-"cnoremap <C-n> <Down>
-
-" Navigate using displayed lines not actual lines
-"nnoremap j gj
-"nnoremap k gk
 
 " Make Y consistent with D
 nnoremap Y y$
