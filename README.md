@@ -9,6 +9,7 @@
 * tmux
 * flake
 * zsh
+* weechat
 
 ## Usage
 * `stow -t ~ stow`
