@@ -81,6 +81,49 @@ precmd () { print -Pn "\e]2;%n@%M | %~\a" } # title bar prompt
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #alias wget='wget --directory-prefix=/Users/andyhoang/Downloads/ --quiet'
 alias vi="vim"
+# Some copy utils
+alias update='sudo pacman -Syyu'
+
+#readable output
+alias df='df -h'
+
+#continue download
+alias wget="wget -c"
+
+#ps
+alias ps="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+
+#grub update
+#alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+#add new fonts
+alias fc='sudo fc-cache -fv'
+
+#quickly kill conkies
+alias kc='killall conky'
+
+#hardware info --short
+alias hw="hwinfo --short"
+
+
+#get fastest mirrors in your neighborhood 
+#alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+#alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+#alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+#alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+
+#mounting the folder Public for exchange between host and guest on virtualbox
+#alias vbm="sudo mount -t vboxsf -o rw,uid=1000,gid=1000 Public /home/$USER/Public"
+
+#youtube-dl
+alias yt="youtube-dl -f bestvideo+bestaudio "
+
+#Cleanup orphaned packages
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+
+#get the error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
 
 #export PATH=$PATH:/usr/local/opt/go/libexec/bin
 #GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
@@ -102,3 +145,4 @@ export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 
 # Created by `userpath` on 2020-01-01 04:48:19
 export PATH="$PATH:/home/andyhoang/.local/bin"
+
