@@ -1,29 +1,23 @@
 #
-# chanmon.pl - Channel Monitoring for weechat 0.3.0
-# Version 2.5
+# highmon.pl - Highlight Monitoring for weechat 0.3.0
+# Version 2.6
 #
-# Add 'Channel Monitor' buffer/bar that you can position to show IRC channel
-# messages in a single location without constantly switching buffers
-# i.e. In a seperate window beneath the main channel buffer
+# Add 'Highlight Monitor' buffer/bar to log all highlights in one spot
 #
 # Usage:
-# /chanmon [help] | [monitor [channel [server]]] | [dynmon] | [clean default|orphan|all] | clearbar
-#  Command wrapper for chanmon commands
+# /highmon [help] | [monitor [channel [server]]] | [clean default|orphan|all] | clearbar
+#  Command wrapper for highmon commands
 #
-# /chmonitor [channel] [server] is used to toggle a channel monitoring on and off, this
-#  can be used in the channel buffer for the channel you wish to toggle, or be given
-#  with arguments e.g. /monitor #weechat freenode
-#
-# /dynmon is used to toggle 'Dynamic Channel Monitoring' on and off, this
-#  will automagically stop monitoring the current active buffer, without
-#  affecting regular settings (Default is off)
-#
-# /chanclean default|orphan|all will clean the config section of default 'on' entries,
+# /highmon clean default|orphan|all will clean the config section of default 'on' entries,
 #  channels you are no longer joined, or both
 #
-# /chanmon clearbar will clear the contents of chanmon's bar output
+# /highmon clearbar will clear the contents of highmon's bar output
 #
-# /set plugins.var.perl.chanmon.alignment
+# /highmon monitor [channel] [server] is used to toggle a highlight monitoring on and off, this
+#  can be used in the channel buffer for the channel you wish to toggle, or be given
+#  with arguments e.g. /highmon monitor #weechat freenode
+#
+# /set plugins.var.perl.highmon.alignment
 #  The config setting "alignment" can be changed to;
 #  "channel", "schannel", "nchannel", "channel,nick", "schannel,nick", "nchannel,nick"
 #  to change how the monitor appears
@@ -31,49 +25,56 @@
 #  The 'schannel' value will show: "6"
 #  The 'nchannel' value will show: "6:#weechat"
 #
-# /set plugins.var.perl.chanmon.short_names
-#  Setting this to 'on' will trim the network name from chanmon, ala buffers.pl
+# /set plugins.var.perl.highmon.short_names
+#  Setting this to 'on' will trim the network name from highmon, ala buffers.pl
 #
-# /set plugins.var.perl.chanmon.merge_private
-#  Setting this to 'on' will merge private messages to chanmon's display
+# /set plugins.var.perl.highmon.merge_private
+#  Setting this to 'on' will merge private messages to highmon's display
 #
-# /set plugins.var.perl.chanmon.color_buf
+# /set plugins.var.perl.highmon.color_buf
 #  This turns colored buffer names on or off, you can also set a single fixed color by using a weechat color name.
 #  This *must* be a valid color name, or weechat will likely do unexpected things :)
 #
-# /set plugins.var.perl.chanmon.show_aways
-#  Toggles showing the Weechat away messages
+# /set plugins.var.perl.highmon.hotlist_show
+#  Setting this to 'on' will let the highmon buffer appear in hotlists
+#  (status bar/buffer.pl)
 #
-# /set plugins.var.perl.chanmon.logging
-#  Toggles logging status for chanmon buffer (default: off)
+# /set plugins.var.perl.highmon.away_only
+#  Setting this to 'on' will only put messages in the highmon buffer when
+#  you set your status to away
 #
-# /set plugins.var.perl.chanmon.output
-#  Changes where output method of chanmon; takes either "bar" or "buffer" (default; buffer)
-# /set plugins.var.perl.chanmon.bar_lines
+# /set plugins.var.perl.highmon.logging
+#  Toggles logging status for highmon buffer (default: off)
+#
+# /set plugins.var.perl.highmon.output
+#  Changes where output method of highmon; takes either "bar" or "buffer" (default; buffer)
+# /set plugins.var.perl.highmon.bar_lines
 #  Changes the amount of lines the output bar will hold.
 #  (Only appears once output has been set to bar, defaults to 10)
+# /set plugins.var.perl.highmon.bar_scrolldown
+#  Toggles the bar scrolling at the bottom when new highlights are received
+#  (Only appears once output has been set to bar, defaults to off)
 #
-# /set plugins.var.perl.chanmon.nick_prefix
-# /set plugins.var.perl.chanmon.nick_suffix
-#  Sets the prefix and suffix chars in the chanmon buffer
+# /set plugins.var.perl.highmon.nick_prefix
+# /set plugins.var.perl.highmon.nick_suffix
+#  Sets the prefix and suffix chars in the highmon buffer
 #  (Defaults to <> if nothing set, and blank if there is)
 #
 # servername.#channel
 #  servername is the internal name for the server (set when you use /server add)
 #  #channel is the channel name, (where # is whatever channel type that channel happens to be)
 #
-# Example set up:
-# Split the layout 70/30 (or there abouts) horizontally and load
-# Optionally, hide the status and input lines on chanmon
+# Optional, set up tweaks; Hide the status and input lines on highmon
 #
-# /window splith 70 --> change to chanmon buffer
-# /set weechat.bar.status.conditions "${window.buffer.full_name} != perl.chanmon"
-# /set weechat.bar.input.conditions "${window.buffer.full_name} != perl.chanmon"
+# /set weechat.bar.status.conditions "${window.buffer.full_name} != perl.highmon"
+# /set weechat.bar.input.conditions "${window.buffer.full_name} != perl.highmon"
 #
 
-# Bugs and feature requests at: https://github.com/KenjiE20/chanmon
+# Bugs and feature requests at: https://github.com/KenjiE20/highmon
 
 # History:
+# 2019-05-13, HubbeKing <hubbe128@gmail.com>
+#	v2.6:	-add: send "logger_backlog" signal on buffer open if logging is enabled
 # 2014-08-16, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v2.5:	-add: clearbar command to clear bar output
 #			-add: firstrun output prompt to check the help text for set up hints as they were being missed
@@ -81,6 +82,8 @@
 #			-change: Make all outputs use the date callback for more accurate timestamps (thanks Germainz)
 # 2013-12-04, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v2.4:	-add: Support for eval style colour codes in time format used for bar output
+# 2013-10-22, KenjiE20 <longbow@longbowslair.co.uk>:
+#	v2.3.3.2:	-fix: Typo in fix command
 # 2013-10-10, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v2.3.3.1:	-fix: Typo in closed buffer warning
 # 2013-10-07, KenjiE20 <longbow@longbowslair.co.uk>:
@@ -88,90 +91,47 @@
 # 2013-01-15, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v2.3.2:	-fix: Let bar output use the string set in weechat's config option
 #			-add: github info
-#			-change: Ideal set up -> Example set up
 # 2012-04-15, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v2.3.1:	-fix: Colour tags in bar timestamp string, bar error fixes from highmon
+#	v2.3.1:	-fix: Colour tags in bar timestamp string
 # 2012-02-28, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v2.3:	-feature: Added merge_private option to display private messages (default: off)
+#			-fix: Channel name colours now show correctly when set to on
+# 2011-08-07, Sitaktif <romainchossart_at_gmail.com>:
+#	v2.2.1:	-feature: Add "bar_scrolldown" option to have the bar display the latest hl at anytime
+#			-fix: Set up bar-specific config at startup if 'output' is already configured as 'bar'
 # 2010-12-22, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v2.2:	-change: Use API instead of config to find channel colours, ready for 0.3.4 and 256 colours
-# 2010-12-05, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v2.1.3: -change: /monitor is now /chmonitor to avoid command conflicts (thanks m4v)
-#		(/chanmon monitor remains the same)
-#		-fix: Add command list to inbuilt help
+# 2010-12-13, idl0r & KenjiE20 <longbow@longbowslair.co.uk>:
+#	v2.1.3:	-fix: perl errors caused by bar line counter
+#			-fix: Add command list to inbuilt help
 # 2010-09-30, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v2.1.2:	-fix: logging config was not correctly toggling back on (thanks to sleo for noticing)
-# 2010-09-20, m4v <lambdae2@gmail.com>:
-#	v2.1.1:	-fix: chanmon wasn't detecting buffers displayed on more than one window
+#			-version sync w/ chanmon
 # 2010-08-27, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v2.1: -feature: Add 'nchannel' option to alignment to display buffer and name
 # 2010-04-25, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v2.0:	Release as version 2.0
 # 2010-04-24, KenjiE20 <longbow@longbowslair.co.uk>:
-#		-fix: No longer using hard-coded detection for ACTION and
-#			TOPIC messages. Use config settings for ACTION printing
-# 2010-04-15, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v1.9:	Rewrite for v2.0
-#		-feature: /monitor takes arguments
-#		-feature: Added /chanclean for config cleanup
-#		-feature: Buffer logging option (default: off)
-#		-feature: Selectable output (Bar/Buffer (default))
-#		-feature: /chanmon is now a command wrapper for all commands
-#			/help chanmon gives command help
-#			/chanmon help gives config help
+#		Bring feature set in line with chanmon 2.0
 #		-code change: Made more subs to shrink the code down in places
-#		-fix: Stop chanmon attempting to double load/hook
-# 2010-02-10, m4v <lambdae2@gmail.com>:
-#	v1.7.1:	-fix: chanmon was leaking infolists, changed how chanmon
-#			detects if the buffer is displayed or not.
+#		-fix: Stop highmon attempting to double load/hook
+#		-fix: Add version dependant check for away status
 # 2010-01-25, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v1.7:	-fixture: Let chanmon be aware of nick_prefix/suffix
-#			and allow custom prefix/suffix for chanmon buffer
-#			(Defaults to <> if nothing set, and blank if there is)
-#		-fix: Make dynamic monitoring aware of multiple windows
-#			rather than just the active buffer
-#		(Thanks to m4v for these)
+#       v1.7:   -fixture: Let highmon be aware of nick_prefix/suffix
+#                       and allow custom prefix/suffix for chanmon buffer
+#                       (Defaults to <> if nothing set, and blank if there is)
+#               (Thanks to m4v for these)
 # 2009-09-07, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v1.6:	-feature: colored buffer names
-#		-change: chanmon version sync
+#		-change: version sync with chanmon
 # 2009-09-05, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v1.5:	-fix: disable buffer highlight
+#	v1.2:	-fix: disable buffer highlight
 # 2009-09-02, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v.1.4.1	-change: Stop unsightly text block on '/help'
+#	v.1.1.1	-change: Stop unsightly text block on '/help'
 # 2009-08-10, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v1.4:	-feature: In-client help added
-#		-fix: Added missing help entries
-#			Fix remaining ugly vars
-# 2009-07-09, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v.1.3.3	-fix: highlight on the channel monitor when someone /me highlights
-# 2009-07-04, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v.1.3.2	-fix: use new away_info tag instead of ugly regexp for away detection
-#		-code: cleanup old raw callback arguement variables to nice neat named ones
-# 2009-07-04, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v.1.3.1	-feature(tte): Hide /away messages by default, change 'show_aways' to get them back
-# 2009-07-01, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v.1.3	-feature(tte): Mimic buffers.pl 'short_names'
-# 2009-06-29, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v.1.2.1	-fix: let the /monitor message respect the alignment setting
-# 2009-06-19, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v.1.2	-feature(tte): Customisable alignment
-#			Thanks to 'FreakGaurd' for the idea
-# 2009-06-14, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v.1.1.2	-fix: don't assume chanmon buffer needs creating
-#			fixes crashing with /upgrade
-# 2009-06-13, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v.1.1.1	-code: change from True/False to on/off for weechat consistency
-#			Settings WILL NEED to be changed manually from previous versions
-# 2009-06-13, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v1.1:	-feature: Dynamic Channel Monitoring,
-#			don't display messages from active channel buffer
-#			defaults to Disabled
-#			Thanks to 'sjohnson' for the idea
-#		-fix: don't set config entries for non-channels
-#		-fix: don't assume all channels are #
-# 2009-06-12, KenjiE20 <longbow@longbowslair.co.uk>:
-#	v1.0.1:	-fix: glitch with tabs in IRC messages
-# 2009-06-10, KenjiE20 <longbow@longbowslair.co.uk>:
+#	v1.1:	In-client help added
+# 2009-08-02, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v1.0:	Initial Public Release
 
 # Copyright (c) 2009 by KenjiE20 <longbow@longbowslair.co.uk>
@@ -193,19 +153,17 @@
 @bar_lines = ();
 @bar_lines_time = ();
 # Replicate info earlier for in-client help
-$chanmonhelp = weechat::color("bold")."/chanmon [help] | [monitor [channel [server]]] | [dynmon] | [clean default|orphan|all] | clearbar".weechat::color("-bold")."
-Command wrapper for chanmon commands
 
-".weechat::color("bold")."/chmonitor [channel] [server]".weechat::color("-bold")." is used to toggle a channel monitoring on and off, this
- can be used in the channel buffer for the channel you wish to toggle, or be given with arguments e.g. /monitor #weechat freenode
+$highmonhelp = weechat::color("bold")."/highmon [help] | [monitor [channel [server]]] | [clean default|orphan|all] | clearbar".weechat::color("-bold")."
+ Command wrapper for highmon commands
 
-".weechat::color("bold")."/dynmon".weechat::color("-bold")." is used to toggle 'Dynamic Channel Monitoring' on and off, this will automagically stop monitoring the current active buffer, without affecting regular settings (Default is off)
+".weechat::color("bold")."/highmon clean default|orphan|all".weechat::color("-bold")." will clean the config section of default 'on' entries, channels you are no longer joined, or both
 
-".weechat::color("bold")."/chanclean".weechat::color("-bold")." default|orphan|all will clean the config section of default 'on' entries, channels you are no longer joined, or both
+".weechat::color("bold")."/highmon clearbar".weechat::color("-bold")." will clear the contents of highmon's bar output
 
-".weechat::color("bold")."/chanmon clearbar".weechat::color("-bold")." will clear the contents of chanmon's bar output
+".weechat::color("bold")."/highmon monitor [channel] [server]".weechat::color("-bold")." is used to toggle a highlight monitoring on and off, this can be used in the channel buffer for the channel you wish to toggle, or be given with arguments e.g. /highmon monitor #weechat freenode
 
-".weechat::color("bold")."/set plugins.var.perl.chanmon.alignment".weechat::color("-bold")."
+".weechat::color("bold")."/set plugins.var.perl.highmon.alignment".weechat::color("-bold")."
  The config setting \"alignment\" can be changed to;
  \"channel\", \"schannel\", \"nchannel\", \"channel,nick\", \"schannel,nick\", \"nchannel,nick\"
  to change how the monitor appears
@@ -213,54 +171,57 @@ Command wrapper for chanmon commands
  The 'schannel' value will show: \"6\"
  The 'nchannel' value will show: \"6:#weechat\"
 
-".weechat::color("bold")."/set plugins.var.perl.chanmon.short_names".weechat::color("-bold")."
- Setting this to 'on' will trim the network name from chanmon, ala buffers.pl
+".weechat::color("bold")."/set plugins.var.perl.highmon.short_names".weechat::color("-bold")."
+ Setting this to 'on' will trim the network name from highmon, ala buffers.pl
 
-".weechat::color("bold")."/set plugins.var.perl.chanmon.merge_private".weechat::color("-bold")."
- Setting this to 'on' will merge private messages to chanmon's display
+".weechat::color("bold")."/set plugins.var.perl.highmon.merge_private".weechat::color("-bold")."
+ Setting this to 'on' will merge private messages to highmon's display
 
-".weechat::color("bold")."/set plugins.var.perl.chanmon.color_buf".weechat::color("-bold")."
+".weechat::color("bold")."/set plugins.var.perl.highmon.color_buf".weechat::color("-bold")."
  This turns colored buffer names on or off, you can also set a single fixed color by using a weechat color name.
  This ".weechat::color("bold")."must".weechat::color("-bold")." be a valid color name, or weechat will likely do unexpected things :)
 
-".weechat::color("bold")."/set plugins.var.perl.chanmon.show_aways".weechat::color("-bold")."
- Toggles showing the Weechat away messages
+".weechat::color("bold")."/set plugins.var.perl.highmon.hotlist_show".weechat::color("-bold")."
+Setting this to 'on' will let the highmon buffer appear in hotlists (status bar/buffer.pl)
 
-".weechat::color("bold")."/set plugins.var.perl.chanmon.logging".weechat::color("-bold")."
- Toggles logging status for chanmon buffer (default: off)
+".weechat::color("bold")."/set plugins.var.perl.highmon.away_only".weechat::color("-bold")."
+Setting this to 'on' will only put messages in the highmon buffer when you set your status to away
 
-".weechat::color("bold")."/set plugins.var.perl.chanmon.output".weechat::color("-bold")."
- Changes where output method of chanmon; takes either \"bar\" or \"buffer\" (default; buffer)
-".weechat::color("bold")."/set plugins.var.perl.chanmon.bar_lines".weechat::color("-bold")."
+".weechat::color("bold")."/set plugins.var.perl.highmon.logging".weechat::color("-bold")."
+ Toggles logging status for highmon buffer (default: off)
+
+".weechat::color("bold")."/set plugins.var.perl.highmon.output".weechat::color("-bold")."
+ Changes where output method of highmon; takes either \"bar\" or \"buffer\" (default; buffer)
+".weechat::color("bold")."/set plugins.var.perl.highmon.bar_lines".weechat::color("-bold")."
  Changes the amount of lines the output bar will hold.
  (Only appears once output has been set to bar, defaults to 10)
+".weechat::color("bold")."/set plugins.var.perl.highmon.bar_scrolldown".weechat::color("-bold")."
+ Toggles the bar scrolling at the bottom when new highlights are received
+ (Only appears once output has been set to bar, defaults to off)
 
-".weechat::color("bold")."/set plugins.var.perl.chanmon.nick_prefix".weechat::color("-bold")."
-".weechat::color("bold")."/set plugins.var.perl.chanmon.nick_suffix".weechat::color("-bold")."
- Sets the prefix and suffix chars in the chanmon buffer
+".weechat::color("bold")."/set plugins.var.perl.highmon.nick_prefix".weechat::color("-bold")."
+".weechat::color("bold")."/set plugins.var.perl.highmon.nick_suffix".weechat::color("-bold")."
+ Sets the prefix and suffix chars in the highmon buffer
  (Defaults to <> if nothing set, and blank if there is)
 
 ".weechat::color("bold")."servername.#channel".weechat::color("-bold")."
  servername is the internal name for the server (set when you use /server add)
  #channel is the channel name, (where # is whatever channel type that channel happens to be)
 
-".weechat::color("bold")."Example set up:".weechat::color("-bold")."
-Split the layout 70/30 (or there abouts) horizontally and load
-Optionally, hide the status and input lines on chanmon
+".weechat::color("bold")."Optional, set up tweaks;".weechat::color("-bold")." Hide the status and input lines on highmon
 
-".weechat::color("bold")."/window splith 70".weechat::color("-bold")." --> change to chanmon buffer
-".weechat::color("bold")."/set weechat.bar.status.conditions \"\${window.buffer.full_name} != perl.chanmon\"".weechat::color("-bold")."
-".weechat::color("bold")."/set weechat.bar.input.conditions \"\${window.buffer.full_name} != perl.chanmon\"".weechat::color("-bold");
+".weechat::color("bold")."/set weechat.bar.status.conditions \"\${window.buffer.full_name} != perl.highmon\"".weechat::color("-bold")."
+".weechat::color("bold")."/set weechat.bar.input.conditions \"\${window.buffer.full_name} != perl.highmon\"".weechat::color("-bold");
 # Print verbose help
 sub print_help
 {
-	weechat::print("", "\t".weechat::color("bold")."Chanmon Help".weechat::color("-bold")."\n\n");
-	weechat::print("", "\t".$chanmonhelp);
+	weechat::print("", "\t".weechat::color("bold")."Highmon Help".weechat::color("-bold")."\n\n");
+	weechat::print("", "\t".$highmonhelp);
 	return weechat::WEECHAT_RC_OK;
 }
 
 # Bar item build
-sub chanmon_bar_build
+sub highmon_bar_build
 {
 	# Get max lines
 	$max_lines = weechat::config_get_plugin("bar_lines");
@@ -300,32 +261,32 @@ sub chanmon_bar_build
 }
 
 # Make a new bar
-sub chanmon_bar_open
+sub highmon_bar_open
 {
 	# Make the bar item
-	weechat::bar_item_new("chanmon", "chanmon_bar_build", "");
+	weechat::bar_item_new("highmon", "highmon_bar_build", "");
 
-	$chanmon_bar = weechat::bar_new ("chanmon", "off", 100, "root", "", "bottom", "vertical", "vertical", 0, 0, "default", "cyan", "default", "on", "chanmon");
+	$highmon_bar = weechat::bar_new ("highmon", "off", 100, "root", "", "bottom", "vertical", "vertical", 0, 0, "default", "cyan", "default", "on", "highmon");
 
 	return weechat::WEECHAT_RC_OK;
 }
 # Close bar
-sub chanmon_bar_close
+sub highmon_bar_close
 {
 	# Find if bar exists
-	$chanmon_bar = weechat::bar_search("chanmon");
+	$highmon_bar = weechat::bar_search("highmon");
 	# If is does, close it
-	if ($chanmon_bar ne "")
+	if ($highmon_bar ne "")
 	{
-		weechat::bar_remove($chanmon_bar);
+		weechat::bar_remove($highmon_bar);
 	}
 
 	# Find if bar item exists
-	$chanmon_bar_item = weechat::bar_item_search("chanmon_bar");
+	$highmon_bar_item = weechat::bar_item_search("highmon_bar");
 	# If is does, close it
-	if ($chanmon_bar_item ne "")
+	if ($highmon_bar_item ne "")
 	{
-		weechat::bar_remove($chanmon_bar_item);
+		weechat::bar_remove($highmon_bar_item);
 	}
 
 	@bar_lines = ();
@@ -333,50 +294,58 @@ sub chanmon_bar_close
 }
 
 # Make a new buffer
-sub chanmon_buffer_open
+sub highmon_buffer_open
 {
 	# Search for pre-existing buffer
-	$chanmon_buffer = weechat::buffer_search("perl", "chanmon");
+	$highmon_buffer = weechat::buffer_search("perl", "highmon");
 
 	# Make a new buffer
-	if ($chanmon_buffer eq "")
+	if ($highmon_buffer eq "")
 	{
-		$chanmon_buffer = weechat::buffer_new("chanmon", "chanmon_buffer_input", "", "chanmon_buffer_close", "");
+		$highmon_buffer = weechat::buffer_new("highmon", "highmon_buffer_input", "", "highmon_buffer_close", "");
 	}
 
 	# Turn off notify, highlights
-	if ($chanmon_buffer ne "")
+	if ($highmon_buffer ne "")
 	{
-		weechat::buffer_set($chanmon_buffer, "notify", "0");
-		weechat::buffer_set($chanmon_buffer, "highlight_words", "-");
-		weechat::buffer_set($chanmon_buffer, "title", "Channel Monitor");
+		if (weechat::config_get_plugin("hotlist_show") eq "off")
+		{
+			weechat::buffer_set($highmon_buffer, "notify", "0");
+		}
+		weechat::buffer_set($highmon_buffer, "highlight_words", "-");
+		weechat::buffer_set($highmon_buffer, "title", "Highlight Monitor");
 		# Set no_log
 		if (weechat::config_get_plugin("logging") eq "off")
 		{
-			weechat::buffer_set($chanmon_buffer, "localvar_set_no_log", "1");
+			weechat::buffer_set($highmon_buffer, "localvar_set_no_log", "1");
+		}
+		# send "logger_backlog" signal if logging is enabled to display backlog
+		if (weechat::config_get_plugin("logging") eq "on")
+		{
+			weechat::hook_signal_send("logger_backlog", weechat::WEECHAT_HOOK_SIGNAL_POINTER, $highmon_buffer)
 		}
 	}
 	return weechat::WEECHAT_RC_OK;
 }
 # Buffer input has no action
-sub chanmon_buffer_input
+sub highmon_buffer_input
 {
 	return weechat::WEECHAT_RC_OK;
 }
 # Close up
-sub chanmon_buffer_close
+sub highmon_buffer_close
 {
-	$chanmon_buffer = "";
+	$highmon_buffer = "";
 	# If user hasn't changed output style warn user
 	if (weechat::config_get_plugin("output") eq "buffer")
 	{
-		weechat::print("", "\tChanmon buffer has been closed but output is still set to buffer, unusual results may occur. To recreate the buffer use ".weechat::color("bold")."/chanmon fix".weechat::color("-bold"));
+		weechat::print("", "\tHighmon buffer has been closed but output is still set to buffer, unusual results may occur. To recreate the buffer use ".weechat::color("bold")."/highmon fix".weechat::color("-bold"));
 	}
 	return weechat::WEECHAT_RC_OK;
 }
 
-# Chanmon command wrapper
-sub chanmon_command_cb
+# Highmon command wrapper
+sub highmon_command_cb
 {
 	$data = $_[0];
 	$buffer = $_[1];
@@ -405,17 +374,12 @@ sub chanmon_command_cb
 	# /monitor command
 	elsif ($cmd eq "monitor")
 	{
-		chanmon_toggle($data, $buffer, $arg);
+		highmon_toggle($data, $buffer, $arg);
 	}
-	# /dynmon command
-	elsif ($cmd eq "dynmon")
-	{
-		chanmon_dyn_toggle();
-	}
-	# /chanclean command
+	# /highclean command
 	elsif ($cmd eq "clean")
 	{
-		chanmon_config_clean($data, $buffer, $arg);
+		highmon_config_clean($data, $buffer, $arg);
 	}
 	# clearbar command
 	elsif ($cmd eq "clearbar")
@@ -423,22 +387,22 @@ sub chanmon_command_cb
 		if (weechat::config_get_plugin("output") eq "bar")
 		{
 			@bar_lines = ();
-			weechat::bar_item_update("chanmon");
+			weechat::bar_item_update("highmon");
 		}
 	}
 	# Fix closed buffer
 	elsif ($cmd eq "fix")
 	{
-		if (weechat::config_get_plugin("output") eq "buffer" && $chanmon_buffer eq "")
+		if (weechat::config_get_plugin("output") eq "buffer" && $highmon_buffer eq "")
 		{
-			chanmon_buffer_open();
+			highmon_buffer_open();
 		}
 	}
 	return weechat::WEECHAT_RC_OK;
 }
 
 # Clean up config entries
-sub chanmon_config_clean
+sub highmon_config_clean
 {
 	$data = $_[0];
 	$buffer = $_[1];
@@ -447,17 +411,17 @@ sub chanmon_config_clean
 	# Don't do anything if bad option given
 	if ($args ne "default" && $args ne "orphan"  && $args ne "all")
 	{
-		weechat::print("", "\tchanmon.pl: Unknown option");
+		weechat::print("", "\thighmon.pl: Unknown option");
 		return weechat::WEECHAT_RC_OK;
 	}
 
 	@chans = ();
-	# Load an infolist of chanmon options
-	$infolist = weechat::infolist_get("option", "", "*chanmon*");
+	# Load an infolist of highmon options
+	$infolist = weechat::infolist_get("option", "", "*highmon*");
 	while (weechat::infolist_next($infolist))
 	{
 		$name = weechat::infolist_string($infolist, "option_name");
-		$name =~ s/perl\.chanmon\.(\w*)\.([#&\+!])(.*)/$1.$2$3/;
+		$name =~ s/perl\.highmon\.(\w*)\.([#&\+!])(.*)/$1.$2$3/;
 		if ($name =~ /^(.*)\.([#&\+!])(.*)$/)
 		{
 			$action = 0;
@@ -500,11 +464,11 @@ sub chanmon_config_clean
 		# If only one entry
 		if (@chans == 1)
 		{
-			$str = "\tchanmon.pl: Cleaned ".@chans." entry from the config:";
+			$str = "\thighmon.pl: Cleaned ".@chans." entry from the config:";
 		}
 		else
 		{
-			$str = "\tchanmon.pl: Cleaned ".@chans." entries from the config:";
+			$str = "\thighmon.pl: Cleaned ".@chans." entries from the config:";
 		}
 		# Build a list of channels
 		foreach(@chans)
@@ -517,20 +481,20 @@ sub chanmon_config_clean
 	# Config seemed to be clean
 	else
 	{
-		weechat::print("", "\tchanmon.pl: No entries removed");
+		weechat::print("", "\thighmon.pl: No entries removed");
 	}
 	return weechat::WEECHAT_RC_OK;
 }
 
 # Check config elements
-sub chanmon_config_init
+sub highmon_config_init
 {
 	# First run default
 	if (!(weechat::config_is_set_plugin ("first_run")))
 	{
 		if (weechat::config_get_plugin("first_run") ne "true")
 		{
-			weechat::print("", "\tThis appears to be the first time chanmon has been run. For help and common set up hints see /chanmon help");
+			weechat::print("", "\tThis appears to be the first time highmon has been run. For help and common set up hints see /highmon help");
 			weechat::config_set_plugin("first_run", "true");
 		}
 	}
@@ -542,12 +506,6 @@ sub chanmon_config_init
 	if (weechat::config_get_plugin("alignment") eq "")
 	{
 		weechat::config_set_plugin("alignment", "none");
-	}
-
-	# Dynmon default
-	if (!(weechat::config_is_set_plugin ("dynamic")))
-	{
-		weechat::config_set_plugin("dynamic", "off");
 	}
 
 	# Short name default
@@ -562,13 +520,19 @@ sub chanmon_config_init
 		weechat::config_set_plugin("color_buf", "on");
 	}
 
-	# Away message default
-	if (!(weechat::config_is_set_plugin ("show_aways")))
+	# Hotlist show default
+	if (!(weechat::config_is_set_plugin ("hotlist_show")))
 	{
-		weechat::config_set_plugin("show_aways", "off");
+		weechat::config_set_plugin("hotlist_show", "off");
 	}
 
-	# chanmon log default
+	# Away only default
+	if (!(weechat::config_is_set_plugin ("away_only")))
+	{
+		weechat::config_set_plugin("away_only", "off");
+	}
+
+	# highmon log default
 	if (!(weechat::config_is_set_plugin ("logging")))
 	{
 		weechat::config_set_plugin("logging", "off");
@@ -584,6 +548,20 @@ sub chanmon_config_init
 	if (!(weechat::config_is_set_plugin ("merge_private")))
 	{
 		weechat::config_set_plugin("merge_private", "off");
+	}
+
+	# Set bar config in case output was set to "bar" before even changing the setting
+	if (weechat::config_get_plugin("output") eq "bar")
+	{
+		# Output bar lines default
+		if (!(weechat::config_is_set_plugin ("bar_lines")))
+		{
+			weechat::config_set_plugin("bar_lines", "10");
+		}
+		if (!(weechat::config_is_set_plugin ("bar_scrolldown")))
+		{
+			weechat::config_set_plugin("bar_scrolldown", "off");
+		}
 	}
 
 	# Check for exisiting prefix/suffix chars, and setup accordingly
@@ -618,26 +596,26 @@ sub chanmon_config_init
 }
 
 # Get config updates
-sub chanmon_config_cb
+sub highmon_config_cb
 {
 	$point = $_[0];
 	$name = $_[1];
 	$value = $_[2];
 
-	$name =~ s/^plugins\.var\.perl\.chanmon\.//;
+	$name =~ s/^plugins\.var\.perl\.highmon\.//;
 
 	# Set logging on buffer
 	if ($name eq "logging")
 	{
 		# Search for pre-existing buffer
-		$chanmon_buffer = weechat::buffer_search("perl", "chanmon");
+		$highmon_buffer = weechat::buffer_search("perl", "highmon");
 		if ($value eq "off")
 		{
-			weechat::buffer_set($chanmon_buffer, "localvar_set_no_log", "1");
+			weechat::buffer_set($highmon_buffer, "localvar_set_no_log", "1");
 		}
 		else
 		{
-			weechat::buffer_set($chanmon_buffer, "localvar_del_no_log", "");
+			weechat::buffer_set($highmon_buffer, "localvar_del_no_log", "");
 		}
 	}
 	# Output changer
@@ -646,11 +624,11 @@ sub chanmon_config_cb
 		if ($value eq "bar")
 		{
 			# Search for pre-existing buffer
-			$chanmon_buffer = weechat::buffer_search("perl", "chanmon");
+			$highmon_buffer = weechat::buffer_search("perl", "highmon");
 			# Close if it exists
-			if ($chanmon_buffer ne "")
+			if ($highmon_buffer ne "")
 			{
-				weechat::buffer_close($chanmon_buffer)
+				weechat::buffer_close($highmon_buffer)
 			}
 
 			# Output bar lines default
@@ -658,63 +636,62 @@ sub chanmon_config_cb
 			{
 				weechat::config_set_plugin("bar_lines", "10");
 			}
+			if (!(weechat::config_is_set_plugin ("bar_scrolldown")))
+			{
+				weechat::config_set_plugin("bar_scrolldown", "off");
+			}
 			# Make a bar if doesn't exist
-			chanmon_bar_open();
+			highmon_bar_open();
 		}
 		elsif ($value eq "buffer")
 		{
 			# If a bar exists, close it
-			chanmon_bar_close();
+			highmon_bar_close();
 			# Open buffer
-			chanmon_buffer_open();
+			highmon_buffer_open();
 		}
 
+	}
+	# Change if hotlist config changes
+	elsif ($name eq "hotlist_show")
+	{
+		# Search for pre-existing buffer
+		$highmon_buffer = weechat::buffer_search("perl", "highmon");
+		if ($value eq "off" && $highmon_buffer)
+		{
+			weechat::buffer_set($highmon_buffer, "notify", "0");
+		}
+		elsif ($value ne "off" && $highmon_buffer)
+		{
+			weechat::buffer_set($highmon_buffer, "notify", "3");
+		}
 	}
 	elsif ($name eq "weechat.look.prefix_suffix")
 	{
 		if (weechat::config_get_plugin("output") eq "bar")
 		{
 			@bar_lines = ();
-			weechat::print("", "\tchanmon: weechat.look.prefix_suffix changed, clearing chanmon bar");
-			weechat::bar_item_update("chanmon");
+			weechat::print("", "\thighmon: weechat.look.prefix_suffix changed, clearing highmon bar");
+			weechat::bar_item_update("highmon");
 		}
 	}
 	return weechat::WEECHAT_RC_OK;
 }
 
-# Toggle dynamic monitoring on/off
-sub chanmon_dyn_toggle
-{
-	if (weechat::config_get_plugin("dynamic") eq "off")
-	{
-		weechat::config_set_plugin("dynamic", "on");
-		chanmon_print("Dynamic Channel Monitoring Enabled");
-		return weechat::WEECHAT_RC_OK;
-	}
-	elsif (weechat::config_get_plugin("dynamic") eq "on")
-	{
-		weechat::config_set_plugin("dynamic", "off");
-		chanmon_print("Dynamic Channel Monitoring Disabled");
-		return weechat::WEECHAT_RC_OK;
-	}
-}
-
 # Set up weechat hooks / commands
-sub chanmon_hook
+sub highmon_hook
 {
-	weechat::hook_print("", "", "", 0, "chanmon_new_message", "");
-	weechat::hook_command("chmonitor", "Toggles monitoring for a channel", "[channel [server]]", " channel: What channel to toggle monitoring for\n  server: Internal server name, if channel is on more than one server", "%(irc_channels) %(irc_servers)", "chanmon_toggle", "");
-	weechat::hook_command("dynmon", "Toggles 'dynamic' monitoring (auto-disable monitoring for current channel)", "", "", "", "chanmon_dyn_toggle", "");
-	weechat::hook_command("chanclean", "Chanmon config clean up", "default|orphan|all", " default: Cleans all config entries with the default \"on\" value\n  orphan: Cleans all config entries for channels you aren't currently joined\n     all: Does both defaults and orphan", "default|orphan|all", "chanmon_config_clean", "");
+	weechat::hook_print("", "", "", 0, "highmon_new_message", "");
+	weechat::hook_command("highclean", "Highmon config clean up", "default|orphan|all", " default: Cleans all config entries with the default \"on\" value\n  orphan: Cleans all config entries for channels you aren't currently joined\n     all: Does both defaults and orphan", "default|orphan|all", "highmon_config_clean", "");
 
-	weechat::hook_command("chanmon", "Chanmon help", "[help] | [monitor [channel [server]]] | [dynmon] | [clean default|orphan|all] | clearbar", "    help: Print help for chanmon\n monitor: Toggles monitoring for a channel (/chmonitor)\n  dynmon: Toggles 'dynamic' monitoring (auto-disable monitoring for current channel) (/dynmon)\n   clean: Chanmon config clean up (/chanclean)\nclearbar: Clear Chanmon bar", "help || monitor %(irc_channels) %(irc_servers) || dynmon || clean default|orphan|all || clearbar", "chanmon_command_cb", "");
+	weechat::hook_command("highmon", "Highmon help", "[help] | [monitor [channel [server]]] | [clean default|orphan|all] | clearbar", "    help: Print help on config options for highmon\n monitor: Toggles monitoring for a channel\n   clean: Highmon config clean up (/highclean)\nclearbar: Clear Highmon bar", "help || monitor %(irc_channels) %(irc_servers) || clean default|orphan|all || clearbar", "highmon_command_cb", "");
 
-	weechat::hook_config("plugins.var.perl.chanmon.*", "chanmon_config_cb", "");
-	weechat::hook_config("weechat.look.prefix_suffix", "chanmon_config_cb", "");
+	weechat::hook_config("plugins.var.perl.highmon.*", "highmon_config_cb", "");
+	weechat::hook_config("weechat.look.prefix_suffix", "highmon_config_cb", "");
 }
 
 # Main body, Callback for hook_print
-sub chanmon_new_message
+sub highmon_new_message
 {
 	my $net = "";
 	my $chan = "";
@@ -736,102 +713,69 @@ sub chanmon_new_message
 	$cb_prefix = $_[6];
 	$cb_msg = $_[7];
 
-	# Only work on messages and topic notices
-	if ($cb_tags =~ /irc_privmsg/ || $cb_tags =~ /irc_topic/)
+	# Only work on highlighted messages or private message when enabled
+	if ($cb_high == "1" || (weechat::config_get_plugin("merge_private") eq "on" && $cb_tags =~ /notify_private/))
 	{
-		# Check buffer name is an IRC channel or private message when enabled
-		$bufname = weechat::buffer_get_string($cb_bufferp, 'name');
-		if ($bufname =~ /(.*)\.([#&\+!])(.*)/ || (weechat::config_get_plugin("merge_private") eq "on" && $cb_tags =~ /notify_private/))
+		# Pre bug #29618 (0.3.3) away detect
+		if (weechat::info_get("version_number", "") <= 197120)
 		{
-			# Are we running on this channel
-			if (weechat::config_get_plugin($bufname) ne "off" && $cb_disp eq "1")
+			$away = '';
+			# Get infolist for this server
+			$infolist = weechat::infolist_get("irc_server", "", weechat::buffer_get_string($cb_bufferp, "localvar_server"));
+			while (weechat::infolist_next($infolist))
 			{
-				# Are we running dynamically
-				if (weechat::config_get_plugin("dynamic") eq "on")
+				# Get away message is is_away is on
+				$away = weechat::infolist_string($infolist, "away_message") if (weechat::infolist_integer($infolist, "is_away"));
+			}
+			weechat::infolist_free($infolist);
+		}
+		# Post bug #29618 fix
+		else
+		{
+			$away = weechat::buffer_get_string($cb_bufferp, "localvar_away");
+		}
+		if (weechat::config_get_plugin("away_only") ne "on" || ($away ne ""))
+		{
+			# Check buffer name is an IRC channel
+			$bufname = weechat::buffer_get_string($cb_bufferp, 'name');
+			if ($bufname =~ /(.*)\.([#&\+!])(.*)/)
+			{
+				# Are we running on this channel
+				if (weechat::config_get_plugin($bufname) ne "off" && $cb_disp eq "1")
 				{
-					# Check if this buffer is shown in a window somewhere
-					$window_displayed = weechat::buffer_get_integer($cb_bufferp, "num_displayed");
-					if ($window_displayed ne 0)
-					{
-						# Stop running
-						return weechat::WEECHAT_RC_OK;
-					}
-				}
-
-				# Format nick
-				# Line isn't action or topic notify
-				if (!($cb_tags =~ /irc_action/) && !($cb_tags =~ /irc_topic/))
-				{
-					# Highlight
-					if ($cb_high eq "1")
+					# Format nick
+					# Line isn't action or topic notify
+					if (!($cb_tags =~ /irc_action/) && !($cb_tags =~ /irc_topic/))
 					{
 						# Strip nick colour
 						$uncolnick = weechat::string_remove_color($cb_prefix, "");
 						# Format nick
 						$nick = " ".weechat::config_get_plugin("nick_prefix").weechat::color("chat_highlight").$uncolnick.weechat::color("reset").weechat::config_get_plugin("nick_suffix");
 					}
-					# Normal line
-					else
+					# Topic line
+					elsif ($cb_tags =~ /irc_topic/)
 					{
-						# Format nick
-						$nick = " ".weechat::config_get_plugin("nick_prefix").$cb_prefix.weechat::color("reset").weechat::config_get_plugin("nick_suffix");
+						$nick = " ".$cb_prefix.weechat::color("reset");
 					}
-				}
-				# Topic line
-				elsif ($cb_tags =~ /irc_topic/)
-				{
-
-					$nick = " ".$cb_prefix.weechat::color("reset");
-				}
-				# Action line
-				else
-				{
-					# Highlight
-					if ($cb_high eq "1")
+					# Action line
+					else
 					{
 						$uncolnick = weechat::string_remove_color($cb_prefix, "");
 						$nick = weechat::color("chat_highlight").$uncolnick.weechat::color("reset");
 					}
-					# Normal line
-					else
-					{
-						$nick = $cb_prefix.weechat::color("reset");
-					}
-				}
-				# Send to output
-				chanmon_print ($cb_msg, $cb_bufferp, $nick, $cb_date, $cb_tags);
-			}
-		}
-	}
-	# Special outgoing ACTION & away_info catcher
-	elsif ($cb_tags eq "" || $cb_tags =~ /away_info/ && weechat::config_get_plugin("show_aways") eq "on" )
-	{
-		# Check buffer name is an IRC channel or private message when enabled
-		$bufname = weechat::buffer_get_string($cb_bufferp, 'name');
-		if ($bufname =~ /(.*)\.([#&\+!])(.*)/ || (weechat::config_get_plugin("merge_private") eq "on" && $cb_tags =~ /notify_private/))
-		{
-			# Are we running dynamically
-			if (weechat::config_get_plugin("dynamic") eq "on")
-			{
-				# Check if this buffer is shown in a window somewhere
-				$window_displayed = weechat::buffer_get_integer($cb_bufferp, "num_displayed");
-				if ($window_displayed eq 1)
-				{
-					# Stop running
-					return weechat::WEECHAT_RC_OK;
+					# Send to output
+					highmon_print ($cb_msg, $cb_bufferp, $nick, $cb_date, $cb_tags);
 				}
 			}
-
-			$net = $1;
-			$mynick = weechat::info_get("irc_nick", $net);
-			if ($cb_msg =~ $mynick)
+			# Or is private message
+			elsif (weechat::config_get_plugin("merge_private") eq "on" && $cb_tags =~ /notify_private/)
 			{
-				$action_colour = weechat::color(weechat::config_string(weechat::config_get("weechat.color.chat_prefix_action")));
-				$action_prefix = weechat::config_string(weechat::config_get("weechat.look.prefix_action"));
-				$nick_self_colour = weechat::color(weechat::config_string(weechat::config_get("weechat.color.chat_nick_self")));
-				$nick = $action_colour.$action_prefix.$nick_self_colour.$nick.weechat::color("reset");
-				# Send to output
-				chanmon_print ($cb_msg, $cb_bufferp, $nick, $cb_date, $cb_tags);
+				# Strip nick colour
+				$uncolnick = weechat::buffer_get_string($cb_bufferp, 'short_name');
+				# Format nick
+				$nick = " ".weechat::config_get_plugin("nick_prefix").weechat::color("chat_highlight").$uncolnick.weechat::color("reset").weechat::config_get_plugin("nick_suffix");
+				#Send to output
+				highmon_print ($cb_msg, $cb_bufferp, $nick, $cb_date, $cb_tags);
 			}
 		}
 	}
@@ -839,7 +783,7 @@ sub chanmon_new_message
 }
 
 # Output formatter and printer takes (msg bufpointer nick)
-sub chanmon_print
+sub highmon_print
 {
 	$cb_msg = $_[0];
 	my $cb_bufferp = $_[1] if ($_[1]);
@@ -907,7 +851,7 @@ sub chanmon_print
 			$outstr = "\t".$bufname.":".$nick." ".$cb_msg;
 		}
 	}
-	# chanmon channel toggle message
+	# highmon channel toggle message
 	elsif ($cb_bufferp && !$nick)
 	{
 		# Format buffer name
@@ -936,7 +880,7 @@ sub chanmon_print
 			$outstr = $bufname.": ".$cb_msg;
 		}
 	}
-	# chanmon dynmon
+	# highmon dynmon
 	elsif (!$cb_bufferp && !$nick)
 	{
 		$outstr = "\t".$cb_msg;
@@ -946,15 +890,15 @@ sub chanmon_print
 	if (weechat::config_get_plugin("output") eq "buffer")
 	{
 		# Search for and confirm buffer
-		$chanmon_buffer = weechat::buffer_search("perl", "chanmon");
+		$highmon_buffer = weechat::buffer_search("perl", "highmon");
 		# Print
 		if ($cb_date)
 		{
-			weechat::print_date_tags($chanmon_buffer, $cb_date, $cb_tags, $outstr);
+			weechat::print_date_tags($highmon_buffer, $cb_date, $cb_tags, $outstr);
 		}
 		else
 		{
-			weechat::print($chanmon_buffer, $outstr);
+			weechat::print($highmon_buffer, $outstr);
 		}
 	}
 	elsif (weechat::config_get_plugin("output") eq "bar")
@@ -994,25 +938,30 @@ sub chanmon_print
 
 		push (@bar_lines, $outstr);
 		# Trigger update
-		weechat::bar_item_update("chanmon");
+		weechat::bar_item_update("highmon");
+
+		if (weechat::config_get_plugin("bar_scrolldown") eq "on")
+		{
+			weechat::command("", "/bar scroll highmon * ye")
+		}
 	}
 }
 
 # Start the output display
-sub chanmon_start
+sub highmon_start
 {
 	if (weechat::config_get_plugin("output") eq "buffer")
 	{
-		chanmon_buffer_open();
+		highmon_buffer_open();
 	}
 	elsif (weechat::config_get_plugin("output") eq "bar")
 	{
-		chanmon_bar_open();
+		highmon_bar_open();
 	}
 }
 
 # Takes two optional args (channel server), toggles monitoring on/off
-sub chanmon_toggle
+sub highmon_toggle
 {
 	$data = $_[0];
 	$buffer = $_[1];
@@ -1079,7 +1028,7 @@ sub chanmon_toggle
 			weechat::config_set_plugin($bufname, "on");
 
 			# Send to output formatter
-			chanmon_print("Channel Monitoring Enabled", $bufp);
+			highmon_print("Highlight Monitoring Enabled", $bufp);
 			return weechat::WEECHAT_RC_OK;
 		}
 		elsif (weechat::config_get_plugin($bufname) eq "on" || weechat::config_get_plugin($bufname) eq "")
@@ -1088,7 +1037,7 @@ sub chanmon_toggle
 			weechat::config_set_plugin($bufname, "off");
 
 			# Send to output formatter
-			chanmon_print("Channel Monitoring Disabled", $bufp);
+			highmon_print("Highlight Monitoring Disabled", $bufp);
 			return weechat::WEECHAT_RC_OK;
 		}
 	}
@@ -1182,16 +1131,16 @@ sub format_buffer_name
 }
 
 # Check result of register, and attempt to behave in a sane manner
-if (!weechat::register("chanmon", "KenjiE20", "2.5", "GPL3", "Channel Monitor", "", ""))
+if (!weechat::register("highmon", "KenjiE20", "2.6", "GPL3", "Highlight Monitor", "", ""))
 {
 	# Double load
-	weechat::print ("", "\tChanmon is already loaded");
+	weechat::print ("", "\tHighmon is already loaded");
 	return weechat::WEECHAT_RC_OK;
 }
 else
 {
 	# Start everything
-	chanmon_hook();
-	chanmon_config_init();
-	chanmon_start();
+	highmon_hook();
+	highmon_config_init();
+	highmon_start();
 }
