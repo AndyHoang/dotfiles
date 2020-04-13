@@ -13,6 +13,6 @@
 
 ## Usage
 * `stow -t ~ stow`
-* `stow vim`
-* `cd @arch && stow zsh`
+* `stow --dotfiles vim`
+* `cd @arch && stow --dotfiles zsh`
 
