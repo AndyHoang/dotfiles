@@ -58,6 +58,8 @@ Plug 'tmsvg/pear-tree'
 Plug 'machakann/vim-sandwich'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'laher/fuzzymenu.vim'
+
 "Plug 'rking/ag.vim'
 "Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
