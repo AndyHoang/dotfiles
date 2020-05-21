@@ -123,7 +123,7 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
-
+alias ssht="ssh $*  \"tmux attach || tmux\""
 #export PATH=$PATH:/usr/local/opt/go/libexec/bin
 #GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
 #export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
