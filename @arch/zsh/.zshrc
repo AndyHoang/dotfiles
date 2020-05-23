@@ -47,7 +47,7 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git fzf z ssh-agent autojump)
+plugins=(git fzf z)
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_parcelperform
 
 source $ZSH/oh-my-zsh.sh
@@ -69,7 +69,7 @@ precmd () { print -Pn "\e]2;%n@%M | %~\a" } # title bar prompt
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
- export SSH_KEY_PATH="~/.ssh/dsa_id"
+ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -123,7 +123,6 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
-alias ssht="ssh $*  \"tmux attach || tmux\""
 #export PATH=$PATH:/usr/local/opt/go/libexec/bin
 #GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
 #export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
@@ -138,7 +137,7 @@ alias ssht="ssh $*  \"tmux attach || tmux\""
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export PATH=$PATH:$HOME/.cargo/bin
-[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+#[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
 # Created by `userpath` on 2020-01-01 04:48:19
 export PATH="$PATH:/home/andyhoang/.local/bin"
@@ -149,4 +148,4 @@ if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
 fi
-source /usr/share/nvm/init-nvm.sh
+#source /usr/share/nvm/init-nvm.sh
