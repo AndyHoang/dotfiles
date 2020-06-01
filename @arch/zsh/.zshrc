@@ -57,7 +57,6 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 #Although the other questions list bash methods, they alias cd. Bash provides an inherent method that chains off just the prompt.
 
-precmd () { print -Pn "\e]2;%n@%M | %~\a" } # title bar prompt
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
@@ -90,6 +89,7 @@ alias df='df -h'
 #continue download
 alias wget="wget -c"
 
+export SBT_OPTS=-DappEnv=local
 #ps
 alias ps="ps auxf"
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
@@ -137,7 +137,6 @@ alias jctl="journalctl -p 3 -xb"
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export PATH=$PATH:$HOME/.cargo/bin
-#[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
 # Created by `userpath` on 2020-01-01 04:48:19
 export PATH="$PATH:/home/andyhoang/.local/bin"
