@@ -47,7 +47,7 @@ ZSH_THEME="avit"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git fzf z)
+plugins=(git fzf z ssh-agent)
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_parcelperform
 
 source $ZSH/oh-my-zsh.sh
