@@ -295,15 +295,12 @@ function! Flake8(data)
   let g:ale_python_flake8_executable = a:data
   ALELint
 endf
-function! Python2()
-  call Flake8('python')
-endf
-function! Python3()
+function! Flake()
   call Flake8('python3')
 endf
 
 " call ale check only when be called
-command! -bar Python call Python3()
+command! -bar Python call Flake()
 
 let g:ale_statusline_format = ['err %d', 'warn %d', '']
 

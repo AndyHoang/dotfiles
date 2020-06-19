@@ -140,7 +140,6 @@ export PATH=$PATH:$HOME/.cargo/bin
 
 # Created by `userpath` on 2020-01-01 04:48:19
 export PATH="$PATH:/home/andyhoang/.local/bin"
-export SBT_OPTS=-DappEnv=local 
 
 
 if command -v pyenv 1>/dev/null 2>&1; then
