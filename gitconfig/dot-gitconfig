@@ -1,0 +1,6 @@
+[user]
+  email = ngocdunghoangdl@gmail.com
+[includeIf "gitdir:workplace/"]
+    path = ~/workplace/.gitconfig
+[pull]
+	ff = only
