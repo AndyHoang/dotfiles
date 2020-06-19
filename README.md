@@ -15,6 +15,7 @@
 * `stow -t ~ stow`
 * `stow --dotfiles vim`
 * `cd @arch && stow --dotfiles zsh`
+* `stow -vv --dotfiles dot-config -t ~/.config`
 
 
 # GRUB with arch
