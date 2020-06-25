@@ -3,4 +3,5 @@
 [includeIf "gitdir:workplace/"]
     path = ~/workplace/.gitconfig
 [pull]
-	ff = only
+	ff = yes
+	rebase = false
