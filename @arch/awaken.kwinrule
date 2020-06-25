@@ -1,0 +1,9 @@
+[awaken]
+Description=awaken
+skipswitcher=true
+skipswitcherrule=4
+skiptaskbar=true
+skiptaskbarrule=4
+types=959
+wmclass=awakened-poe-trade
+wmclassmatch=3
