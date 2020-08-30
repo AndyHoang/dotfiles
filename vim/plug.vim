@@ -18,7 +18,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-obsession'
 
 "Plug 'Chiel92/vim-autoformat'
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+"Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
 Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'
