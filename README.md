@@ -14,6 +14,7 @@
 ## Usage
 * `stow -t ~ stow`
 * `stow --dotfiles vim`
+* `stow -vv coc -t ~/.vim`
 * `cd @arch && stow --dotfiles zsh`
 * `stow -vv --dotfiles dot-config -t ~/.config`
 
