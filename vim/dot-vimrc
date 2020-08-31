@@ -185,7 +185,7 @@ endfun
 " other file.
 "
 "
-let g:ale_disable_lsp = 1
+"let g:ale_disable_lsp = 1
 source $HOME/.dotfiles/vim/plug.vim
 
 " ----------------------------------------------------------------------------
@@ -440,9 +440,9 @@ nmap <leader>f9 :set foldlevel=9<CR>
 
 
 " use coc for jumps
-nmap <leader>d <Plug>(coc-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
+"nmap <leader>d <Plug>(coc-definition)
+"nmap <leader>gi <Plug>(coc-implementation)
+"nmap <leader>gr <Plug>(coc-references)
 
 
 " Use S_ to wrap a selection in gettext (Underscore tempalate style)

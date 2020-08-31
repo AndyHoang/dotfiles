@@ -16,10 +16,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analysis/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-obsession'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "Plug 'Chiel92/vim-autoformat'
-"Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
 Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'
