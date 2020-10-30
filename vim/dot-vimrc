@@ -48,8 +48,7 @@ set showcmd                 " Show partial commands in status line and
 set scrolloff=7             " Minimal number of screen lines to keep above and below the cursor.
 "set visualbell              " Use a visual bell, don't beep!
 set number                  " Show line numbers
-set linebreak               " Break the line on words
-" this make syntastic extreme slow but now i'm using ale
+set linebreak               " Break the line on words " this make syntastic extreme slow but now i'm using ale
 "set cursorline                  " Highlight current line
 
 " show fold column, fold by markers
@@ -267,6 +266,7 @@ let g:jedi#goto_stubs_command = ""
 
 "let g:ale_python_flake8_executable = 'python'   " or 'python' for Python 2
 "let g:ale_python_flake8_args = '-m flake8'
+
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
@@ -312,6 +312,21 @@ if executable('rg')
   set grepprg=rg\ --vimgrep
 
 endif
+
+"#exec  docker run -i --rm -v "$(pwd):/srv/pp_parser" --network parcel_perform --entrypoint pylint parcelperform/pp_parser:master "$@"
+"docker exec -i pp_parser pylint "$@"
+"if expand('%:p') =~# '^/home/andyhoang/test-pylint/'
+    "let b:ale_linters = ['pylint']
+    "let b:ale_python_pylint_use_global = 1
+    "" This is the path to the script above.
+    "let b:ale_python_pylint_executable = '/home/andyhoang/test-pylint/pylint.sh'
+    "" /data matches the path in Docker.
+    "let b:ale_filename_mappings = {
+    "\ 'pylint': [
+    "\   ['/home/andyhoang/test-pylint', '/srv/pp_parser'],
+    "\ ],
+    "\}
+  "endif
 
 " Undotree plugin.
 nnoremap <F5> :UndotreeToggle<CR>
