@@ -141,7 +141,6 @@ map <C-p> :History<cr>
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
@@ -225,10 +224,15 @@ nmap <silent> <Leader>sp :source $HOME/.dotfiles/vim/plug.vim<CR>
 
 
 " <Leader>f{char} to move to {char}
-nmap <Leader>f <Plug>(easymotion-bd-f)
+"nmap <Leader>f <Plug>(easymotion-bd-f)
 -
 " s{char}{char} to move to {char}{char}
-nmap <Leader>s <Plug>(easymotion-bd-f2)
+"nmap <Leader>s <Plug>(easymotion-bd-f2)
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
+let g:tslime_autoset_pane = 1
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c>r <Plug>SetTmuxVars
 
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
