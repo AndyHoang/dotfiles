@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="avit"
 
 # Uncomment the following line to use case-sensitive completion.
- CASE_SENSITIVE="true"
+# CASE_SENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
  DISABLE_AUTO_UPDATE="true"
@@ -148,3 +148,4 @@ if command -v pyenv 1>/dev/null 2>&1; then
   export PATH="$PYENV_ROOT/bin:$PATH"
 fi
 #source /usr/share/nvm/init-nvm.sh
+#
