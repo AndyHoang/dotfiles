@@ -61,6 +61,8 @@ Plug 'machakann/vim-sandwich'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'laher/fuzzymenu.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 "Plug 'rking/ag.vim'
 "Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'

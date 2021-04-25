@@ -396,7 +396,7 @@ vnoremap = =gv
 
 " Nobody ever uses "Ex" mode, and it's annoying to leave
 noremap Q <nop>
-
+let g:UltiSnipsExpandTrigger="<tab>"
 
 
 function! InitializeDirectories()
