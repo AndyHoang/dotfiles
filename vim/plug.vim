@@ -52,6 +52,7 @@ Plug 'tpope/vim-fugitive' "| Plug 'shumphrey/fugitive-gitlab.vim'
 
 " Themes
 Plug 'junegunn/seoul256.vim'
+Plug 'wojciechkepka/vim-github-dark'
 Plug 'jdkanani/vim-material-theme'
 Plug 'kristijanhusak/vim-hybrid-material'
 

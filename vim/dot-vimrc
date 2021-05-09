@@ -588,8 +588,8 @@ endfunction
 
 
 set background=dark
-colorscheme material-theme
-"colorscheme hybrid_material
+colorscheme ghdark
+"colorscheme material-theme
 "colorscheme nord
 "set t_Co=256
 

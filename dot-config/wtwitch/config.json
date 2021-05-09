@@ -1,6 +1,6 @@
 {
   "player": "mpv",
-  "quality": "1080p60,720p60,best",
+  "quality": "1080p60,1080,720p60,720,best",
   "colors": "true",
   "printOfflineSubscriptions": "true",
   "subscriptions": [
@@ -9,9 +9,18 @@
     },
     {
       "streamer": "t90official"
+    },
+    {
+      "streamer": "bact_"
+    },
+    {
+      "streamer": "back2warcraft"
+    },
+    {
+      "streamer": "membtv"
     }
   ],
-  "apiToken": "xj12yuezxwcqv5b19da7ywyl5meqh5",
-  "apiTokenExpiry": "1619971366",
-  "lastSubscriptionUpdate": "1619885358"
+  "apiToken": "y0wj86bxwcuhjsn3h78ju66z8u77ta",
+  "apiTokenExpiry": "1620620211",
+  "lastSubscriptionUpdate": "1620533811"
 }
