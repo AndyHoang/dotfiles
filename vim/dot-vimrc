@@ -587,6 +587,7 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
 endfunction
 
 
+let g:gh_color = "soft"
 set background=dark
 colorscheme ghdark
 "colorscheme material-theme
