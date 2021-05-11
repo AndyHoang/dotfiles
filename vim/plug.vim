@@ -17,7 +17,7 @@ Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analy
 "Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-obsession'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jgdavey/tslime.vim'
+"Plug 'jgdavey/tslime.vim'
 
 "Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -25,7 +25,7 @@ Plug 'luochen1990/rainbow'
 Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
-Plug 'parkr/vim-jekyll'
+"Plug 'parkr/vim-jekyll'
 "Indent Guides is a plugin for visually displaying indent levels in Vim.
 Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
@@ -45,16 +45,8 @@ Plug 'jremmen/vim-ripgrep'
 " Pairs of handy bracket mappings
 "Plug 'tpope/vim-unimpaired'
 
-"Plug 'majutsushi/tagbar' ", { 'on': 'TagbarToggle' }
-
 " Fugitive: Git from within Vim
 Plug 'tpope/vim-fugitive' "| Plug 'shumphrey/fugitive-gitlab.vim'
-
-" Themes
-Plug 'junegunn/seoul256.vim'
-Plug 'wojciechkepka/vim-github-dark'
-Plug 'jdkanani/vim-material-theme'
-Plug 'kristijanhusak/vim-hybrid-material'
 
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tmsvg/pear-tree'
@@ -64,6 +56,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'laher/fuzzymenu.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+" Themes
+Plug 'junegunn/seoul256.vim'
+Plug 'wojciechkepka/vim-github-dark'
+Plug 'jdkanani/vim-material-theme'
+Plug 'kristijanhusak/vim-hybrid-material'
+
 
 "Plug 'rking/ag.vim'
 "Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
