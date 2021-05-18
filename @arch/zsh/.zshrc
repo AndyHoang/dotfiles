@@ -1,4 +1,5 @@
 # Path to your oh-my-zsh installation.
+#zmodload zsh/zprof
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -48,9 +49,11 @@ COMPLETION_WAITING_DOTS="true"
 
 
 plugins=(git fzf fzf-tab z ssh-agent gcloud kubectl)
+
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_parcelperform
 
 source $ZSH/oh-my-zsh.sh
+
 
 # User configuration
 # You may need to manually set your language environment
@@ -148,4 +151,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
   export PATH="$PYENV_ROOT/bin:$PATH"
 fi
 #source /usr/share/nvm/init-nvm.sh
-#
+eval "$(zoxide init zsh)"
+#zprof
