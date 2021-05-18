@@ -18,6 +18,9 @@ Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analy
 Plug 'tpope/vim-obsession'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'jgdavey/tslime.vim'
+"
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 "Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
