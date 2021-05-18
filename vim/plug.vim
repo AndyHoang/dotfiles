@@ -46,7 +46,7 @@ Plug 'jremmen/vim-ripgrep'
 "Plug 'wincent/ferret'
 
 " Pairs of handy bracket mappings
-"Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 
 " Fugitive: Git from within Vim
 Plug 'tpope/vim-fugitive' "| Plug 'shumphrey/fugitive-gitlab.vim'
