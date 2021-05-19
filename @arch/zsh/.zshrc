@@ -48,7 +48,8 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 
 
-plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
+#plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
+plugins=(git fzf fzf-tab z ssh-agent kubectl)
 
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_parcelperform
 
