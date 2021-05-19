@@ -152,5 +152,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
   export PATH="$PYENV_ROOT/bin:$PATH"
 fi
 #source /usr/share/nvm/init-nvm.sh
-eval "$(zoxide init zsh)"
+if command zoxide 1>/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
 #zprof
