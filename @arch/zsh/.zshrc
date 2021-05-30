@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 
 
 #plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
-plugins=(git fzf fzf-tab z ssh-agent kubectl)
+plugins=(git fzf fzf-tab z ssh-agent kubectl pyenv)
 
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_parcelperform
 
@@ -111,7 +111,8 @@ alias kc='killall conky'
 alias hw="hwinfo --short"
 
 #get fastest mirrors in your neighborhood 
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirror="sudo reflector  --download-timeout 2 --connection-timeout 2 --number 10 --country vn   --thread 4 --verbose --save /etc/pacman.d/mirrorlist"
+#alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
 #alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
 #alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
 #alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
