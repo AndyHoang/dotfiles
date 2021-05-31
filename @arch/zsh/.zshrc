@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 
 
 #plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
-plugins=(git fzf fzf-tab z ssh-agent kubectl pyenv)
+plugins=(git fzf fzf-tab z ssh-agent kubectl)
 
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_parcelperform
 
@@ -93,13 +93,12 @@ alias df='df -h'
 #continue download
 alias wget="wget -c"
 
-export SBT_OPTS=-DappEnv=local
 #ps
 alias ps="ps auxf"
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 #grub update
-#alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
 #add new fonts
 alias fc='sudo fc-cache -fv'
@@ -142,19 +141,9 @@ alias jctl="journalctl -p 3 -xb"
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export PATH=$PATH:$HOME/.cargo/bin
-
+export SBT_OPTS=-DappEnv=local
 # Created by `userpath` on 2020-01-01 04:48:19
 export PATH="$PATH:/home/andyhoang/.local/bin"
 
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-fi
-#source /usr/share/nvm/init-nvm.sh
-if command zoxide 1>/dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
-fi
 
 #zprof
