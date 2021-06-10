@@ -19,8 +19,9 @@ Plug 'tpope/vim-obsession'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'jgdavey/tslime.vim'
 "
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+"Plug 'godlygeek/tabular'
+"Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/vim-easy-align'
 
 "Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
