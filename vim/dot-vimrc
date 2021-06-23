@@ -212,7 +212,8 @@ nmap <Leader>s <Plug>(easymotion-bd-f2)
 "" Move to word
 "map  <Leader><Leader>w <Plug>(easymotion-bd-w)
 "nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
-
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
 nmap <silent> <Leader>ez :vsplit $HOME/.zshrc<CR>

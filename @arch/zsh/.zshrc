@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 
 
 #plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
-plugins=(git fzf fzf-tab z ssh-agent kubectl)
+plugins=(git fzf z ssh-agent kubectl)
 
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_parcelperform
 
@@ -85,7 +85,7 @@ export LANG=en_US.UTF-8
 #alias wget='wget --directory-prefix=/Users/andyhoang/Downloads/ --quiet'
 alias vi="vim"
 # Some copy utils
-alias update='sudo pacman -Syyu'
+# alias update='sudo pacman -Syyu' # use yay instead
 
 #readable output
 alias df='df -h'

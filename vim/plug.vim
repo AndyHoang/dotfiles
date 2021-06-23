@@ -22,6 +22,7 @@ Plug 'tpope/vim-obsession'
 "Plug 'godlygeek/tabular'
 "Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/vim-easy-align'
+Plug 'vimwiki/vimwiki'
 
 "Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
