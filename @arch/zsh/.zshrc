@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 
 
 #plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
-plugins=(git fzf z ssh-agent kubectl)
+plugins=(git fzf z ssh-agent kubectl tmuxinator)
 
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_parcelperform
 
