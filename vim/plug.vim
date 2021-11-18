@@ -15,7 +15,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'metakirby5/codi.vim' " nice to have when learning new lang
 Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analysis/ale'
 "Plug 'easymotion/vim-easymotion'
-Plug 'tpope/vim-obsession'
+"Plug 'tpope/vim-obsession'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'jgdavey/tslime.vim'
 "
@@ -44,7 +44,7 @@ Plug 'gcmt/wildfire.vim'
 Plug 'tpope/vim-git', { 'for': 'git' }
 "Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
-Plug 'jremmen/vim-ripgrep'
+Plug 'JesseLeite/vim-agriculture'
 "Plug 'wincent/ferret'
 
 " Pairs of handy bracket mappings
@@ -54,11 +54,11 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive' "| Plug 'shumphrey/fugitive-gitlab.vim'
 
 Plug 'rhysd/conflict-marker.vim'
-Plug 'tmsvg/pear-tree'
+"Plug 'tmsvg/pear-tree'
 Plug 'machakann/vim-sandwich'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'laher/fuzzymenu.vim'
+"Plug 'laher/fuzzymenu.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 

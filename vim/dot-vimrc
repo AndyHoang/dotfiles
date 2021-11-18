@@ -141,6 +141,8 @@ map <C-p> :History<cr>
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
@@ -197,6 +199,12 @@ let g:wildfire_objects = {
             \ }
 " }
 let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
+
+" fzf.vim {
+
+  autocmd VimEnter * delcommand Rg " Using RgRaw instead
+
+" }
 
 " <Leader>f{char} to move to {char}
 "map  <Leader><Leader>f <Plug>(easymotion-bd-f)
