@@ -320,10 +320,14 @@ command! -bar Python call Flake()
 
 let g:ale_statusline_format = ['err %d', 'warn %d', '']
 
-if executable('rg')
-    " Use ag over grep
-  set grepprg=rg\ --vimgrep
+"if executable('rg')
+    "" Use ag over grep
+  "set grepprg=rg\ --vimgrep
 
+"endif
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+  set grepformat=%f:%l:%c:%m
 endif
 
 "#exec  docker run -i --rm -v "$(pwd):/srv/pp_parser" --network parcel_perform --entrypoint pylint parcelperform/pp_parser:master "$@"

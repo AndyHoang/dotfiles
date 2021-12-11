@@ -45,6 +45,7 @@ Plug 'tpope/vim-git', { 'for': 'git' }
 "Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
 Plug 'JesseLeite/vim-agriculture'
+"Plug 'jremmen/vim-ripgrep'
 "Plug 'wincent/ferret'
 
 " Pairs of handy bracket mappings
