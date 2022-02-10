@@ -147,3 +147,4 @@ export PATH="$PATH:/home/andyhoang/.local/bin"
 
 
 #zprof
+alias lg='lazygit'
