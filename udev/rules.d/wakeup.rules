@@ -1,0 +1,10 @@
+# this not working somehow
+#ACTION=="add", SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c53f", ATTR{power/wakeup}="disabled"
+
+# I have disable base on kernels name of my port:
+# dmesg -w to get usb port
+# udevadm info --attribute-walk /sys/bus/usb/devices/usb5/5-3 to get kernels and pic
+
+# disable wakeup from my mouse
+ACTION=="add", SUBSYSTEM=="pci", DRIVERS=="xhci_hcd", KERNELS=="0000:07:00.3", ATTR{power/wakeup}="disabled"
+
