@@ -68,6 +68,7 @@ Plug 'junegunn/seoul256.vim'
 Plug 'wojciechkepka/vim-github-dark'
 Plug 'jdkanani/vim-material-theme'
 Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'savq/melange'
 
 
 "Plug 'rking/ag.vim'
