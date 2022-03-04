@@ -1,0 +1,8 @@
+name: aria2
+
+windows:
+  - tui:
+      layout: main-horizontal
+      panes:
+        - aria2p
+        - tail -f ~/.aria2/aria2.log 

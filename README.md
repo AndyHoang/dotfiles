@@ -12,7 +12,7 @@
 * `cd @arch && stow --dotfiles zsh`
 
 
-# Fix GRUB to your existing arch (me using kernel `linux`)
+## Fix GRUB to your existing arch (me using kernel `linux`)
 - boot to liveiso (WITH EFI)
 - arch-chroot
     ```sh
@@ -30,3 +30,6 @@
 * After install `nvidia` package, make sure to reinstall `linux` kernels (took me 5 hours)
 * TODO wait for this fix `May 29 23:38:28 andyhoang-pc kernel: nvidia-gpu 0000:06:00.3: i2c timeout error e0000000` (1660)
 * Remove unused `amdvkl` package
+
+## Stop mouse wake up
+ `sudo ln  udev/rules.d/wakeup.rules /etc/udev/rules.d`
