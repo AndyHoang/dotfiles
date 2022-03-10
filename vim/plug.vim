@@ -35,7 +35,7 @@ Plug 'mbbill/undotree'
 Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
 Plug 'mhinz/vim-signify'
-Plug 'heavenshell/vim-pydocstring'
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 "use enter to select things
 Plug 'gcmt/wildfire.vim'
 
