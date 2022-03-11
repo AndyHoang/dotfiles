@@ -9,6 +9,7 @@
 * `stow --dotfiles vim`
 * `stow -vv coc -t ~/.vim`
 * `stow -vv --dotfiles dot-config -t ~/.config`
+* `stow -vv custom-snippets/ -t ~/.vim`
 * `cd @arch && stow --dotfiles zsh`
 
 

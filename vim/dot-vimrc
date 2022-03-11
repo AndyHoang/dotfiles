@@ -393,7 +393,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-autocmd FileType python UltiSnipsAddFiletypes django
+"autocmd FileType python UltiSnipsAddFiletypes django
 " -------------------------------------------------------------------------
 "   Custom mappings
 " ----------------------------------------------------------------------------
@@ -412,6 +412,8 @@ vnoremap = =gv
 noremap Q <nop>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="\\<tab>"
+
+let g:UltiSnipsSnippetDirectories=["my-snippets"]
 
 
 function! InitializeDirectories()
