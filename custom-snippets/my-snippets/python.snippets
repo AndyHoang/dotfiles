@@ -1,13 +1,21 @@
 priority -50
 
 
-snippet csvdr "csv dict reader"  b
+snippet csvdw "csv dict writer"  b
 import csv
-with open('${1:filename}.csv', 'w', newline='') as csvfile:
+with open('${1}.csv', 'w', newline='') as csvfile:
     fieldnames = [${2:headers}]
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
     for ${3:dict_item} in ${4:items}:
         writer.writerow($3)
+endsnippet
+
+snippet csvdr "csv dict reader"  b
+import csv
+with open('${1}.csv','r') as file:
+    reader = DictReader(file,fieldnames=${2:headers})
+    for row in reader:
+        ${3:row}
 endsnippet
 
