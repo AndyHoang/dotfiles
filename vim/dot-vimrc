@@ -410,7 +410,8 @@ vnoremap = =gv
 
 " Nobody ever uses "Ex" mode, and it's annoying to leave
 noremap Q <nop>
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:vimwiki_table_mappings = 0
+let g:UUltiSnipsExpandTriggerltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="\\<tab>"
 
 let g:UltiSnipsSnippetDirectories=["my-snippets"]
