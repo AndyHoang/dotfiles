@@ -10,12 +10,12 @@ font:
 draw_bold_text_with_bright_colors: true
 window.dynamic_title: true
 
-#shell:
-  #program: /bin/bash
-  #args:
-    #- --login
-    #- -c
-    #- 'tmux attach || tmux new -s new-session'
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+    - -c
+    - 'tmux attach || tmux new -s new-session'
 
 alt_send_esc: true
 mouse:
