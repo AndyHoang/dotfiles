@@ -1,0 +1,18 @@
+name: k8s-cod-<%= @args[0] %>
+root: null
+
+
+#pre_window: 
+
+windows:
+  - k8s-exec:
+    - kubectl exec -it `kubectl get pods -n <%= @args[0] %> --no-headers=true --field-selector=status.phase==Running -o name | cut -d/ -f2 | head -n 1 ` -n <%= @args[0] %> -- sh
+    - bash
+    - ls
+  - local:
+    - cd ~/workplace/
+    - kubectl get pods -n <%= @args[0] %> -o jsonpath="{.items[*].spec.containers[*].image}"
+    - kubectl get pods -n <%= @args[0] %>
+  - k8s-logs:
+    - kubectl logs -f `kubectl get pods -n <%= @args[0] %> --no-headers=true --field-selector=status.phase==Running -o name| cut -d/ -f2 | head -n 1 ` -n <%= @args[0] %>
+    - ls
