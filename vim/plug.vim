@@ -39,6 +39,7 @@ Plug 'mhinz/vim-signify'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 "use enter to select things
 Plug 'gcmt/wildfire.vim'
+Plug 'nanotee/zoxide.vim'
 
 " Syntax
 "Plug 'sheerun/vim-polyglot'

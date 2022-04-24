@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 
 
 #plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
-plugins=(git fzf z ssh-agent kubectl tmuxinator)
+plugins=(git fzf ssh-agent kubectl tmuxinator)
 
 zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_parcelperform
 
@@ -148,3 +148,5 @@ export PATH="$PATH:/home/andyhoang/.local/bin"
 
 #zprof
 alias lg='lazygit'
+
+eval "$(zoxide init zsh)"
