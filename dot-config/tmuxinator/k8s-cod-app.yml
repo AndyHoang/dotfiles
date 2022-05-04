@@ -1,8 +1,19 @@
 name: k8s-cod-<%= @args[0] %>
 root: null
 
+# aws sso login --profile cod && tmux ls | grep k8s-cod- | cut -d ':' -f1 | xargs -I % tmux kill-session -t % && echo 'Done!!!!'
 
-#pre_window: 
+# Runs on project start, always
+on_project_start: kubectl config use-context arn:aws:eks:ap-southeast-1:589431930217:cluster/cod-3XjQecxM
+
+# Run on project start, the first time
+# on_project_first_start: command
+
+# Run on project start, after the first time
+# on_project_restart: command
+
+# Run on project exit ( detaching from tmux session )
+# on_project_exit: command
 
 windows:
   - k8s-exec:
