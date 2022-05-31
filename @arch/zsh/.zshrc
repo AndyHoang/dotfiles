@@ -142,6 +142,7 @@ alias jctl="journalctl -p 3 -xb"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export PATH=$PATH:$HOME/.cargo/bin
 export SBT_OPTS=-DappEnv=local
+export LOKI_ADDR=http://loki-gateway.pp-local.prod
 # Created by `userpath` on 2020-01-01 04:48:19
 export PATH="$PATH:/home/andyhoang/.local/bin"
 
