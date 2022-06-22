@@ -206,20 +206,6 @@ let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
 
 " }
 
-" <Leader>f{char} to move to {char}
-"map  <Leader><Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-bd-f)
-
-" s{char}{char} to move to {char}{char}
-nmap <Leader>s <Plug>(easymotion-bd-f2)
-
-" Move to line
-"map <Leader><Leader>L <Plug>(easymotion-bd-jk)
-"nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)
-
-"" Move to word
-"map  <Leader><Leader>w <Plug>(easymotion-bd-w)
-"nmap <Leader><Leader>w <Plug>(easymotion-overwin-w)
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
@@ -232,16 +218,6 @@ nmap <silent> <Leader>sv :source $MYVIMRC<CR>
 nmap <silent> <Leader>sp :source $HOME/.dotfiles/vim/plug.vim<CR>
 
 
-" <Leader>f{char} to move to {char}
-"nmap <Leader>f <Plug>(easymotion-bd-f)
--
-" s{char}{char} to move to {char}{char}
-"nmap <Leader>s <Plug>(easymotion-bd-f2)
-let g:tslime_always_current_session = 1
-let g:tslime_always_current_window = 1
-let g:tslime_autoset_pane = 1
-vmap <C-c><C-c> <Plug>SendSelectionToTmux
-nmap <C-c>r <Plug>SetTmuxVars
 
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
@@ -329,21 +305,6 @@ if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
   set grepformat=%f:%l:%c:%m
 endif
-
-"#exec  docker run -i --rm -v "$(pwd):/srv/pp_parser" --network parcel_perform --entrypoint pylint parcelperform/pp_parser:master "$@"
-"docker exec -i pp_parser pylint "$@"
-"if expand('%:p') =~# '^/home/andyhoang/test-pylint/'
-    "let b:ale_linters = ['pylint']
-    "let b:ale_python_pylint_use_global = 1
-    "" This is the path to the script above.
-    "let b:ale_python_pylint_executable = '/home/andyhoang/test-pylint/pylint.sh'
-    "" /data matches the path in Docker.
-    "let b:ale_filename_mappings = {
-    "\ 'pylint': [
-    "\   ['/home/andyhoang/test-pylint', '/srv/pp_parser'],
-    "\ ],
-    "\}
-  "endif
 
 " Undotree plugin.
 nnoremap <F5> :UndotreeToggle<CR>
@@ -489,34 +450,6 @@ let b:surround_{char2nr('_')} = "<%- gettext(\"\r\") %>"
 let g:jekyll_post_extension = '.md'
 
 set exrc
-"let g:tagbar_type_go = {
-    "\ 'ctagstype' : 'go',
-    "\ 'kinds'     : [
-        "\ 'p:package',
-        "\ 'i:imports:1',
-        "\ 'c:constants',
-        "\ 'v:variables',
-        "\ 't:types',
-        "\ 'n:interfaces',
-        "\ 'w:fields',
-        "\ 'e:embedded',
-        "\ 'm:methods',
-        "\ 'r:constructor',
-        "\ 'f:functions'
-    "\ ],
-    "\ 'sro' : '.',
-    "\ 'kind2scope' : {
-        "\ 't' : 'ctype',
-        "\ 'n' : 'ntype'
-    "\ },
-    "\ 'scope2kind' : {
-        "\ 'ctype' : 't',
-        "\ 'ntype' : 'n'
-    "\ },
-    "\ 'ctagsbin'  : 'gotags',
-    "\ 'ctagsargs' : '-sort -silent'
-"\ }
-
 
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
@@ -605,9 +538,5 @@ endfunction
 
 let g:gh_color = "soft"
 set background=dark
-"colorscheme ghdark
 colorscheme melange
-"colorscheme material-theme
-"colorscheme nord
-"set t_Co=256
 
