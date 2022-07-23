@@ -1,0 +1,35 @@
+name: data-migrate
+root: null
+
+
+#pre_window: 
+
+windows:
+  - local:
+    - cd ~/workplace/parcel-perform/pp_data_io
+    - git checkout production
+    - git pull
+  - server:
+    - ssh `sed -rn 's/^\s*Host\s+(.*)\s*/\1/ip' ~/.ssh/config | grep data | head -n 1`
+    - cd /data/www/parcel-perform/
+    - tmux attach -t andy || tmux new -s andy
+    #- docker exec -it `docker ps --format '{{.Names}}' | grep data | head -n 1` su
+    #- docker exec -it docker ps --format '{{.Names}}'
+  - logs:
+      layout: main-vertical
+      panes:
+        - logs:
+          - ssh `sed -rn 's/^\s*Host\s+(.*)\s*/\1/ip' ~/.ssh/config | grep data | head -n 1`
+          - cd /data/www/parcel-perform/logs
+          - ls | grep data
+  - elk-machine:
+      layout: main-vertical
+      panes:
+        - activity-log:
+          - ssh `sed -rn 's/^\s*Host\s+(.*)\s*/\1/ip' ~/.ssh/config | grep elk | head -n 1`
+          - cd /centralized/data/www/parcel-perform/logs/
+          - ls | grep -E 'data.*activity'
+        - elk-log:
+          - ssh `sed -rn 's/^\s*Host\s+(.*)\s*/\1/ip' ~/.ssh/config | grep elk | head -n 1`
+          - cd /centralized/data/www/parcel-perform/logs/
+          - ls | grep -E 'data.*elk'
