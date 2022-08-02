@@ -51,7 +51,7 @@ Plug 'JesseLeite/vim-agriculture'
 "Plug 'wincent/ferret'
 
 " Pairs of handy bracket mappings
-Plug 'tpope/vim-unimpaired'
+Plug 'cohama/lexima.vim'
 
 " Fugitive: Git from within Vim
 Plug 'tpope/vim-fugitive' "| Plug 'shumphrey/fugitive-gitlab.vim'
