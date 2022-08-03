@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'metakirby5/codi.vim' " nice to have when learning new lang
 Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
+Plug 'nanotee/zoxide.vim'
 "Plug 'easymotion/vim-easymotion'
 "Plug 'tpope/vim-obsession'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
