@@ -56,6 +56,7 @@ Plug 'cohama/lexima.vim'
 
 " Fugitive: Git from within Vim
 Plug 'tpope/vim-fugitive' "| Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'shumphrey/fugitive-gitlab.vim'
 
 Plug 'rhysd/conflict-marker.vim'
 "Plug 'tmsvg/pear-tree'
