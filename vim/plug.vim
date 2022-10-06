@@ -46,7 +46,7 @@ Plug 'nanotee/zoxide.vim'
 "Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-git', { 'for': 'git' }
 "Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-"Plug 'JamshedVesuna/vim-markdown-preview' , { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'JesseLeite/vim-agriculture'
 "Plug 'jremmen/vim-ripgrep'
 "Plug 'wincent/ferret'
