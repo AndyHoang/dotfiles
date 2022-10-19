@@ -5,7 +5,6 @@ font:
   normal:
     style: Regular
   size: 11.0
-  use_thin_strokes: false
 
 draw_bold_text_with_bright_colors: true
 window.dynamic_title: true
