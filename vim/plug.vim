@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'nanotee/zoxide.vim'
+Plug 'dhruvasagar/vim-table-mode'
 "Plug 'easymotion/vim-easymotion'
 "Plug 'tpope/vim-obsession'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}

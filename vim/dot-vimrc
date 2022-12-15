@@ -208,6 +208,8 @@ let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
 
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
+let g:vimwiki_key_mappings = { 'table_mappings': 0, }
 
 nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
 nmap <silent> <Leader>ez :vsplit $HOME/.zshrc<CR>
@@ -320,6 +322,7 @@ let g:netrw_browse_split = 4
 
 
 nmap <C-s><C-p> <Plug>MarkdownPreview
+let g:mkdp_theme = 'light'
 
 let g:racer_cmd="/Users/andyhoang/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
