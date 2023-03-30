@@ -21,7 +21,7 @@ set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+"set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 let mapleader = ','
 set noswapfile
 set backup
@@ -305,7 +305,7 @@ if executable("rg")
 endif
 
 " Undotree plugin.
-nnoremap <F5> :UndotreeToggle<CR>
+"nnoremap <F5> :UndotreeToggle<CR>
 
 nmap <silent> <C-_> <Plug>(pydocstring)
 
@@ -326,6 +326,17 @@ au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+" { neovim config only
+" COPILOT remap to from Tab to Ctrl-J
+  imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+  let g:copilot_no_tab_map = v:true
+
+  let g:copilot_filetypes = {
+        \ 'yaml': v:true,
+      \ }
+
+" }
 
 
 " -------------------------------------------------------------------------

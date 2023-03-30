@@ -1,5 +1,6 @@
 [user]
-  email = ngocdunghoangdl@gmail.com
+	email = andy@parcelperform.com
+	name = Andy Hoang
 [includeIf "gitdir:workplace/"]
     path = ~/workplace/.gitconfig
 [pull]
