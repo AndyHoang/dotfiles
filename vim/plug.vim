@@ -32,7 +32,7 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
 Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'
-Plug 'mbbill/undotree'
+"Plug 'mbbill/undotree'
 "Plug 'parkr/vim-jekyll'
 "Indent Guides is a plugin for visually displaying indent levels in Vim.
 Plug 'nathanaelkane/vim-indent-guides'
@@ -67,6 +67,7 @@ Plug 'junegunn/fzf.vim'
 "Plug 'laher/fuzzymenu.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'github/copilot.vim'
 
 " Themes
 Plug 'junegunn/seoul256.vim'
