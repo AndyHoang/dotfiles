@@ -16,7 +16,6 @@ shell:
     - -c
     - 'tmux attach || tmux new -s new-session'
 
-alt_send_esc: true
 mouse:
   hide_when_typing: true
 # https://github.com/savq/melange/blob/master/term/alacritty/melange_dark.yml
