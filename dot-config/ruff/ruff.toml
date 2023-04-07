@@ -1,0 +1,43 @@
+ignore = [
+    'E402',
+    'E501',
+    'E401'
+]
+select = [
+    'E',
+    'F',
+    'W',
+    #'Q' # auto format quote
+    'I' # isort
+]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "migrations",
+    "script",
+    "management",
+]
+
+unfixable = ['F401'] # unused import in __init__ file might got removed and cause error, do it by manual
+
+[isort]
+known-third-party = ["dateutil","requests", "boto3", "django", "rest_framework", "pydantic"]
+known-first-party = ["pp_saturn", "api", "scatter", "pp_data_io"]
+#import_heading_stdlib="Standard Library"
