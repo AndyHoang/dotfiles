@@ -68,6 +68,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'github/copilot.vim'
+Plug 'tpope/vim-dispatch'
 
 " Themes
 Plug 'junegunn/seoul256.vim'
