@@ -46,6 +46,7 @@ Plug 'nanotee/zoxide.vim'
 " Syntax
 "Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'tpope/vim-dispatch'
 "Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'JesseLeite/vim-agriculture'
