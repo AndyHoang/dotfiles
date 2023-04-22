@@ -12,28 +12,17 @@
 "endif
 
 call plug#begin('~/.vim/plugged')
-" Plug 'metakirby5/codi.vim' " nice to have when learning new lang
 Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'nanotee/zoxide.vim'
 Plug 'dhruvasagar/vim-table-mode'
-"Plug 'easymotion/vim-easymotion'
-"Plug 'tpope/vim-obsession'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'jgdavey/tslime.vim'
-"
-"Plug 'godlygeek/tabular'
-"Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/vim-easy-align'
 Plug 'vimwiki/vimwiki'
 
-"Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
 Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'mbbill/undotree'
-"Plug 'parkr/vim-jekyll'
 "Indent Guides is a plugin for visually displaying indent levels in Vim.
 Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
@@ -43,44 +32,33 @@ Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 Plug 'gcmt/wildfire.vim'
 Plug 'nanotee/zoxide.vim'
 
-" Syntax
-"Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-git', { 'for': 'git' }
 Plug 'tpope/vim-dispatch'
-"Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'JesseLeite/vim-agriculture'
-"Plug 'jremmen/vim-ripgrep'
-"Plug 'wincent/ferret'
 
 " Pairs of handy bracket mappings
 Plug 'cohama/lexima.vim'
 
 " Fugitive: Git from within Vim
-Plug 'tpope/vim-fugitive' "| Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'shumphrey/fugitive-gitlab.vim'
 
 Plug 'rhysd/conflict-marker.vim'
-"Plug 'tmsvg/pear-tree'
 Plug 'machakann/vim-sandwich'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'laher/fuzzymenu.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'github/copilot.vim'
 Plug 'tpope/vim-dispatch'
 
 " Themes
-Plug 'junegunn/seoul256.vim'
-Plug 'wojciechkepka/vim-github-dark'
-Plug 'jdkanani/vim-material-theme'
-Plug 'kristijanhusak/vim-hybrid-material'
+"Plug 'junegunn/seoul256.vim'
+"Plug 'wojciechkepka/vim-github-dark'
+"Plug 'jdkanani/vim-material-theme'
+"Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'savq/melange'
-
-
-"Plug 'rking/ag.vim'
-"Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 
 filetype plugin indent on                   " required!

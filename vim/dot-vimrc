@@ -157,12 +157,6 @@ set termguicolors     " enable true colors support
 " Auto select the first option
 set completeopt=longest,menuone
 
-" Printing options
-set printoptions=header:0,duplex:long,paper:letter,syntax:n
-" header:0                  Do not print a header
-" duplex:long (default)     Print on both sides (when possible), bind on long
-" syntax:n                  Do not use syntax highlighting.
-
 " -------------------------------------------------------------------------
 "   Custom commands
 " ----------------------------------------------------------------------------
