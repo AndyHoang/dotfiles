@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 
 
 #plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
-plugins=(git fzf ssh-agent)
+plugins=(git fzf ssh-agent ssm)
 
 zstyle :omz:plugins:ssh-agent identities id_rsa
 
@@ -141,8 +141,6 @@ alias jctl="journalctl -p 3 -xb"
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export PATH=$PATH:$HOME/.cargo/bin
-export SBT_OPTS=-DappEnv=local
-export LOKI_ADDR=http://loki-gateway.pp-local.prod
 # Created by `userpath` on 2020-01-01 04:48:19
 export PATH="$PATH:/home/andyhoang/.local/bin"
 # ~/.tmux/plugins
