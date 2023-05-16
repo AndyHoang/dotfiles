@@ -263,8 +263,9 @@ let g:ale_lint_on_text_changed = 0
 " You can disable this option too
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
+" yay python-lsp-server
 let g:ale_linters = {
-\   'python': ['ruff'],
+\   'python': ['ruff', 'pylsp'],
 \   'json': ['jq'],
 \}
 
@@ -279,6 +280,10 @@ let g:ale_json_jsonlint_use_global = 0
 "let g:ale_python_black_options = '-S -l 119'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap gd :ALEGoToDefinition<CR>
+nmap gr :ALEFindReferences<CR>
+nmap gR :ALERename<CR>
+nmap K :ALEHover<CR>
 
 function! Ruff()
   ALELint
