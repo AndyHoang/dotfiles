@@ -19,7 +19,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/vim-easy-align'
 Plug 'vimwiki/vimwiki'
 
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+"Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
 Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'
@@ -48,7 +48,8 @@ Plug 'rhysd/conflict-marker.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
+Plug 'dcampos/nvim-snippy'
 Plug 'honza/vim-snippets'
 Plug 'github/copilot.vim'
 Plug 'tpope/vim-dispatch'

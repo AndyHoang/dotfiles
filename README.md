@@ -34,3 +34,6 @@
 
 ## Stop mouse wake up
  `sudo ln  udev/rules.d/wakeup.rules /etc/udev/rules.d`
+
+## Note
+- xclip for vim/neovim and system clipboard to synced without additional config
