@@ -307,6 +307,8 @@ endif
 " Undotree plugin.
 "nnoremap <F5> :UndotreeToggle<CR>
 
+let g:pydocstring_doq_path = '~/.local/bin/doq'
+
 nmap <silent> <C-_> <Plug>(pydocstring)
 
 let g:netrw_liststyle=0         " thin (change to 3 for tree)

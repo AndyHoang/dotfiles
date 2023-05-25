@@ -14,8 +14,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
-Plug 'nanotee/zoxide.vim'
-Plug 'dhruvasagar/vim-table-mode'
+"Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/vim-easy-align'
 Plug 'vimwiki/vimwiki'
 
@@ -30,12 +29,11 @@ Plug 'mhinz/vim-signify'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 "use enter to select things
 Plug 'gcmt/wildfire.vim'
-Plug 'nanotee/zoxide.vim'
+"Plug 'nanotee/zoxide.vim'
 
 Plug 'tpope/vim-git', { 'for': 'git' }
-Plug 'tpope/vim-dispatch'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-Plug 'JesseLeite/vim-agriculture'
+"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+"Plug 'JesseLeite/vim-agriculture'
 
 " Pairs of handy bracket mappings
 Plug 'cohama/lexima.vim'
@@ -45,13 +43,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'shumphrey/fugitive-gitlab.vim'
 
 Plug 'rhysd/conflict-marker.vim'
-Plug 'machakann/vim-sandwich'
+"Plug 'machakann/vim-sandwich'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "Plug 'SirVer/ultisnips'
 Plug 'dcampos/nvim-snippy'
 Plug 'honza/vim-snippets'
 Plug 'github/copilot.vim'
+" Make/Focus/Start in vim
 Plug 'tpope/vim-dispatch'
 
 " Themes
