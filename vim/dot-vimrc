@@ -196,7 +196,7 @@ let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
 
 " fzf.vim {
 
-  autocmd VimEnter * delcommand Rg " Using RgRaw instead
+  "autocmd VimEnter * delcommand Rg " Using RgRaw instead
 
 " }
 
