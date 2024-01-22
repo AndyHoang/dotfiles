@@ -179,7 +179,6 @@ endfun
 " other file.
 "
 "
-"let g:ale_disable_lsp = 1
 source $HOME/.dotfiles/vim/plug.vim
 
 " ----------------------------------------------------------------------------
@@ -241,17 +240,6 @@ nnoremap <silent>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 " a Automatically format paragraphs
 set formatoptions=cqrn1
 
-"jedi-vim
-"let g:jedi#popup_on_dot = 0
-"let g:jedi#popup_select_first=0
-"let g:jedi#completions_enabled = 0
-"let g:jedi#show_call_signatures = "0"
-"let g:jedi#rename_command = ""
-"let g:jedi#goto_stubs_command = ""
-
-"let g:ale_python_flake8_executable = 'python'   " or 'python' for Python 2
-"let g:ale_python_flake8_args = '-m flake8'
-
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
@@ -262,10 +250,17 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 " You can disable this option too
 " if you don't want linters to run on opening a file
-let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_enter = 0
 " yay python-lsp-server
+"
+let g:ale_python_auto_poetry = 1
+let g:ale_python_pylsp_auto_poetry = 1
+let g:ale_python_pyright_auto_poetry = 1
+let g:ale_python_ruff_auto_pipenv = 1
+let g:ale_python_ruff_auto_poetry = 1
+
 let g:ale_linters = {
-\   'python': ['ruff', 'pylsp'],
+\   'python': ['ruff',  'pylsp'],
 \   'json': ['jq'],
 \}
 
@@ -276,7 +271,6 @@ let g:ale_fixers = {
 \}
 let g:ale_json_jsonlint_executable='jq'
 let g:ale_json_jsonlint_use_global = 0
-"let g:ale_python_flake8_options = '-m flake8'
 "let g:ale_python_black_options = '-S -l 119'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -284,6 +278,12 @@ nmap gd :ALEGoToDefinition<CR>
 nmap gr :ALEFindReferences<CR>
 nmap gR :ALERename<CR>
 nmap K :ALEHover<CR>
+
+  let b:ale_python_pyright_config = {
+  \ 'python': {
+  \   'venvPath': './.venv',
+  \ },
+  \}
 
 function! Ruff()
   ALELint
@@ -451,11 +451,6 @@ nmap <leader>f8 :set foldlevel=8<CR>
 nmap <leader>f9 :set foldlevel=9<CR>
 
 
-" use coc for jumps
-"nmap <leader>d <Plug>(coc-definition)
-"nmap <leader>gi <Plug>(coc-implementation)
-"nmap <leader>gr <Plug>(coc-references)
-
 
 " Use S_ to wrap a selection in gettext (Underscore tempalate style)
 " Requires https://github.com/tpope/vim-surround
@@ -485,7 +480,6 @@ let g:lightline = {
         \  'linter_warnings': 'lightline#ale#warnings',
         \  'linter_errors': 'lightline#ale#errors',
         \  'linter_ok': 'lightline#ale#ok',
-        "\  'coc': 'coc#status'
       \}
       \ }
 function! LightlineModified()

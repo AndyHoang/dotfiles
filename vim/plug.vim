@@ -17,7 +17,8 @@ Plug 'sheerun/vim-polyglot'
 "Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/vim-easy-align'
 Plug 'vimwiki/vimwiki'
-
+Plug 'mbbill/undotree'
+Plug 'nomnivore/ollama.nvim'
 "Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
 Plug 'racer-rust/vim-racer'

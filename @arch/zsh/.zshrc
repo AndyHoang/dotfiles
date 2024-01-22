@@ -51,7 +51,8 @@ COMPLETION_WAITING_DOTS="true"
 #plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
 plugins=(git fzf ssh-agent ssm)
 
-zstyle :omz:plugins:ssh-agent identities id_rsa
+zstyle :omz:plugins:ssh-agent identities id_ed25519 id_ed25519_github
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 source $ZSH/oh-my-zsh.sh
 
@@ -72,7 +73,7 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
- export SSH_KEY_PATH="~/.ssh/rsa_id"
+ export SSH_KEY_PATH="~/.ssh/"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -94,7 +95,7 @@ alias df='df -h'
 alias wget="wget -c"
 
 #ps
-alias ps="ps auxf"
+#alias ps="ps auxf"
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 #grub update
@@ -127,18 +128,9 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
-#export PATH=$PATH:/usr/local/opt/go/libexec/bin
-#GOVERSION=$(brew list go | head -n 1 | cut -d '/' -f 6)
-#export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
-#export GOROOT=/usr/local/Cellar/go/1.5.3/libexec
-#export PATH=$PATH:$GOPATH/bin
-#export PATH=$PATH:$GOROOT/bin
 #[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 
-#export GHCMOD=~/.local
-#export PATH=$PATH:$GHCMOD/bin
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export PATH=$PATH:$HOME/.cargo/bin
 # Created by `userpath` on 2020-01-01 04:48:19
@@ -148,8 +140,31 @@ export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 # ~/.config/tmux/plugins
 export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 
+# Use when vi **
+_fzf_compgen_path() {
+   fd --hidden --follow --exclude ".git" "$1"
+}
+
+# Use when cd **
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" "$1"
+}
+
 
 #zprof
 alias lg='lazygit'
 
 eval "$(zoxide init zsh)"
+
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Created by `pipx` on 2023-11-28 04:58:36
+export PATH="$PATH:/Users/hoangngocdung/.local/bin"
+
+export GOROOT=/usr/lib/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
