@@ -1,7 +1,0 @@
-{
-  "python.jediEnabled": false,
-  "suggest.autoTrigger": "none",
-  "diagnostic.displayByAle": true,
-  "python.linting.enabled": false,
-  "python.analysis.diagnosticEnabled": false
-}
