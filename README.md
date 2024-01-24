@@ -11,6 +11,7 @@
 * `stow -vv --dotfiles dot-config -t ~/.config`
 * `stow -vv custom-snippets/ -t ~/.vim`
 * `cd @arch && stow --dotfiles zsh`
+* `cd @macos && stow --dotfiles tmux`
 
 
 ## Fix GRUB to your existing arch (me using kernel `linux`)
