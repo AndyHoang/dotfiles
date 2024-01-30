@@ -12,16 +12,15 @@
 "endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'maximbaz/lightline-ale' | Plug 'itchyny/lightline.vim' | Plug 'dense-analysis/ale'
+Plug 'maximbaz/lightline-ale'
+Plug 'itchyny/lightline.vim'
+Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
 "Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/vim-easy-align'
 Plug 'vimwiki/vimwiki'
 Plug 'mbbill/undotree'
-Plug 'nomnivore/ollama.nvim'
-"Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'luochen1990/rainbow'
-Plug 'racer-rust/vim-racer'
 Plug 'scrooloose/nerdcommenter'
 "Indent Guides is a plugin for visually displaying indent levels in Vim.
 Plug 'nathanaelkane/vim-indent-guides'
@@ -30,11 +29,8 @@ Plug 'mhinz/vim-signify'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 "use enter to select things
 Plug 'gcmt/wildfire.vim'
-"Plug 'nanotee/zoxide.vim'
 
 Plug 'tpope/vim-git', { 'for': 'git' }
-"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-"Plug 'JesseLeite/vim-agriculture'
 
 " Pairs of handy bracket mappings
 Plug 'cohama/lexima.vim'

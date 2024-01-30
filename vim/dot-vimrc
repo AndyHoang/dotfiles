@@ -260,7 +260,7 @@ let g:ale_python_ruff_auto_pipenv = 1
 let g:ale_python_ruff_auto_poetry = 1
 
 let g:ale_linters = {
-\   'python': ['ruff',  'pylsp'],
+\   'python': ['pylsp', 'ruff'],
 \   'json': ['jq'],
 \}
 
@@ -269,9 +269,6 @@ let g:ale_fixers = {
 \   'json': ['jq'],
 \   'rust': ['rustfmt'],
 \}
-let g:ale_json_jsonlint_executable='jq'
-let g:ale_json_jsonlint_use_global = 0
-"let g:ale_python_black_options = '-S -l 119'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap gd :ALEGoToDefinition<CR>
@@ -279,18 +276,30 @@ nmap gr :ALEFindReferences<CR>
 nmap gR :ALERename<CR>
 nmap K :ALEHover<CR>
 
-  let b:ale_python_pyright_config = {
-  \ 'python': {
-  \   'venvPath': './.venv',
-  \ },
-  \}
+"let g:ale_python_pylsp_options = '-vv --log-file /tmp/pylsp.log'
 
-function! Ruff()
-  ALELint
-endf
+" pylsp_config has a weird config
+" for mypy, it need prefix pylsp_, while ruff, its not
+" This might be because ruff is a standalone plugin? (python-lsp-ruff)
+" ruff standalone got call manually in linter
+" pylsp here only used to do ALE lookup reference with nice feature
+" auto_poetry from ALE
+
+let g:ale_python_pylsp_config = {
+      \   'pylsp': {
+      \     'plugins': {
+      \       'pylsp_mypy':{
+      \         'enabled': v:false
+      \       },
+      \       'ruff':{
+      \         'enabled': v:false
+      \       }
+      \     }
+      \   },
+      \ }
 
 " call ale check only when be called
-command! -bar Python call Ruff()
+"command! -bar Python call Ruff()
 
 let g:ale_statusline_format = ['err %d', 'warn %d', '']
 
@@ -321,13 +330,6 @@ let g:netrw_browse_split = 4
 
 nmap <C-s><C-p> <Plug>MarkdownPreview
 let g:mkdp_theme = 'light'
-
-let g:racer_cmd="/Users/andyhoang/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " { neovim config only
 " COPILOT remap to from Tab to Ctrl-J
