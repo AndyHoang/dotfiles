@@ -51,7 +51,8 @@ COMPLETION_WAITING_DOTS="true"
 #plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
 plugins=(git fzf ssh-agent ssm)
 
-zstyle :omz:plugins:ssh-agent identities id_ed25519 id_ed25519_github id_ed25519_mbp2
+zstyle :omz:plugins:ssh-agent identities id_ed25519 id_ed25519_github
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 source $ZSH/oh-my-zsh.sh
 
@@ -168,4 +169,3 @@ export GOROOT=/usr/lib/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 eval "$(atuin init zsh --disable-up-arrow)"
-#eval "$(pyenv virtualenv-init -)"
