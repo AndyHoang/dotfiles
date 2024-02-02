@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-#zmodload zsh/zprof
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -7,12 +7,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="avit"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
 # Uncomment the following line to disable bi-weekly auto-update checks.
- DISABLE_AUTO_UPDATE="true"
+ #DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -32,7 +28,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -49,9 +45,10 @@ COMPLETION_WAITING_DOTS="true"
 
 
 #plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
-plugins=(git fzf ssh-agent ssm)
+plugins=(git ssh-agent ssm fzf)
 
-zstyle :omz:plugins:ssh-agent identities id_ed25519 id_ed25519_github id_ed25519_mbp2
+zstyle :omz:plugins:ssh-agent identities id_ed25519 id_ed25519_github
+zstyle :omz:plugins:ssh-agent identities id_rsa id_ed25519
 
 source $ZSH/oh-my-zsh.sh
 
@@ -131,7 +128,9 @@ alias jctl="journalctl -p 3 -xb"
 
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
 export PATH=$PATH:$HOME/.cargo/bin
+
 # Created by `userpath` on 2020-01-01 04:48:19
 export PATH="$PATH:/home/andyhoang/.local/bin"
 # ~/.tmux/plugins
@@ -150,7 +149,6 @@ _fzf_compgen_dir() {
 }
 
 
-#zprof
 alias lg='lazygit'
 
 eval "$(zoxide init zsh)"
@@ -167,5 +165,8 @@ export PATH="$PATH:/Users/hoangngocdung/.local/bin"
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+<<<<<<< Updated upstream
 eval "$(atuin init zsh --disable-up-arrow)"
 #eval "$(pyenv virtualenv-init -)"
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

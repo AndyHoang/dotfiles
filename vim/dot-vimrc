@@ -262,6 +262,7 @@ let g:ale_python_ruff_auto_poetry = 1
 let g:ale_linters = {
 \   'python': ['pylsp', 'ruff'],
 \   'json': ['jq'],
+\   'rust': ['analyzer'],
 \}
 
 let g:ale_fixers = {
@@ -277,7 +278,6 @@ nmap gR :ALERename<CR>
 nmap K :ALEHover<CR>
 
 "let g:ale_python_pylsp_options = '-vv --log-file /tmp/pylsp.log'
-
 " pylsp_config has a weird config
 " for mypy, it need prefix pylsp_, while ruff, its not
 " This might be because ruff is a standalone plugin? (python-lsp-ruff)
@@ -297,6 +297,9 @@ let g:ale_python_pylsp_config = {
       \     }
       \   },
       \ }
+
+imap <C-Space> <Plug>(ale_complete)
+
 
 " call ale check only when be called
 "command! -bar Python call Ruff()
