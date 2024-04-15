@@ -165,8 +165,7 @@ export PATH="$PATH:/Users/hoangngocdung/.local/bin"
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-<<<<<<< Updated upstream
-eval "$(atuin init zsh --disable-up-arrow)"
+#eval "$(atuin init zsh --disable-up-arrow)"
 #eval "$(pyenv virtualenv-init -)"
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

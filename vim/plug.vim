@@ -45,7 +45,7 @@ Plug 'junegunn/fzf.vim'
 "Plug 'SirVer/ultisnips'
 Plug 'dcampos/nvim-snippy'
 Plug 'honza/vim-snippets'
-Plug 'github/copilot.vim'
+"Plug 'github/copilot.vim'
 " Make/Focus/Start in vim
 Plug 'tpope/vim-dispatch'
 
