@@ -12,9 +12,10 @@
 "endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'maximbaz/lightline-ale'
+"Plug 'maximbaz/lightline-ale'
 Plug 'itchyny/lightline.vim'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/vim-easy-align'
 Plug 'vimwiki/vimwiki'
@@ -45,7 +46,7 @@ Plug 'junegunn/fzf.vim'
 "Plug 'SirVer/ultisnips'
 Plug 'dcampos/nvim-snippy'
 Plug 'honza/vim-snippets'
-Plug 'github/copilot.vim'
+"Plug 'github/copilot.vim'
 " Make/Focus/Start in vim
 Plug 'tpope/vim-dispatch'
 
