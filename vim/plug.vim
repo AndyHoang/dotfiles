@@ -26,7 +26,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
 Plug 'mhinz/vim-signify'
-Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+"Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 "use enter to select things
 Plug 'gcmt/wildfire.vim'
 
@@ -46,7 +47,7 @@ Plug 'junegunn/fzf.vim'
 "Plug 'SirVer/ultisnips'
 Plug 'dcampos/nvim-snippy'
 Plug 'honza/vim-snippets'
-"Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 " Make/Focus/Start in vim
 Plug 'tpope/vim-dispatch'
 

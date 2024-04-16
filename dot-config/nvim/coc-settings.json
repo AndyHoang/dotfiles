@@ -8,4 +8,6 @@
     "diagnostic.virtualText": true,
     "signature.triggerSignatureWait": 1000,
     "snippets.ultisnips.pythonPrompt": false,
+    "diagnostic.errorSign":"x",
+    "diagnostic.warningSign":"⚠",
 }

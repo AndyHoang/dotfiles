@@ -346,13 +346,6 @@ inoremap <silent><expr> <TAB>
 
 
 
-"" Use <c-space> to trigger completion
-"if has('nvim')
-  "inoremap <silent><expr> <c-n> coc#refresh()
-"else
-  "inoremap <silent><expr> <c-k> coc#refresh()
-"endif
-
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call ShowDocumentation()<CR>
@@ -388,11 +381,6 @@ augroup end
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Remap keys for applying code actions at the cursor position
-nmap <leader>ac  <Plug>(coc-codeaction-cursor)
-" Remap keys for apply code actions affect whole buffer
-nmap <leader>as  <Plug>(coc-codeaction-source)
-" Apply the most preferred quickfix action to fix diagnostic on the current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Remap keys for applying refactor code actions
@@ -402,17 +390,6 @@ nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 " Run the Code Lens action on the current line
 nmap <leader>cl  <Plug>(coc-codelens-action)
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> to scroll float windows/popups
 if has('nvim-0.4.0') || has('patch-8.2.0750')
@@ -441,7 +418,6 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 " Add (Neo)Vim's native statusline support
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics
@@ -451,33 +427,17 @@ nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
 nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-
-
-
-
-
+"
+nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
+nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
 
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
   set grepformat=%f:%l:%c:%m
 endif
 
-" Undotree plugin.
-"nnoremap <F5> :UndotreeToggle<CR>
-
-let g:pydocstring_doq_path = '~/.local/bin/doq'
-
-nmap <silent> <C-_> <Plug>(pydocstring)
+let g:doge_doc_standard_python = 'reST'
+nmap <silent> <Leader>d <Plug>(doge-generate)
 
 let g:netrw_liststyle=0         " thin (change to 3 for tree)
 let g:netrw_altv=1              " open files on right
@@ -487,17 +447,14 @@ let g:netrw_browse_split = 4
 
 
 
-nmap <C-s><C-p> <Plug>MarkdownPreview
-let g:mkdp_theme = 'light'
-
 " { neovim config only
-" COPILOT remap to from Tab to Ctrl-J
-  "imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-  "let g:copilot_no_tab_map = v:true
+ "COPILOT remap to from Tab to Ctrl-J
+  imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+  let g:copilot_no_tab_map = v:true
 
-  "let g:copilot_filetypes = {
-        "\ 'yaml': v:true,
-      "\ }
+  let g:copilot_filetypes = {
+        \ 'yaml': v:true,
+      \ }
 
 " }
 
@@ -621,11 +578,13 @@ let g:jekyll_post_extension = '.md'
 
 set exrc
 
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-      \   'right': [ ['percent', 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'] ]
+      \   'right': [ ['percent', 'cocstatus'] ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'LightlineFugitive',
@@ -637,10 +596,7 @@ let g:lightline = {
       \ },
       \ 'subseparator': { 'left': '|', 'right': '|' },
       \ 'component_expand':{
-        \  'linter_checking': 'lightline#ale#checking',
-        \  'linter_warnings': 'lightline#ale#warnings',
-        \  'linter_errors': 'lightline#ale#errors',
-        \  'linter_ok': 'lightline#ale#ok',
+        \  'cocstatus': 'coc#status'
       \}
       \ }
 function! LightlineModified()
