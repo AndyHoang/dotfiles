@@ -321,6 +321,8 @@ set updatetime=300
 " diagnostics appear/become resolved
 set signcolumn=yes
 
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-rust-analyzer', 'coc-tsserver', 'coc-snippets']
+
 "inoremap <silent><expr> <TAB>
       "\ coc#pum#visible() ? coc#pum#next(1) :
       "\ CheckBackspace() ? "\<Tab>" :
@@ -382,6 +384,12 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 nmap <leader>qf  <Plug>(coc-fix-current)
+
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Remap keys for applying refactor code actions
 nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
