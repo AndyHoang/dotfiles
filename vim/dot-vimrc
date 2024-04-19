@@ -129,8 +129,8 @@ noremap k gk
 nnoremap <Leader>. :cd %:p:h<CR>:pwd<CR>
 "map <C-J> <C-W>j<C-W>_
 "map <C-K> <C-W>k<C-W>_
-"map <C-L> <C-W>l<C-W>_
-"map <C-H> <C-W>h<C-W>_
+map <C-L> <C-W>l<C-W>_
+map <C-H> <C-W>h<C-W>_
 map <Leader>= <C-w>=
 " Clear search highlights
 nnoremap <leader>/ :set invhlsearch<cr>

@@ -1,8 +1,14 @@
+[lint]
+
 ignore = [
     'E402',
     'E501',
     'E401',
-    'I'
+    'I',
+    'F841', # bad importing
+    'F842', # bad importing
+    'E701', # inline return
+    'W292', # no new line eof
 ]
 select = [
     'E',
@@ -38,7 +44,7 @@ exclude = [
 
 unfixable = ['F401'] # unused import in __init__ file might got removed and cause error, do it by manual
 
-[isort]
+[lint.isort]
 known-third-party = ["dateutil","requests", "boto3", "django", "rest_framework", "pydantic"]
 known-first-party = ["pp_saturn", "api", "scatter", "pp_data_io"]
 #import_heading_stdlib="Standard Library"
