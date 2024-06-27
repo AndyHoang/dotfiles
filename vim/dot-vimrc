@@ -137,11 +137,6 @@ nnoremap <leader>/ :set invhlsearch<cr>
 map <leader>b :GFiles<cr>
 map <C-p> :History<cr>
 
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
 
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
@@ -191,27 +186,12 @@ let g:wildfire_objects = {
             \ "html,xml" : ["at"],
             \ }
 " }
+
 let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
-
-" fzf.vim {
-
-  "autocmd VimEnter * delcommand Rg " Using RgRaw instead
-
-" }
-
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_key_mappings = { 'table_mappings': 0, }
-
-nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
-nmap <silent> <Leader>ez :vsplit $HOME/.zshrc<CR>
-map <silent> <Leader>ep :vsplit $HOME/dotfiles/vim/plug.vim<CR>
-nmap <silent> <Leader>es :vsplit $HOME/.ssh/config<CR>
-nmap <silent> <Leader>et :vsplit $HOME/.tmux.conf<CR>
-nmap <silent> <Leader>sv :source $MYVIMRC<CR>
-nmap <silent> <Leader>sp :source $HOME/.dotfiles/vim/plug.vim<CR>
-
 
 
 let g:indent_guides_start_level = 2
@@ -323,10 +303,6 @@ set signcolumn=yes
 
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-rust-analyzer', 'coc-tsserver', 'coc-snippets']
 
-"inoremap <silent><expr> <TAB>
-      "\ coc#pum#visible() ? coc#pum#next(1) :
-      "\ CheckBackspace() ? "\<Tab>" :
-      "\ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
@@ -366,10 +342,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
 
-" Formatting selected code
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s)
@@ -383,7 +355,7 @@ augroup end
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>f  <Plug>(coc-fix-current)
 
 
 nmap <silent> gd <Plug>(coc-definition)

@@ -12,7 +12,7 @@ ZSH_THEME="avit"
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
- #DISABLE_AUTO_UPDATE="true"
+ DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -93,6 +93,8 @@ alias df='df -h'
 
 #continue download
 alias wget="wget -c"
+
+alias ssh-home="tailscale switch home && alacritty  -T ssh-andy-home  -e ssh andyhoang@andyhoang-pc &"
 
 #ps
 #alias ps="ps auxf"
