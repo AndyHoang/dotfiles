@@ -62,7 +62,6 @@ set foldopen=block,hor,mark,percent,quickfix,search,tag,undo,jump
 " Splits
 set splitbelow              " Open new splits below
 set splitright              " Open new vertical splits to the right
-"set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
 
 
@@ -135,6 +134,7 @@ map <Leader>= <C-w>=
 " Clear search highlights
 nnoremap <leader>/ :set invhlsearch<cr>
 map <leader>b :GFiles<cr>
+map <leader>t :BTags<cr>
 map <C-p> :History<cr>
 
 
@@ -152,19 +152,6 @@ set termguicolors     " enable true colors support
 " Auto select the first option
 set completeopt=longest,menuone
 
-" -------------------------------------------------------------------------
-"   Custom commands
-" ----------------------------------------------------------------------------
-
-
-" Trim trailing white space
-nmap <silent> <Leader>t :call StripTrailingWhitespaces()<CR>
-function! StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
 
 
 " -------------------------------------------------------------------------}}}
