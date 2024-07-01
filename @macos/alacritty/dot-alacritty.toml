@@ -4,30 +4,6 @@ option_as_alt= "Both"
 [colors]
 draw_bold_text_with_bright_colors = true
 
-#[colors.bright]
-#black = "#4D453E"
-#blue = "#9AACCE"
-#cyan = "#88B3B2"
-#green = "#99D59D"
-#magenta = "#CE9BCB"
-#red = "#F17C64"
-#white = "#C1A78E"
-#yellow = "#EBC06D"
-
-#[colors.normal]
-#black = "#352F2A"
-#blue = "#9AACCE"
-#cyan = "#86A3A3"
-#green = "#78997A"
-#magenta = "#B380B0"
-#red = "#B65C60"
-#white = "#A38D78"
-#yellow = "#EBC06D"
-
-#[colors.primary]
-#background = "#2A2520"
-#foreground = "#ECE1D7"
-
 [font]
 size = 14.0
 
