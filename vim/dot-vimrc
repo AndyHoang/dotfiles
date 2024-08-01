@@ -180,6 +180,7 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 let g:vimwiki_global_ext = 0
 let g:vimwiki_key_mappings = { 'table_mappings': 0, }
 
+let g:csv_no_conceal = 1
 
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
