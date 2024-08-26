@@ -49,7 +49,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 
 #plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
-plugins=(git fzf ssh-agent ssm)
+plugins=(direnv git fzf ssh-agent ssm fzf-tab)
 
 zstyle :omz:plugins:ssh-agent identities id_ed25519 id_ed25519_github
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
@@ -147,6 +147,19 @@ _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" "$1"
 }
 
+function prev() {
+  PREV=$(echo `history | tail -n1 | head -n1` | sed 's/[0-9]* //')
+  sh -c "pet new `printf %q "$PREV"`"
+}
+
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey '^s' pet-select
 
 
 eval "$(zoxide init zsh)"
@@ -161,7 +174,12 @@ eval "$(pyenv init -)"
 export PATH="$PATH:/home/andyhoang/.local/bin"
 export PATH="$PATH:/Users/hoangngocdung/.local/bin"
 
-export GOROOT=/usr/lib/go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:/opt/homebrew/bin
+export GOPATH=$HOME/go  # or wherever you want your workspace to be
+export PATH=$PATH:$GOPATH/bin
 #eval "$(atuin init zsh --disable-up-arrow)"
+
+export PATH=/Users/hoangngocdung/.tiup/bin:$PATH
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+. "$HOME/.cargo/env"

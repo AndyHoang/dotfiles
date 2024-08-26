@@ -12,6 +12,7 @@
 "endif
 
 call plug#begin('~/.vim/plugged')
+Plug 'ellisonleao/glow.nvim'
 "Plug 'maximbaz/lightline-ale'
 Plug 'itchyny/lightline.vim'
 "Plug 'dense-analysis/ale'

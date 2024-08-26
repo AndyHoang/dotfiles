@@ -1,5 +1,7 @@
 [window]
 option_as_alt= "Both"
+title = "andyhoang-mbp"
+startup_mode = "Maximized"
 
 [colors]
 draw_bold_text_with_bright_colors = true
