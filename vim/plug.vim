@@ -12,7 +12,6 @@
 "endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'ellisonleao/glow.nvim'
 "Plug 'maximbaz/lightline-ale'
 Plug 'itchyny/lightline.vim'
 "Plug 'dense-analysis/ale'
@@ -48,7 +47,7 @@ Plug 'junegunn/fzf.vim'
 "Plug 'SirVer/ultisnips'
 Plug 'dcampos/nvim-snippy'
 Plug 'honza/vim-snippets'
-Plug 'github/copilot.vim'
+"Plug 'github/copilot.vim'
 " Make/Focus/Start in vim
 Plug 'tpope/vim-dispatch'
 

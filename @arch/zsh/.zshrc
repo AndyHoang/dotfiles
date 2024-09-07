@@ -1,4 +1,7 @@
 # Path to your oh-my-zsh installation.
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export ZSH=$HOME/.oh-my-zsh
 
@@ -89,6 +92,7 @@ alias df='df -h'
 
 #continue download
 alias wget="wget -c"
+alias ipinfo="curl ipinfo.io"
 
 #ps
 #alias ps="ps auxf"
@@ -165,8 +169,6 @@ export PATH="$PATH:/Users/hoangngocdung/.local/bin"
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-<<<<<<< Updated upstream
-eval "$(atuin init zsh --disable-up-arrow)"
 #eval "$(pyenv virtualenv-init -)"
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

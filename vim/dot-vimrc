@@ -162,9 +162,6 @@ set completeopt=longest,menuone
 "
 "
 source $HOME/.dotfiles/vim/plug.vim
-lua << EOF
-require('glow').setup()
-EOF
 
 " ----------------------------------------------------------------------------
 
