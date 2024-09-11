@@ -12,9 +12,10 @@
 "endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'maximbaz/lightline-ale'
+"Plug 'maximbaz/lightline-ale'
 Plug 'itchyny/lightline.vim'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/vim-easy-align'
 Plug 'vimwiki/vimwiki'
@@ -25,7 +26,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
 Plug 'mhinz/vim-signify'
-Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+"Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 "use enter to select things
 Plug 'gcmt/wildfire.vim'
 

@@ -1,0 +1,13 @@
+{
+    "suggest.autoTrigger": "none",
+    "pylsp.plugins.pycodestyle.enabled": false,
+    "pylsp.plugins.pyflakes.enabled": false,
+    "pylsp.plugins.mccabe.enabled": false,
+    "pylsp.builtin.enableInstallPythonLspRuff": true,
+      "diagnostic.virtualTextCurrentLineOnly": false,
+    "diagnostic.virtualText": true,
+    "signature.triggerSignatureWait": 1000,
+    "snippets.ultisnips.pythonPrompt": false,
+    "diagnostic.errorSign":"❌",
+    "diagnostic.warningSign":"⚠",
+}

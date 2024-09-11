@@ -62,7 +62,6 @@ set foldopen=block,hor,mark,percent,quickfix,search,tag,undo,jump
 " Splits
 set splitbelow              " Open new splits below
 set splitright              " Open new vertical splits to the right
-"set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
 
 
@@ -127,20 +126,16 @@ nnoremap x "_x
 noremap j gj
 noremap k gk
 nnoremap <Leader>. :cd %:p:h<CR>:pwd<CR>
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
+"map <C-J> <C-W>j<C-W>_
+"map <C-K> <C-W>k<C-W>_
 map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
 map <Leader>= <C-w>=
 " Clear search highlights
 nnoremap <leader>/ :set invhlsearch<cr>
 map <leader>b :GFiles<cr>
+map <leader>t :BTags<cr>
 map <C-p> :History<cr>
-
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
 
 
 if &term =~ '^screen'
@@ -157,19 +152,6 @@ set termguicolors     " enable true colors support
 " Auto select the first option
 set completeopt=longest,menuone
 
-" -------------------------------------------------------------------------
-"   Custom commands
-" ----------------------------------------------------------------------------
-
-
-" Trim trailing white space
-nmap <silent> <Leader>t :call StripTrailingWhitespaces()<CR>
-function! StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
 
 
 " -------------------------------------------------------------------------}}}
@@ -191,28 +173,14 @@ let g:wildfire_objects = {
             \ "html,xml" : ["at"],
             \ }
 " }
+
 let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
-
-" fzf.vim {
-
-  "autocmd VimEnter * delcommand Rg " Using RgRaw instead
-
-" }
-
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_key_mappings = { 'table_mappings': 0, }
 
-nmap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
-nmap <silent> <Leader>ez :vsplit $HOME/.zshrc<CR>
-map <silent> <Leader>ep :vsplit $HOME/dotfiles/vim/plug.vim<CR>
-nmap <silent> <Leader>es :vsplit $HOME/.ssh/config<CR>
-nmap <silent> <Leader>et :vsplit $HOME/.tmux.conf<CR>
-nmap <silent> <Leader>sv :source $MYVIMRC<CR>
-nmap <silent> <Leader>sp :source $HOME/.dotfiles/vim/plug.vim<CR>
-
-
+let g:csv_no_conceal = 1
 
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
@@ -245,37 +213,34 @@ let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 
-let g:ale_completion_enabled = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
 " You can disable this option too
 " if you don't want linters to run on opening a file
 "let g:ale_lint_on_enter = 0
 " yay python-lsp-server
 "
-let g:ale_python_auto_poetry = 1
-let g:ale_python_pylsp_auto_poetry = 1
-let g:ale_python_pyright_auto_poetry = 1
-let g:ale_python_ruff_auto_pipenv = 1
-let g:ale_python_ruff_auto_poetry = 1
+"let g:ale_python_auto_poetry = 1
+"let g:ale_python_pylsp_auto_poetry = 1
+"let g:ale_python_pyright_auto_poetry = 1
+"let g:ale_python_ruff_auto_pipenv = 1
+"let g:ale_python_ruff_auto_poetry = 1
 
-let g:ale_linters = {
-\   'python': ['pylsp', 'ruff'],
-\   'json': ['jq'],
-\   'rust': ['analyzer'],
-\}
+"let g:ale_linters = {
+"\   'python': ['pylsp', 'ruff'],
+"\   'json': ['jq'],
+"\   'rust': ['analyzer'],
+"\}
 
-let g:ale_fixers = {
-\   'python': ['ruff'],
-\   'json': ['jq'],
-\   'rust': ['rustfmt'],
-\}
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap gd :ALEGoToDefinition<CR>
-nmap gr :ALEFindReferences<CR>
-nmap gR :ALERename<CR>
-nmap K :ALEHover<CR>
+"let g:ale_fixers = {
+"\   'python': ['ruff'],
+"\   'json': ['jq'],
+"\   'rust': ['rustfmt'],
+"\}
+"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-j> <Plug>(ale_next_wrap)
+"nmap gd :ALEGoToDefinition<CR>
+"nmap gr :ALEFindReferences<CR>
+"nmap gR :ALERename<CR>
+"nmap K :ALEHover<CR>
 
 "let g:ale_python_pylsp_options = '-vv --log-file /tmp/pylsp.log'
 " pylsp_config has a weird config
@@ -285,43 +250,159 @@ nmap K :ALEHover<CR>
 " pylsp here only used to do ALE lookup reference with nice feature
 " auto_poetry from ALE
 
-let g:ale_python_pylsp_config = {
-      \   'pylsp': {
-      \     'plugins': {
-      \       'pylsp_mypy':{
-      \         'enabled': v:false
-      \       },
-      \       'ruff':{
-      \         'enabled': v:false
-      \       }
-      \     }
-      \   },
-      \ }
+"let g:ale_python_pylsp_config = {
+      "\   'pylsp': {
+      "\     'plugins': {
+      "\       'pylsp_mypy':{
+      "\         'enabled': v:false
+      "\       },
+      "\       'ruff':{
+      "\         'enabled': v:false
+      "\       }
+      "\     }
+      "\   },
+      "\ }
 
-imap <C-Space> <Plug>(ale_complete)
+"imap <C-Space> <Plug>(ale_complete)
 
 
 " call ale check only when be called
 "command! -bar Python call Ruff()
 
-let g:ale_statusline_format = ['err %d', 'warn %d', '']
+"let g:ale_statusline_format = ['err %d', 'warn %d', '']
 
 "if executable('rg')
     "" Use ag over grep
   "set grepprg=rg\ --vimgrep
 
 "endif
+"
+"
+"
+"
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes
+
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-rust-analyzer', 'coc-tsserver', 'coc-snippets', '@yaegassy/coc-pylsp']
+
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+
+
+
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s)
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying code actions to the selected code block
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+nmap <leader>f  <Plug>(coc-fix-current)
+
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap keys for applying refactor code actions
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+
+" Run the Code Lens action on the current line
+nmap <leader>cl  <Plug>(coc-codelens-action)
+
+" Remap <C-f> and <C-b> to scroll float windows/popups
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+" Use CTRL-S for selections ranges
+" Requires 'textDocument/selectionRange' support of language server
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer
+command! -nargs=0 Format :call CocActionAsync('format')
+
+" Add `:Fold` command to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline
+
+" Mappings for CoCList
+" Show all diagnostics
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+"
+nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
+nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
+
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
   set grepformat=%f:%l:%c:%m
 endif
 
-" Undotree plugin.
-"nnoremap <F5> :UndotreeToggle<CR>
-
-let g:pydocstring_doq_path = '~/.local/bin/doq'
-
-nmap <silent> <C-_> <Plug>(pydocstring)
+let g:doge_doc_standard_python = 'reST'
+nmap <silent> <Leader>d <Plug>(doge-generate)
 
 let g:netrw_liststyle=0         " thin (change to 3 for tree)
 let g:netrw_altv=1              " open files on right
@@ -331,11 +412,8 @@ let g:netrw_browse_split = 4
 
 
 
-nmap <C-s><C-p> <Plug>MarkdownPreview
-let g:mkdp_theme = 'light'
-
 " { neovim config only
-" COPILOT remap to from Tab to Ctrl-J
+ "COPILOT remap to from Tab to Ctrl-J
   imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
   let g:copilot_no_tab_map = v:true
 
@@ -389,12 +467,12 @@ vnoremap = =gv
 " Nobody ever uses "Ex" mode, and it's annoying to leave
 noremap Q <nop>
 let g:vimwiki_table_mappings = 0
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsListSnippets="\\<tab>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsListSnippets="\\<tab>"
 
-imap <expr> <Tab> snippy#can_expand_or_advance() ? '<Plug>(snippy-expand-or-advance)' : '<Tab>'
+"imap <expr> <Tab> snippy#can_expand_or_advance() ? '<Plug>(snippy-expand-or-advance)' : '<Tab>'
 
-let g:UltiSnipsSnippetDirectories=["my-snippets"]
+"let g:UltiSnipsSnippetDirectories=["my-snippets"]
 
 
 function! InitializeDirectories()
@@ -465,11 +543,13 @@ let g:jekyll_post_extension = '.md'
 
 set exrc
 
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-      \   'right': [ ['percent', 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'] ]
+      \   'right': [ ['percent', 'cocstatus'] ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'LightlineFugitive',
@@ -481,10 +561,7 @@ let g:lightline = {
       \ },
       \ 'subseparator': { 'left': '|', 'right': '|' },
       \ 'component_expand':{
-        \  'linter_checking': 'lightline#ale#checking',
-        \  'linter_warnings': 'lightline#ale#warnings',
-        \  'linter_errors': 'lightline#ale#errors',
-        \  'linter_ok': 'lightline#ale#ok',
+        \  'cocstatus': 'coc#status'
       \}
       \ }
 function! LightlineModified()
