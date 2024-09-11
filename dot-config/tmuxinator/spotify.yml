@@ -1,9 +1,0 @@
-name: spotify
-
-windows:
-  - player: ncspot
-  - mixer:
-      layout: main-horizontal
-      panes:
-        - pulsemixer
-        - ls
