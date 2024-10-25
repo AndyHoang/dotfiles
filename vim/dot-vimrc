@@ -122,6 +122,9 @@ highlight clear LineNr          " Current line number row will have same backgro
 " ----------------------------------------------------------------------------
 
 " have x (removes single character) not go into the default registry
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+map  <Leader>f <Plug>(easymotion-bd-jk)
+
 nnoremap x "_x
 noremap j gj
 noremap k gk
@@ -176,7 +179,7 @@ let g:wildfire_objects = {
 
 let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
 let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+                      \ 'syntax': 'markdown', 'ext': '.md', 'auto_toc' : 1}]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_key_mappings = { 'table_mappings': 0, }
 
@@ -195,7 +198,6 @@ set wildignore+=node_modules/*,bower_components/*
 set wildignore+=*/*.app/*
 
 nnoremap <silent>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-
 
 " Character meaning when present in 'formatoptions'
 " ------ ---------------------------------------
@@ -340,7 +342,7 @@ augroup end
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-nmap <leader>f  <Plug>(coc-fix-current)
+nmap <leader>gf  <Plug>(coc-fix-current)
 
 
 nmap <silent> gd <Plug>(coc-definition)
@@ -616,6 +618,7 @@ function! LightlineMode()
         \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
+
 
 
 let g:tagbar_status_func = 'TagbarStatusFunc'
