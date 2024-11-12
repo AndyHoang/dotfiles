@@ -183,3 +183,7 @@ export PATH=/Users/hoangngocdung/.tiup/bin:$PATH
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 . "$HOME/.cargo/env"
+export PATH="/Users/hoangngocdung/.savvy/bin:$PATH"
+eval "$(savvy init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
