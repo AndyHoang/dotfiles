@@ -1,0 +1,45 @@
+{
+    "window.commandCenter": 1,
+    "cursor.cpp.enablePartialAccepts": true,
+    "editor.minimap.enabled": true,
+    "editor.minimap.autohide": true,
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+      },
+    "vim.leader": ",",
+    "vim.neovimUseConfigFile": true,
+    "vim.neovimConfigPath": "~/.config/nvim/init.lua",
+    "vim.neovimPath": "/opt/homebrew/bin/nvim",
+    "vim.enableNeovim": true,
+    "editor.fontSize": 13,
+    "editor.wordWrap": "on",
+    "cursor.aipreview.enabled": true,
+    "vim.autoSwitchInputMethod.defaultIM": "useSystemClipboard",
+    "vim.useSystemClipboard": true,
+    "autoDocstring.docstringFormat": "google",
+    "autoDocstring.startOnNewLine": true,
+    "autoDocstring.includeDescription": true,
+    "cursor.chat.smoothStreaming": true,
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["leader", "t"],
+            "commands": ["workbench.action.gotoSymbol"]
+        },
+        {
+            "before": ["leader", "b"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+        {
+            "before": ["<C->>"],
+            "commands": ["editor.action.indentLines"]
+        },
+        {
+            "before": ["<C-p>"],
+            "command": "workbench.action.openRecent"
+        }
+    ],
+    "git.openRepositoryInParentFolders": "never",
+    "vim.digraphs": {},
+    "markdown-mermaid.lightModeTheme": "forest",
+    "cursor.chat.narrowScrollbar": false,
+}
