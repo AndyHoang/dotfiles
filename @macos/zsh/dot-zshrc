@@ -88,9 +88,6 @@ alias vi="nvim"
 # Some copy utils
 # alias update='sudo pacman -Syyu' # use yay instead
 
-#readable output
-alias df='df -h'
-
 #continue download
 alias wget="wget -c"
 
@@ -101,36 +98,9 @@ alias ssh-home="tailscale switch home && alacritty  -T ssh-andy-home  -e ssh and
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 #grub update
-alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-
-#add new fonts
-alias fc='sudo fc-cache -fv'
-
-#quickly kill conkies
-alias kc='killall conky'
-
-#hardware info --short
-alias hw="hwinfo --short"
-
-#get fastest mirrors in your neighborhood 
-alias mirror="sudo reflector  --download-timeout 2 --connection-timeout 2 --number 10 --country vn   --thread 4 --verbose --save /etc/pacman.d/mirrorlist"
-#alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-#alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-#alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-#alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-
-#mounting the folder Public for exchange between host and guest on virtualbox
-#alias vbm="sudo mount -t vboxsf -o rw,uid=1000,gid=1000 Public /home/$USER/Public"
 
 #youtube-dl
 alias yt="youtube-dl -f bestvideo+bestaudio "
-
-#Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
-
-#get the error messages from journalctl
-alias jctl="journalctl -p 3 -xb"
-#[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
@@ -147,28 +117,10 @@ _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" "$1"
 }
 
-function prev() {
-  PREV=$(echo `history | tail -n1 | head -n1` | sed 's/[0-9]* //')
-  sh -c "pet new `printf %q "$PREV"`"
-}
-
-function pet-select() {
-  BUFFER=$(pet search --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle redisplay
-}
-zle -N pet-select
-stty -ixon
-bindkey '^s' pet-select
-
-
 eval "$(zoxide init zsh)"
 
-alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+#alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 # Created by `pipx` on 2023-11-28 04:58:36
 export PATH="$PATH:/home/andyhoang/.local/bin"
@@ -179,7 +131,6 @@ export GOPATH=$HOME/go  # or wherever you want your workspace to be
 export PATH=$PATH:$GOPATH/bin
 #eval "$(atuin init zsh --disable-up-arrow)"
 
-export PATH=/Users/hoangngocdung/.tiup/bin:$PATH
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"
