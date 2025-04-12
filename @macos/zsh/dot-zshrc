@@ -1,3 +1,5 @@
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 # Path to your oh-my-zsh installation.
 #zmodload zsh/zprof
 export ZSH=$HOME/.oh-my-zsh
@@ -83,10 +85,8 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# now using nvim for few months
 alias vi="nvim"
 # Some copy utils
-# alias update='sudo pacman -Syyu' # use yay instead
 
 #continue download
 alias wget="wget -c"
@@ -97,13 +97,12 @@ alias ssh-home="tailscale switch home && alacritty  -T ssh-andy-home  -e ssh and
 #alias ps="ps auxf"
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 
-#grub update
-
 #youtube-dl
-alias yt="youtube-dl -f bestvideo+bestaudio "
+alias yt="yt-dlp -f bestvideo+bestaudio "
 
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
 export PATH=$PATH:$HOME/.cargo/bin
 # Created by `userpath` on 2020-01-01 04:48:19
 
@@ -134,3 +133,27 @@ export PATH=$PATH:$GOPATH/bin
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 #. "$HOME/.cargo/env"
+
+kpp() {
+    local context="$1"
+    local namespace="$2"
+    local profile="${3}"  # Default to my_profile if not provided
+    # Check AWS SSO token validity and login if needed
+    if ! aws sts get-caller-identity --profile "$profile" &>/dev/null; then
+        echo "AWS SSO token expired or not found. Logging in..."
+        aws sso login --profile="$profile"
+        # Check if login was successful
+        if ! aws sts get-caller-identity --profile "$profile" &>/dev/null; then
+            echo "AWS SSO login failed. Please try again."
+            return 1
+        fi
+    fi
+    # Original context and namespace selection logic
+    export _C=$(kubectl config get-contexts -o name | gum filter --limit 1 --indicator=" >" --value="$context" --select-if-one) && \
+    kubectl config use-context $_C && \
+    export _X=$(kubectl get ns | cut -d ' ' -f1 | gum filter --limit 1 --indicator=" >" --value="$namespace" --select-if-one) && k9s -n $_X
+}
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+#eval "$(mise activate zsh)"
