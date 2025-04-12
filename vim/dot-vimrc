@@ -286,7 +286,7 @@ set updatetime=300
 " diagnostics appear/become resolved
 set signcolumn=yes
 
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-rust-analyzer', 'coc-tsserver', 'coc-snippets', '@yaegassy/coc-pylsp']
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-snippets', '@yaegassy/coc-pylsp']
 
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
