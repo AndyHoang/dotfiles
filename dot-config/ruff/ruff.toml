@@ -9,6 +9,7 @@ ignore = [
     'F842', # bad importing
     'E701', # inline return
     'W292', # no new line eof
+    'W293', # no new line eof
 ]
 select = [
     'E',
