@@ -1,22 +1,24 @@
 [lint]
 
 ignore = [
+    'I001',
     'E402',
     'E501',
     'E401',
-    'I',
     'F841', # bad importing
     'F842', # bad importing
     'E701', # inline return
     'W292', # no new line eof
     'W293', # no new line eof
+    'E501', # line too long
+    'F401',
 ]
 select = [
     'E',
     'F',
     'W',
-    #'Q' # auto format quote
-    'I' # isort
+    'I',
+    'F821'
 ]
 exclude = [
     ".bzr",
