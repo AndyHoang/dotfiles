@@ -50,6 +50,20 @@ Plug 'honza/vim-snippets'
 "Plug 'github/copilot.vim'
 " Make/Focus/Start in vim
 Plug 'tpope/vim-dispatch'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'stevearc/dressing.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'MeanderingProgrammer/render-markdown.nvim'
+
+" Optional deps
+Plug 'hrsh7th/nvim-cmp'
+"Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
+"Plug 'HakonHarnes/img-clip.nvim'
+"Plug 'zbirenbaum/copilot.lua'
+
+" Yay, pass source=true if you want to build from source
+Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
 
 " Themes
 "Plug 'junegunn/seoul256.vim'
