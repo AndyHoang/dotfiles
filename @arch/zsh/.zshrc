@@ -2,7 +2,6 @@
 LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -48,7 +47,7 @@ COMPLETION_WAITING_DOTS="true"
 
 
 #plugins=(git fzf fzf-tab z ssh-agent kubectl zsh-autosuggestions)
-plugins=(git ssh-agent ssm fzf)
+plugins=(git ssh-agent fzf)
 
 zstyle :omz:plugins:ssh-agent identities id_ed25519 id_ed25519_github
 zstyle :omz:plugins:ssh-agent identities id_rsa id_ed25519
@@ -130,8 +129,9 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 alias jctl="journalctl -p 3 -xb"
 #[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
-
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+export FZF_CTRL_T_COMMAND='source <(fzf --zsh)'
 
 export PATH=$PATH:$HOME/.cargo/bin
 
@@ -154,14 +154,11 @@ _fzf_compgen_dir() {
 
 
 alias lg='lazygit'
+alias direnv='mise x -- direnv'
 
 eval "$(zoxide init zsh)"
 
-alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 # Created by `pipx` on 2023-11-28 04:58:36
 export PATH="$PATH:/Users/hoangngocdung/.local/bin"
@@ -171,4 +168,6 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 #eval "$(pyenv virtualenv-init -)"
 
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+ [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="$HOME/.npm-global/bin:$PATH"
+eval "$(direnv hook zsh)"
