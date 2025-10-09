@@ -103,21 +103,8 @@ alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 #add new fonts
 alias fc='sudo fc-cache -fv'
 
-#quickly kill conkies
-alias kc='killall conky'
-
-#hardware info --short
-alias hw="hwinfo --short"
-
 #get fastest mirrors in your neighborhood 
 alias mirror="sudo reflector  --download-timeout 2 --connection-timeout 2 --number 10 --country vn   --thread 4 --verbose --save /etc/pacman.d/mirrorlist"
-#alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-#alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-#alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-#alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-
-#mounting the folder Public for exchange between host and guest on virtualbox
-#alias vbm="sudo mount -t vboxsf -o rw,uid=1000,gid=1000 Public /home/$USER/Public"
 
 #youtube-dl
 alias yt="youtube-dl -f bestvideo+bestaudio "
@@ -157,8 +144,6 @@ alias lg='lazygit'
 alias direnv='mise x -- direnv'
 
 eval "$(zoxide init zsh)"
-
-
 
 # Created by `pipx` on 2023-11-28 04:58:36
 export PATH="$PATH:/Users/hoangngocdung/.local/bin"
