@@ -142,6 +142,7 @@ _fzf_compgen_dir() {
 
 alias lg='lazygit'
 alias direnv='mise x -- direnv'
+alias pre-commit='mise x -- pre-commit'
 
 eval "$(zoxide init zsh)"
 
