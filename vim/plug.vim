@@ -14,9 +14,8 @@
 call plug#begin('~/.vim/plugged')
 "Plug 'maximbaz/lightline-ale'
 Plug 'itchyny/lightline.vim'
-"Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot' " syntax highlight
 Plug 'junegunn/vim-easy-align'
 Plug 'vimwiki/vimwiki'
 Plug 'mbbill/undotree'
@@ -27,9 +26,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 "use sign column to indicate added, modified and removed lines
 Plug 'mhinz/vim-signify'
 "Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
-Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
-"use enter to select things
-Plug 'gcmt/wildfire.vim'
+Plug 'gcmt/wildfire.vim' "use enter to select things
 
 Plug 'tpope/vim-git', { 'for': 'git' }
 
@@ -44,16 +41,10 @@ Plug 'rhysd/conflict-marker.vim'
 "Plug 'machakann/vim-sandwich'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'SirVer/ultisnips'
-Plug 'dcampos/nvim-snippy'
-" Make/Focus/Start in vim
-Plug 'tpope/vim-dispatch'
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'tpope/vim-dispatch' "nice thing to create tmux pane
+Plug 'nvim-treesitter/nvim-treesitter' "visualize better
 
 " Themes
-"Plug 'junegunn/seoul256.vim'
-"Plug 'wojciechkepka/vim-github-dark'
-"Plug 'jdkanani/vim-material-theme'
 "Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'savq/melange'
 
