@@ -157,3 +157,6 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="$HOME/.npm-global/bin:$PATH"
 eval "$(direnv hook zsh)"
+
+# amp
+export PATH="$HOME/.local/bin:$PATH"
