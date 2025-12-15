@@ -142,7 +142,8 @@ kpp() {
     fi
     export _C=$(kubectl config get-contexts -o name | gum filter --limit 1 --indicator=" >" --value="$context" --select-if-one) && \
     kubectl config use-context $_C && \
-    export _X=$(kubectl get ns | cut -d ' ' -f1 | gum filter --limit 1 --indicator=" >" --value="$namespace" --select-if-one) && k9s -n $_X
+    export _X=$(kubectl get ns --no-headers -o custom-columns=":metadata.name" | gum filter --limit 1 --indicator=" >" --value="$namespace" --select-if-one) && \
+    k9s -n $_X -c pods
 }
 
 alias icat="kitten icat"
