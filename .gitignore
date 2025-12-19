@@ -5,3 +5,4 @@ __pycache__
 
 # state not used?
 dot-config/ncspot/userstate.cbor
+dot-config/mpv/watch_later/

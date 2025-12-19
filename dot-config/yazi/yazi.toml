@@ -1,0 +1,6 @@
+# Disabled mime-ext temporarily - causing hangs
+# [[plugin.prepend_fetchers]]
+# id   = "mime"
+# name = "*"
+# run  = "mime-ext"
+# prio = "high"

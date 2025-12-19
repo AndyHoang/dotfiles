@@ -1,0 +1,12 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:max-preview"
+rev = "600614a"
+hash = "9bc26d10d2f6e2aa93b10905b1b76979"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mime-ext"
+rev = "600614a"
+hash = "d81b64a39432fcd6224cd75d296e7510"
+
+[flavor]
+deps = []
