@@ -14,7 +14,7 @@
 call plug#begin('~/.vim/plugged')
 "Plug 'maximbaz/lightline-ale'
 Plug 'itchyny/lightline.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot' " syntax highlight
 Plug 'junegunn/vim-easy-align'
 Plug 'vimwiki/vimwiki'
