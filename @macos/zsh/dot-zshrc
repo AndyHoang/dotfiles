@@ -53,6 +53,9 @@ plugins=(direnv git fzf ssh-agent ssm)
 
 zstyle :omz:plugins:ssh-agent identities id_ed25519 id_ed25519_github
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
+export ENABLE_EXPERIMENTAL_MCP_CLI=true
+export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,6 +97,8 @@ alias k9s="mise x -- k9s "
 alias poetry="mise x -- poetry "
 alias pre-commit="mise x -- pre-commit "
 alias bunx="mise x -- bunx"
+alias gt="mise x -- gt"
+alias bd="mise x -- bd"
 
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
