@@ -93,6 +93,8 @@ alias df='df -h'
 alias wget="wget -c"
 alias ipinfo="curl ipinfo.io"
 
+alias bd='mise x -- bd'
+
 #ps
 #alias ps="ps auxf"
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
@@ -105,9 +107,6 @@ alias fc='sudo fc-cache -fv'
 
 #get fastest mirrors in your neighborhood 
 alias mirror="sudo reflector  --download-timeout 2 --connection-timeout 2 --number 10 --country vn   --thread 4 --verbose --save /etc/pacman.d/mirrorlist"
-
-#youtube-dl
-alias yt="youtube-dl -f bestvideo+bestaudio "
 
 #Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
