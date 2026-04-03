@@ -55,7 +55,9 @@ zstyle :omz:plugins:ssh-agent identities id_ed25519 id_ed25519_github
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 export ENABLE_EXPERIMENTAL_MCP_CLI=true
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
+export ENABLE_TOOL_SEARCH=true
 
+export FZF_CTRL_T_COMMAND=""
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,7 +136,7 @@ export PATH=$PATH:/opt/homebrew/bin
 kpp() {
     local context="$1"
     local namespace="$2"
-    local profile="${3:-bruno}"  # Default to my_profile if not provided
+    local profile="${3:-apollo}"  # Default to my_profile if not provided
     # Check AWS SSO token validity and login if needed
     if ! aws sts get-caller-identity --profile "$profile" &>/dev/null; then
         echo "AWS SSO token expired or not found. Logging in..."
@@ -152,6 +154,80 @@ kpp() {
 }
 
 alias icat="kitten icat"
+
+jb() {
+  # Cross-project Jira board
+  # Usage: jb [OPTIONS] [PROJECT...]
+  #   jb                — all my active issues (assignee/reporter/watcher)
+  #   jb -r             — issues I reported (creator)
+  #   jb -a             — issues assigned to me
+  #   jb -w             — issues I'm watching
+  #   jb -c             — issues I'm a collaborator on
+  #   jb -p             — issues I'm an approver on
+  #   jb --done         — recently completed (14 days)
+  #   jb --all          — everything including done
+  #   jb -a IRIS CTOO   — assigned to me in specific projects
+  local all_projects=(IRIS HORIZON ANOROK HEIMDALL NEXUS ARTEMIS DS AI PHOENIX MATRIX COD ATUM TFX GE)
+  local mode="active"
+  local role="any"
+  local fmt=""
+  local projects=()
+  for arg in "$@"; do
+    case "$arg" in
+      --help|-h)
+        echo "jb - Cross-project Jira board"
+        echo ""
+        echo "Usage: jb [OPTIONS] [PROJECT...]"
+        echo ""
+        echo "Role filters:"
+        echo "  (default)  assignee OR reporter OR watcher"
+        echo "  -a         assigned to me"
+        echo "  -r         reported by me"
+        echo "  -w         watching"
+        echo "  -c         collaborator"
+        echo "  -p         approver"
+        echo ""
+        echo "Status filters:"
+        echo "  (default)  active (not Done/Closed/ACCEPTED/Resolved)"
+        echo "  --done     recently completed (14 days)"
+        echo "  --all      everything"
+        echo ""
+        echo "Projects: ${all_projects[*]}"
+        echo "  jb IRIS CTOO   — filter to specific projects"
+        return 0 ;;
+      --done)  mode="done" ;;
+      --all)   mode="all" ;;
+      --plain) fmt="--plain" ;;
+      -r)      role="reporter" ;;
+      -a)      role="assignee" ;;
+      -w)      role="watcher" ;;
+      -c)      role="collaborator" ;;
+      -p)      role="approver" ;;
+      *)       projects+=("$arg") ;;
+    esac
+  done
+  [[ ${#projects[@]} -eq 0 ]] && projects=("${all_projects[@]}")
+  local proj_jql=$(printf "%s, " "${projects[@]}")
+  proj_jql="project in (${proj_jql%, })"
+  local role_jql
+  case "$role" in
+    reporter)     role_jql="reporter = currentUser()" ;;
+    assignee)     role_jql="assignee = currentUser()" ;;
+    watcher)      role_jql="watcher = currentUser()" ;;
+    collaborator) role_jql="Collaborators = currentUser()" ;;
+    approver)     role_jql="Approvers = currentUser()" ;;
+    *)            role_jql="(assignee = currentUser() OR reporter = currentUser() OR watcher = currentUser())" ;;
+  esac
+  local base="$proj_jql AND $role_jql"
+  local jql
+  case "$mode" in
+    done) jql="$base AND status in (Done, Closed, ACCEPTED, Resolved) AND updated >= -14d" ;;
+    all)  jql="$base" ;;
+    *)    jql="$base AND status not in (Done, Closed, ACCEPTED, Resolved)" ;;
+  esac
+  echo "JQL: $jql"
+  jira issue list --jql "$jql" --columns key,priority,status,created,summary --order-by priority $fmt
+}
 export PATH="$HOME/.local/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
