@@ -99,6 +99,7 @@ alias k9s="mise x -- k9s "
 alias poetry="mise x -- poetry "
 alias pre-commit="mise x -- pre-commit "
 alias bunx="mise x -- bunx"
+alias bun="mise x -- bun"
 alias gt="mise x -- gt"
 alias bd="mise x -- bd"
 
