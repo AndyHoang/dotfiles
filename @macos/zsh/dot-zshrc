@@ -101,7 +101,6 @@ alias pre-commit="mise x -- pre-commit "
 alias bunx="mise x -- bunx"
 alias bun="mise x -- bun"
 alias gt="mise x -- gt"
-alias bd="mise x -- bd"
 
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
@@ -230,5 +229,10 @@ jb() {
   jira issue list --jql "$jql" --columns key,priority,status,created,summary --order-by priority $fmt
 }
 export PATH="$HOME/.local/bin:$PATH"
+
+# Dev build of lfk (fuzzy-completion branch). Remove when upstream merges.
+#alias lfk="$HOME/workplace/personal/lfk/lfk"
+
+alias tree="tree -I '__pycache__|*.pyc|.git|node_modules|.venv|.mypy_cache|.pytest_cache|.ruff_cache|dist|build|*.egg-info'"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
