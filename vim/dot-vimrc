@@ -286,7 +286,7 @@ set updatetime=300
 " diagnostics appear/become resolved
 set signcolumn=yes
 
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-snippets', '@yaegassy/coc-pylsp']
+"let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-snippets', '@yaegassy/coc-pylsp']
 
 "inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
@@ -295,10 +295,10 @@ let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', 'coc-snipp
 "inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               "\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+"function! CheckBackspace() abort
+  "let col = col('.') - 1
+  "return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
 
 
 "inoremap <silent><expr> <TAB>
@@ -311,52 +311,52 @@ endfunction
 
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call ShowDocumentation()<CR>
+"nnoremap <silent> K :call ShowDocumentation()<CR>
 
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
+"function! ShowDocumentation()
+  "if CocAction('hasProvider', 'hover')
+    "call CocActionAsync('doHover')
+  "else
+    "call feedkeys('K', 'in')
+  "endif
+"endfunction
 
 " Highlight the symbol and its references when holding the cursor
 
 
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+"xmap <leader>a  <Plug>(coc-codeaction-selected)
+"nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-nmap <leader>f  <Plug>(coc-fix-current)
+"nmap <leader>f  <Plug>(coc-fix-current)
 
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
 
 " Remap keys for applying refactor code actions
-nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
-xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
-nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+"nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+"xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+"nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 " Run the Code Lens action on the current line
-nmap <leader>cl  <Plug>(coc-codelens-action)
+"nmap <leader>cl  <Plug>(coc-codelens-action)
 
 
 " Use CTRL-S for selections ranges
 " Requires 'textDocument/selectionRange' support of language server
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+"nmap <silent> <C-s> <Plug>(coc-range-select)
+"xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer
-command! -nargs=0 Format :call CocActionAsync('format')
+"command! -nargs=0 Format :call CocActionAsync('format')
 
 " Add `:Fold` command to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+"command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer
-command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+"command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " Add (Neo)Vim's native statusline support
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
@@ -364,15 +364,15 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 
 " Mappings for CoCList
 " Show all diagnostics
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+"nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+"nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+"nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 "
-nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
-nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
+"nmap <silent> <c-k> <Plug>(coc-diagnostic-prev)
+"nmap <silent> <c-j> <Plug>(coc-diagnostic-next)
 
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
@@ -521,13 +521,13 @@ let g:jekyll_post_extension = '.md'
 
 set exrc
 
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+"autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-      \   'right': [ ['percent', 'cocstatus'] ]
+      \   'right': [ ['percent'] ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'LightlineFugitive',
@@ -538,9 +538,9 @@ let g:lightline = {
       \   'mode': 'LightlineMode',
       \ },
       \ 'subseparator': { 'left': '|', 'right': '|' },
-      \ 'component_expand':{
-        \  'cocstatus': 'coc#status'
-      \}
+      "\ 'component_expand':{
+      "\   'cocstatus': 'coc#status'
+      "\ }
       \ }
 function! LightlineModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
