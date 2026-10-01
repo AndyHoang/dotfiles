@@ -36,5 +36,21 @@
 ## Stop mouse wake up
  `sudo ln  udev/rules.d/wakeup.rules /etc/udev/rules.d`
 
+## tmux power draw (Arch)
+Status bar shows `⚡<W>`: CPU package + RAM (Intel RAPL) + GPU (amdgpu), averaged over `status-interval`.
+Board/drives/fans/PSU loss have no sensor, so wall draw is ~20-40W higher.
+
+* `mkdir -p ~/.tmux/plugins` first, otherwise stow links all of `~/.tmux` into the repo and tpm installs plugins there
+* `cd @arch && stow --dotfiles -t ~ tmux` (links `~/.tmux.conf` and `~/.tmux/power.sh`)
+* Allow reading RAPL without root, from repo root (one-time; reapplied every boot):
+    ```sh
+    # rapl.conf grants group `andyhoang`; change it if your group differs (`id -gn`)
+    sudo cp @arch/etc/tmpfiles.d/rapl.conf /etc/tmpfiles.d/
+    sudo systemd-tmpfiles --create /etc/tmpfiles.d/rapl.conf
+    ```
+    Kept group-only, not world-readable, because of the RAPL side-channel (CVE-2020-8694)
+* Check: `~/.tmux/power.sh` twice; the CPU part appears from the 2nd run
+* Without this step, or on AMD CPU / Nvidia GPU, it only shows the parts it can read
+
 ## Note
 - xclip for vim/neovim and system clipboard to synced without additional config
