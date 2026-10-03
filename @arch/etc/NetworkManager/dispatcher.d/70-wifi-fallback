@@ -1,0 +1,27 @@
+#!/bin/sh
+# NetworkManager dispatcher: Wi-Fi is a fallback for the wired eno1, never both at once.
+# Two NICs on one subnet (rp_filter=1, arp_ignore=0) lets peers cache the wrong MAC and
+# silently drop packets. So:
+#   eno1 up   -> disconnect wlan0 (also blocks Wi-Fi autoconnect until eno1 goes down)
+#   eno1 down -> connect wlan0 (NM picks the best saved network; at home that's the
+#                profile pinned to 192.168.50.173)
+# Install (copy, not stow/symlink — NM only runs root-owned scripts):
+#   sudo install -m 755 -o root -g root @arch/etc/NetworkManager/dispatcher.d/70-wifi-fallback /etc/NetworkManager/dispatcher.d/
+
+IFACE="$1"
+ACTION="$2"
+WIFI=wlan0
+
+[ "$IFACE" = "eno1" ] || exit 0
+
+case "$ACTION" in
+    up)
+        logger -t wifi-fallback "eno1 up -> disconnecting $WIFI"
+        nmcli device disconnect "$WIFI" >/dev/null 2>&1 || true
+        ;;
+    down)
+        logger -t wifi-fallback "eno1 down -> connecting $WIFI"
+        nmcli device connect "$WIFI" >/dev/null 2>&1 || true
+        ;;
+esac
+exit 0
