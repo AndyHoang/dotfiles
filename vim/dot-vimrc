@@ -380,7 +380,7 @@ if executable("rg")
 endif
 
 let g:doge_doc_standard_python = 'reST'
-nmap <silent> <Leader>d <Plug>(doge-generate)
+"nmap <silent> <Leader>d <Plug>(doge-generate)
 
 let g:netrw_liststyle=0         " thin (change to 3 for tree)
 let g:netrw_altv=1              " open files on right
@@ -392,12 +392,12 @@ let g:netrw_browse_split = 4
 
 " { neovim config only
  "COPILOT remap to from Tab to Ctrl-J
-  imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-  let g:copilot_no_tab_map = v:true
+  "imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+  "let g:copilot_no_tab_map = v:true
 
-  let g:copilot_filetypes = {
-        \ 'yaml': v:true,
-      \ }
+  "let g:copilot_filetypes = {
+        "\ 'yaml': v:true,
+      "\ }
 
 " }
 

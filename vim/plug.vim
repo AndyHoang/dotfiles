@@ -42,7 +42,7 @@ Plug 'rhysd/conflict-marker.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-dispatch' "nice thing to create tmux pane
-Plug 'nvim-treesitter/nvim-treesitter' "visualize better
+"Plug 'nvim-treesitter/nvim-treesitter' "never initialised (no setup{} call); polyglot does the highlighting
 
 " Themes
 "Plug 'kristijanhusak/vim-hybrid-material'
